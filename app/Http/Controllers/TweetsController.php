@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tweet;
 
-class TweetController extends Controller
+class TweetsController extends Controller
 {
 
 
@@ -14,7 +14,7 @@ class TweetController extends Controller
 
         $tweets = Tweet::latest()->get();
 
-        return view('home', [
+        return view('tweets.index', [
             'tweets' => auth()->user()->timeline()
         ]);
     }
