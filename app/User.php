@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username','avatar', 'email', 'password',
+        'name', 'username', 'avatar', 'email', 'password',
     ];
 
     /**
@@ -46,6 +46,11 @@ class User extends Authenticatable
     public function getAvatarAttribute($value)
     {
         return asset($value);
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
     }
 
     public function timeline()
