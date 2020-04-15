@@ -6,6 +6,7 @@
             name="body"
             class="w-full focus:outline-none focus:placeholder-gray-700"
             placeholder="What's up doc?"
+            autofocus
         ></textarea>
 
         @error('body')
@@ -14,7 +15,7 @@
 
         <hr class="mb-4">
 
-        <footer class="flex justify-between">
+        <footer class="flex items-center justify-between">
             <img
                 src="{{ auth()->user()->avatar }}"
                 alt="Your Avatar"
@@ -22,7 +23,9 @@
                 width="50"
                 height="50"
             >
-            <button type="submit" class="bg-blue-500 rounded-full shadow py-1 px-5 text-white">Publish</button>
+            <button type="submit" class="bg-blue-500 rounded-full shadow text-sm px-10 text-white hover:bg-blue-600 h-10">
+                Publish
+            </button>
 
         </footer>
 

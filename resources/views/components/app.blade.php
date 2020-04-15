@@ -2,7 +2,7 @@
     <section class="px-8">
         <main class="container mx-auto">
             <div class="lg:flex lg:justify-center">
-                <div class="lg:w-32 lg:-ml-8">
+                <div class="lg:w-32">
                     @include ('_sidebar-links')
                 </div>
 
@@ -10,7 +10,7 @@
                     {{ $slot }}
                 </div>
 
-                <div class="lg:w-1/6">
+                <div class="lg:w-64">
                     @include ('_friends-list')
                 </div>
             </div>
