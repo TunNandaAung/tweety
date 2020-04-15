@@ -12,8 +12,6 @@ class TweetsController extends Controller
     public function index()
     {
 
-        $tweets = Tweet::latest()->get();
-
         return view('tweets.index', [
             'tweets' => auth()->user()->timeline()
         ]);
