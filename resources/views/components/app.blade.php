@@ -16,4 +16,6 @@
             </div>
         </main>
     </section>
+    
+    <flash message="{{ session('flash') }}"></flash>
 </x-master>

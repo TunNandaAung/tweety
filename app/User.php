@@ -48,6 +48,11 @@ class User extends Authenticatable
         return asset($value ?: '/images/default-avatar.png');
     }
 
+    public function getFullNameAttribute()
+    {
+        return "{$this->name} {$this->email}";
+    }
+
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = bcrypt($value);
@@ -74,14 +79,10 @@ class User extends Authenticatable
         $path = route('profile', $this->username);
 
         return $append ? "{$path}/{$append}" : "{$path}";
-
     }
 
     public function likes()
     {
         return $this->hasMany(Like::class);
     }
-
-
-
 }

@@ -20,7 +20,7 @@ class CreateLikesTable extends Migration
             $table->boolean('liked');
             $table->timestamps();
 
-            $table->unique('user_id','tweet_id');
+            $table->unique('user_id', 'tweet_id');
         });
     }
 

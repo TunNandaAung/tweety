@@ -3,12 +3,10 @@
 
 namespace App;
 
-
 use Illuminate\Database\Eloquent\Builder;
 
 trait Likable
 {
-
     public function scopeWithLikes(Builder $query)
     {
         $query->leftJoinSub(
@@ -27,6 +25,14 @@ trait Likable
             ->count();
     }
 
+    public function getIsDislikedByAttribute()
+    {
+        return (bool)current_user()->likes
+            ->where('tweet_id', $this->id)
+            ->where('liked', false)
+            ->count();
+    }
+
     public function likes()
     {
         return $this->hasMany(Like::class);
@@ -35,6 +41,14 @@ trait Likable
     public function isLikedBy(User $user)
     {
         return (bool)$user->likes
+            ->where('tweet_id', $this->id)
+            ->where('liked', true)
+            ->count();
+    }
+   
+    public function getIsLikedByAttribute()
+    {
+        return (bool)current_user()->likes
             ->where('tweet_id', $this->id)
             ->where('liked', true)
             ->count();
