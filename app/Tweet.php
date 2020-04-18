@@ -9,7 +9,7 @@ class Tweet extends Model
     use Likable;
 
     
-    protected $appends = ['is_liked_by','is_disliked_by'];
+    protected $appends = ['is_liked','is_disliked'];
     
     protected $guarded = [];
 

@@ -4,8 +4,8 @@
     <form @submit.prevent="like">
       <button
         type="submit"
-        class="flex items-center mr-4"
-        :class="isLikedBy ? 'text-blue-500' : 'text-gray-500'"
+        class="flex items-center mr-4 focus:outline-none hover:text-blue-500"
+        :class="isLiked ? 'text-blue-500 bg-blue-200 rounded-lg p-2' : 'text-gray-500'"
       >
         <svg viewBox="0 0 20 20" class="mr-1 w-3" style="transform: scaleX(-1)">
           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -25,8 +25,8 @@
     <form @submit.prevent="dislike">
       <button
         type="submit"
-        class="flex items-center"
-        :class="isDislikedBy ? 'text-blue-500' : 'text-gray-500'"
+        class="flex items-center focus:outline-none hover:text-blue-500"
+        :class="isDisliked ? 'text-blue-500 bg-blue-200 rounded-lg p-2' : 'text-gray-500'"
       >
         <svg viewBox="0 0 20 20" class="mr-1 w-3">
           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -55,27 +55,34 @@ export default {
   },
   data() {
     return {
-      isLikedBy: this.tweet.is_liked_by,
-      isDislikedBy: this.tweet.is_disliked_by,
-      endpoint: `/tweets/${this.tweet.id}/like`,
+      isLiked: this.tweet.is_liked,
+      isDisliked: this.tweet.is_disliked,
       likeCount: this.tweet.likes || 0,
-      dislikeCount: this.tweet.dislikes || 0
+      dislikeCount: this.tweet.dislikes || 0,
+      endpoint: `/tweets/${this.tweet.id}/like`
     };
   },
   methods: {
     like() {
-      axios.post(this.endpoint);
-
-      flash("You liked a post");
-      this.isLikedBy = true;
-      this.likeCount++;
+      axios.post(this.endpoint).then(({ data }) => this.updateLikes(data));
     },
     dislike() {
-      axios.delete(this.endpoint);
+      axios.delete(this.endpoint).then(({ data }) => this.updateDislikes(data));
+    },
 
-      flash("You disliked a post");
-      this.isDislikedBy = true;
-      this.dislikeCount++;
+    updateLikes(data) {
+      data == 1 ? this.likeCount-- : this.likeCount++;
+      this.isLiked = !this.isLiked;
+      this.isDisliked = false;
+
+      this.dislikeCount > 0 ? this.dislikeCount-- : this.dislikeCount;
+    },
+    updateDislikes(data) {
+      data == 1 ? this.dislikeCount-- : this.dislikeCount++;
+      this.isDisliked = !this.isDisliked;
+      this.isLiked = false;
+
+      this.likeCount > 0 ? this.likeCount-- : this.likeCount;
     }
   }
 };

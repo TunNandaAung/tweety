@@ -148,9 +148,3 @@
 
     </form>
 </x-app>
-<script>
-    import AvatarForm from "../../js/components/AvatarForm";
-    export default {
-        components: {AvatarForm}
-    }
-</script>
