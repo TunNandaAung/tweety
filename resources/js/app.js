@@ -10,6 +10,7 @@ import Vue from "vue";
 import AvatarForm from "./components/AvatarForm";
 import LikeButtons from "./components/LikeButtons";
 import Flash from "./components/Flash";
+import FollowButton from "./components/FollowButton";
 
 window.events = new Vue();
 
@@ -20,7 +21,7 @@ window.flash = function(message, level = "success") {
 window.Vue = Vue;
 
 const app = new Vue({
-    components: { AvatarForm, LikeButtons, Flash },
+    components: { AvatarForm, LikeButtons, Flash, FollowButton },
 
     el: "#app"
 });
