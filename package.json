@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "mix-tailwindcss": "^1.2.0",
-        "tailwindcss": "^1.2.0"
+        "tailwindcss": "^1.2.0",
+        "vuex": "^3.2.0"
     }
 }
