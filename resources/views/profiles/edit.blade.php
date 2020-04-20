@@ -143,10 +143,8 @@
                         id="description"
                         rows="4"
                         name="description"
-                        type="text"
                         required
-                        value="{{ $user->description }}"
-                    ></textarea>
+                >{{ $user->description }}</textarea>
                     @error('description')
                         <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
                     @enderror

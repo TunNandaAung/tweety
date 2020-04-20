@@ -8,32 +8,32 @@
         <input
             class="cursor-pointer opacity-0 absolute block right-0 top-0"
             type="file"
-            name="avatar"
+            :name="name"
             accept="image/*"
             @change="onChange"
         />
     </div>
-
 </template>
 
 <script>
-    export default {
-        methods: {
-            onChange(e) {
-                if (! e.target.files.length) return;
+export default {
+    props: ["name"],
+    methods: {
+        onChange(e) {
+            if (!e.target.files.length) return;
 
-                let file = e.target.files[0];
+            let file = e.target.files[0];
 
-                let reader = new FileReader();
+            let reader = new FileReader();
 
-                reader.readAsDataURL(file);
+            reader.readAsDataURL(file);
 
-                reader.onload = e => {
-                    let src = e.target.result;
+            reader.onload = e => {
+                let src = e.target.result;
 
-                    this.$emit('loaded', { src, file });
-                };
-            }
+                this.$emit("loaded", { src, file });
+            };
         }
     }
+};
 </script>
