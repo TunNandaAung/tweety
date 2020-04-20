@@ -21,6 +21,7 @@
         <div class="flex justify-between items-center mb-6">
             <div style="max-width: 270px">
                 <h2 class="font-bold text-2xl mb-0">{{ $user->name }}</h2>
+                <h3 class="font-bold text-sm mb-0 text-gray-600">{{ '@'. $user->username }}</h3>
                 <p class="text-sm">Joined {{ $user->created_at->diffForHumans() }}</p>
             </div>
 
@@ -28,7 +29,7 @@
 
                 @can('edit',$user)
                     <a  href="{{ $user->path('edit') }}"
-                        class="bg-white rounded-full border border-gray-300 py-2 px-4 text-black text-xs mr-2">
+                        class="bg-white rounded-full border border-gray-300 py-2 px-4 text-black text-xs mr-2 font-bold hover:bg-blue-500 hover:text-white">
                         Edit Profile
                     </a>
                 @endcan
