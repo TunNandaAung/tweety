@@ -31,12 +31,16 @@ class ProfilesController extends Controller
             'avatar' => ['file'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user)],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'banner' => ['file'],
+            'description' => ['string'],
         ]);
 
         if (request('avatar')) {
-
             $attributes['avatar'] = request('avatar')->store('avatars');
+        }
 
+        if (request('banner')) {
+            $attributes['banner'] = request('banner')->store('banners');
         }
 
 

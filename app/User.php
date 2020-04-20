@@ -48,9 +48,9 @@ class User extends Authenticatable
         return asset($value ?: '/images/default-avatar.png');
     }
 
-    public function getFullNameAttribute()
+    public function getBannerAttribute($value)
     {
-        return "{$this->name} {$this->email}";
+        return asset($value ?: '/images/default-profile-banner.jpg');
     }
 
     public function setPasswordAttribute($value)

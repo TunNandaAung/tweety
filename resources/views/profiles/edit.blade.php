@@ -3,6 +3,8 @@
         @csrf
         @method('PATCH')
         <div class="mx-auto">
+            <h2 class="text-xl font-bold mb-6 text-blue-500">Account Setting </h2>
+            
             <div class="mb-6">
                 <div>
                     <label class="block text-gray-500 font-bold mb-2 pr-4" for="name">
@@ -52,7 +54,7 @@
 
             <div class="mb-6">
                 <div>
-                    <label class="block text-gray-500 font-bold mb-2 pr-4" for="username">
+                    <label class="block text-gray-500 font-bold mb-2 pr-4" for="avatar">
                         Avatar
                     </label>
                 </div>
@@ -125,6 +127,41 @@
 
             </div>
 
+            <h2 class="text-xl font-bold mb-6 text-blue-500">Profile</h2>
+
+            
+            <div class="mb-6">
+                <div>
+                    <label class="block text-gray-500 font-bold mb-2 pr-4" for="description">
+                        Description
+                    </label>
+                </div>
+
+                <div>
+                    <textarea
+                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                        id="description"
+                        rows="4"
+                        name="description"
+                        type="text"
+                        required
+                        value="{{ $user->description }}"
+                    ></textarea>
+                    @error('description')
+                        <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
+                    @enderror
+                </div>
+
+            </div>
+
+            <div class="mb-6">
+                <div>
+                    <label class="block text-gray-500 font-bold mb-2 pr-4" for="banner">
+                        Banner Image
+                    </label>
+                </div>
+                <banner-form :user="{{ $user }}"></banner-form>
+            </div>
 
 
                 <div>

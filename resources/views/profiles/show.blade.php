@@ -3,9 +3,9 @@
 
         <div class="relative">
             <img
-                src="/images/default-profile-banner.jpg"
+                src="{{ $user->banner }}"
                 alt="profile banner"
-                class="rounded-lg mb-2"
+                class="rounded-lg mb-2 h-56 w-full object-cover"
             >
 
             <img
@@ -20,8 +20,8 @@
 
         <div class="flex justify-between items-center mb-6">
             <div style="max-width: 270px">
-                <h2 class="font-bold text-2xl mb-0">{{ $user->name }}</h2>
-                <h3 class="font-bold text-sm mb-0 text-gray-600">{{ '@'. $user->username }}</h3>
+                <h2 class="font-bold text-2xl mb-1">{{ $user->name }}</h2>
+                <h3 class="font-bold text-sm mb-1 text-gray-600">{{ '@'. $user->username }}</h3>
                 <p class="text-sm">Joined {{ $user->created_at->diffForHumans() }}</p>
             </div>
 
@@ -39,8 +39,7 @@
             </div>
         </div>
 
-        <p class="text-sm">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci
-            velit.</p>
+    <p class="text-sm">{{ $user->description }}</p>
 
 
     </header>
