@@ -2,4 +2,22 @@
 
 @tailwind components;
 
+body {
+    width: 100vw;
+    overflow-x: hidden;
+
+    &::-webkit-scrollbar {
+        width: 8px;
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: var(--header-background-color);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #3e474b;
+        border-radius: 10px;
+    }
+}
 @tailwind utilities;
