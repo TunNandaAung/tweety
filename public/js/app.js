@@ -2172,6 +2172,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
@@ -2181,7 +2183,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     last: function last() {
       return Object.keys(this.friends).length - 1;
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(["friends"]))
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapState"])(["friends", "loading"]))
 });
 
 /***/ }),
@@ -3696,7 +3698,7 @@ var render = function() {
         ? _c(
             "transition-group",
             {
-              staticClass: "stacked-tag-list",
+              class: _vm.loading ? "loader" : "",
               attrs: { tag: "ul", name: "slide-up", appear: "" }
             },
             _vm._l(_vm.friends, function(friend, index) {
@@ -3721,8 +3723,14 @@ var render = function() {
                             height: "40"
                           }
                         }),
-                        _vm._v(
-                          "\n          " + _vm._s(friend.name) + "\n        "
+                        _vm._v(" "),
+                        _c(
+                          "span",
+                          {
+                            staticClass:
+                              "rounded-full bg-transparent px-2 py-1 hover:bg-blue-500 hover:text-white text-center block"
+                          },
+                          [_vm._v(_vm._s(friend.name))]
                         )
                       ]
                     )
@@ -3732,7 +3740,9 @@ var render = function() {
             }),
             0
           )
-        : _c("ul", [_c("li", [_vm._v("No friends yet!")])])
+        : _c("ul", { class: _vm.loading ? "loader" : "" }, [
+            _c("li", [_vm._v("No friends yet!")])
+          ])
     ],
     1
   )
@@ -17820,7 +17830,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     friends: [],
-    friendsTotal: 0
+    friendsTotal: 0,
+    loading: false
   },
   mutations: {
     FOLLOW_FRIEND: function FOLLOW_FRIEND(state, friend) {
@@ -17841,9 +17852,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   },
   actions: {
     fetchFriends: function fetchFriends(_ref) {
+      var _this = this;
+
       var commit = _ref.commit;
+      this.state.loading = true;
       axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/friends").then(function (response) {
         commit("SET_FRIENDS", response.data);
+        _this.state.loading = false;
       });
     },
     followFriend: function followFriend(_ref2, friend) {

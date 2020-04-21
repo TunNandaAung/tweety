@@ -7,7 +7,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         friends: [],
-        friendsTotal: 0
+        friendsTotal: 0,
+        loading: false
     },
     mutations: {
         FOLLOW_FRIEND(state, friend) {
@@ -28,8 +29,10 @@ export default new Vuex.Store({
     },
     actions: {
         fetchFriends({ commit }) {
+            this.state.loading = true;
             axios.get("/api/friends").then(response => {
                 commit("SET_FRIENDS", response.data);
+                this.state.loading = false;
             });
         },
         followFriend({ commit }, friend) {

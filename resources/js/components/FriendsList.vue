@@ -5,7 +5,7 @@
     <transition-group
       tag="ul"
       name="slide-up"
-      class="stacked-tag-list"
+      :class="loading ? 'loader' : ''"
       appear
       v-if="friends.length > 0"
     >
@@ -13,13 +13,15 @@
         <div>
           <a :href="'/profiles/'+friend.username" class="text-sm font-semibold flex items-center">
             <img :src="friend.avatar" alt class="rounded-full mr-2" width="40" height="40" />
-            {{ friend.name}}
+            <span
+              class="rounded-full bg-transparent px-2 py-1 hover:bg-blue-500 hover:text-white text-center block"
+            >{{ friend.name}}</span>
           </a>
         </div>
       </li>
     </transition-group>
 
-    <ul v-else>
+    <ul v-else :class="loading ? 'loader' : ''">
       <li>No friends yet!</li>
     </ul>
   </div>
@@ -35,7 +37,7 @@ export default {
     last() {
       return Object.keys(this.friends).length - 1;
     },
-    ...mapState(["friends"])
+    ...mapState(["friends", "loading"])
   }
 };
 </script> 
