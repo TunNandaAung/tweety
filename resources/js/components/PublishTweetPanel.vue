@@ -1,22 +1,59 @@
 <template>
   <div class="border border-blue-400 rounded-lg py-6 px-8 mb-8">
-    <form @submit.prevent="submit" @keydown="form.submitted=false">
+    <form
+      @submit.prevent="submit"
+      method="POST"
+      @keydown="submitted=false"
+      enctype="multipart/form-data"
+    >
       <textarea
         name="body"
         class="w-full focus:outline-none focus:placeholder-gray-700"
         placeholder="What's up doc?"
         autofocus
         ref="tweet"
-        v-model="form.body"
-        @keydown="delete form.errors.body"
+        v-model="body"
+        @keydown="delete errors.body"
       ></textarea>
 
-      <span class="text-xs text-red-600" v-text="form.errors.body[0]" v-if="form.errors.body"></span>
+      <span class="text-xs text-red-600" v-text="errors.body[0]" v-if="errors.body"></span>
 
       <hr class="mb-4" />
 
+      <div class="rounded-full relative" v-if="imageSrc">
+        <img :src="imageSrc" class="rounded-lg mb-1 h-56 w-full object-cover" alt="tweet-image" />
+        <button
+          type="button"
+          class="absolute text-white text-right px-4 py-1 bg-black rounded-full"
+          style="left:88%;top:5%"
+          @click="clearImage"
+        >Clear</button>
+      </div>
+
+      <span class="text-xs text-red-600" v-text="errors.image[0]" v-if="errors.image"></span>
+
       <footer class="flex items-center justify-between">
         <img :src="avatar" alt="Your Avatar" class="rounded-full mr-2" width="50" height="50" />
+
+        <image-upload :name="'image'" :clear="clear" class="mr-1" @loaded="onLoad">
+          <slot>
+            <button
+              type="button"
+              class="bg-blue-300 focus:outline-none text-white font-bold py-2 px-2 rounded-full"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                class="h-6 w-6 text-blue-500"
+              >
+                <path
+                  fill="currentColor"
+                  d="M19 2H1a1 1 0 00-1 1v14a1 1 0 001 1h18a1 1 0 001-1V3a1 1 0 00-1-1zm-1 14H2V4h16v12zm-3.685-5.123l-3.231 1.605-3.77-6.101L4 14h12l-1.685-3.123zM13.25 9a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5z"
+                />
+              </svg>
+            </button>
+          </slot>
+        </image-upload>
 
         <div class="flex items-center">
           <div class="mr-6">
@@ -24,8 +61,8 @@
               <path
                 class="circle-bg"
                 d="M18 2.0845
-          a 15.9155 15.9155 0 0 1 0 31.831
-          a 15.9155 15.9155 0 0 1 0 -31.831"
+                a 15.9155 15.9155 0 0 1 0 31.831
+                a 15.9155 15.9155 0 0 1 0 -31.831"
               />
               <path
                 fill="currentColor"
@@ -50,27 +87,30 @@
 
 <script>
 import TweetyForm from "./TweetyForm";
+import ImageUpload from "./ImageUpload";
 
 export default {
   props: ["user"],
+  components: {
+    ImageUpload
+  },
   data() {
     return {
-      form: new TweetyForm({
-        body: ""
-      }),
+      body: "",
+      image: File,
+      imageSrc: "",
       limit: 280,
-      avatar: this.user.avatar
+      avatar: this.user.avatar,
+      clear: false,
+      errors: []
     };
   },
   computed: {
     characterLeft() {
-      return (
-        (this.limit - this.form.body.length) *
-        (100 / this.limit)
-      ).toFixed(0);
+      return ((this.limit - this.body.length) * (100 / this.limit)).toFixed(0);
     },
     limitExceed() {
-      return this.form.body.length > this.limit;
+      return this.body.length > this.limit;
     }
   },
   methods: {
@@ -81,14 +121,37 @@ export default {
         textarea.style.cssText = "height:" + textarea.scrollHeight + "px";
       }, 0);
     },
-    async submit() {
-      this.form.submit("/tweets").then(response => {
-        location = response.data.message;
-      });
+    onLoad(image) {
+      this.imageSrc = image.src;
+      this.image = image.file;
+    },
+    clearImage() {
+      this.imageSrc = "";
+      this.image = null;
+      this.clear = true;
+    },
+    submit() {
+      let data = new FormData();
+      data.append("body", this.body);
+      data.append("image", this.image);
+
+      axios
+        .post("/tweets", data)
+        .then(response => {
+          console.log(response.data.message);
+        })
+        .catch(errors => {
+          console.log(errors);
+        });
+      //   this.submit("/tweets").then(response => {
+      //     // location = response.data.message;
+      //     console.log(response.data.message);
+      //   });
     }
   }
 };
 </script>
+
 <style scoped>
 .circular-chart {
   display: block;

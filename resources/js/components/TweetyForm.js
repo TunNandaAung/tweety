@@ -11,7 +11,6 @@ class TweetyForm {
 
     data() {
         let data = {};
-
         for (let attributes in this.originalData) {
             data[attributes] = this[attributes];
         }
