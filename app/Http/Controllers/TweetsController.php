@@ -24,7 +24,11 @@ class TweetsController extends Controller
             'user_id' => auth()->id(),
             'body' => $attributes['body']
         ]);
+        
+        if (request()->wantsJson()) {
+            return ['message' => '/tweets'];
+        }
 
-        return redirect()->route('home');
+        return redirect()->route('home')->with('flash', 'Your tweet has been published!');
     }
 }

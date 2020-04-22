@@ -14,6 +14,7 @@ import LikeButtons from "./components/LikeButtons";
 import Flash from "./components/Flash";
 import FollowButton from "./components/FollowButton";
 import FriendsList from "./components/FriendsList";
+import PublishTweetPanel from "./components/PublishTweetPanel";
 import TurbolinksAdapter from "vue-turbolinks";
 
 window.events = new Vue();
@@ -33,7 +34,8 @@ document.addEventListener("turbolinks:load", () => {
             LikeButtons,
             Flash,
             FollowButton,
-            FriendsList
+            FriendsList,
+            PublishTweetPanel
         },
         store,
         el: "#app"
