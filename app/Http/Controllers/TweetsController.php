@@ -18,7 +18,7 @@ class TweetsController extends Controller
     {
         $attributes = request()->validate([
             'body' => 'required|max:255',
-            'image' => 'required|image'
+            'image' => 'sometimes|nullable|image'
         ]);
         
         if (request('image')) {
@@ -27,11 +27,11 @@ class TweetsController extends Controller
 
         $attributes['user_id'] = auth()->id();
         
-        //Tweet::create($attributes);
+        Tweet::create($attributes);
         
 
         if (request()->wantsJson()) {
-            return ['message' => $attributes];
+            return ['message' => '/tweets'];
         }
 
         return redirect()->route('home')->with('flash', 'Your tweet has been published!');

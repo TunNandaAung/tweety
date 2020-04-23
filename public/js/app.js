@@ -2486,12 +2486,12 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       body: "",
-      image: File,
+      image: null,
       imageSrc: "",
       limit: 280,
       avatar: this.user.avatar,
       clear: false,
-      errors: []
+      errors: {}
     };
   },
   computed: {
@@ -2520,17 +2520,24 @@ __webpack_require__.r(__webpack_exports__);
       this.clear = true;
     },
     submit: function submit() {
+      var _this = this;
+
+      var data = this.createFormData();
+      axios.post("/tweets", data).then(function (response) {
+        location = response.data.message;
+      })["catch"](function (errors) {
+        _this.errors = errors.response.data.errors;
+      });
+    },
+    createFormData: function createFormData() {
       var data = new FormData();
       data.append("body", this.body);
-      data.append("image", this.image);
-      axios.post("/tweets", data).then(function (response) {
-        console.log(response.data.message);
-      })["catch"](function (errors) {
-        console.log(errors);
-      }); //   this.submit("/tweets").then(response => {
-      //     // location = response.data.message;
-      //     console.log(response.data.message);
-      //   });
+
+      if (this.image !== null) {
+        data.append("image", this.image);
+      }
+
+      return data;
     }
   }
 });
