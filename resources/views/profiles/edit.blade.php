@@ -165,14 +165,14 @@
                 <div>
                     <div class="md:text-right">
                         <button
-                            class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-full"
+                            class="shadow bg-blue-500 hover:bg-blue-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-full"
                             type="submit"
                         >
                             Submit
                         </button>
 
                         <a
-                            class="ml-5     shadow bg-gray-500 hover:bg-gray-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-full"
+                            class="ml-5 shadow bg-gray-700 hover:bg-gray-800 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-full"
                             href="{{ $user->path() }}"
                         >
                             Cancel

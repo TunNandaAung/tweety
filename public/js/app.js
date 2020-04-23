@@ -2262,6 +2262,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     name: {
@@ -4265,10 +4267,10 @@ var render = function() {
           "button",
           {
             staticClass:
-              "shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-full",
+              "shadow bg-blue-500 hover:bg-blue-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-full",
             attrs: { type: "button" }
           },
-          [_vm._v("Choose File")]
+          [_vm._v("\n            Choose File\n        ")]
         )
       ]),
       _vm._v(" "),
