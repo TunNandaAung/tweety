@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-hidden relative w-64 mt-4 mb-">
+  <div class="overflow-hidden relative mb-">
     <slot>
       <button
         type="button"

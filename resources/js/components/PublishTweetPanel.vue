@@ -13,7 +13,7 @@
         autofocus
         ref="tweet"
         v-model="body"
-        @keydown="delete errors.body"
+        @keydown="bodyKeyDown"
       ></textarea>
 
       <span class="text-xs text-red-600" v-text="errors.body[0]" v-if="errors.body"></span>
@@ -35,28 +35,30 @@
       <footer class="flex items-center justify-between">
         <img :src="avatar" alt="Your Avatar" class="rounded-full mr-2" width="50" height="50" />
 
-        <image-upload :name="'image'" :clear="clear" class="mr-1" @loaded="onLoad">
-          <slot>
-            <button
-              type="button"
-              class="bg-blue-300 focus:outline-none text-white font-bold py-2 px-2 rounded-full"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                class="h-6 w-6 text-blue-500"
-              >
-                <path
-                  fill="currentColor"
-                  d="M19 2H1a1 1 0 00-1 1v14a1 1 0 001 1h18a1 1 0 001-1V3a1 1 0 00-1-1zm-1 14H2V4h16v12zm-3.685-5.123l-3.231 1.605-3.77-6.101L4 14h12l-1.685-3.123zM13.25 9a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5z"
-                />
-              </svg>
-            </button>
-          </slot>
-        </image-upload>
-
         <div class="flex items-center">
           <div class="mr-6">
+            <image-upload :name="'image'" :clear="clear" @loaded="onLoad">
+              <slot>
+                <button
+                  type="button"
+                  class="bg-blue-300 focus:outline-none text-white font-bold py-2 px-2 rounded-full"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    class="h-6 w-6 text-blue-500"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M19 2H1a1 1 0 00-1 1v14a1 1 0 001 1h18a1 1 0 001-1V3a1 1 0 00-1-1zm-1 14H2V4h16v12zm-3.685-5.123l-3.231 1.605-3.77-6.101L4 14h12l-1.685-3.123zM13.25 9a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5z"
+                    />
+                  </svg>
+                </button>
+              </slot>
+            </image-upload>
+          </div>
+
+          <div class="mr-6" v-if="body.length > 0">
             <svg viewBox="0 0 36 36" class="circular-chart h-8 w-8" v-if="!limitExceed">
               <path
                 class="circle-bg"
@@ -99,7 +101,7 @@ export default {
       body: "",
       image: null,
       imageSrc: "",
-      limit: 280,
+      limit: 255,
       avatar: this.user.avatar,
       clear: false,
       errors: {}
@@ -114,6 +116,9 @@ export default {
     }
   },
   methods: {
+    bodyKeyDown() {
+      delete this.errors.body;
+    },
     autosize() {
       let textarea = this.$refs["tweet"];
       setTimeout(() => {

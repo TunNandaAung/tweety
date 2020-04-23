@@ -1919,12 +1919,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['user'],
+  props: ["user"],
   components: {
     ImageUpload: _ImageUpload__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
@@ -1952,14 +1949,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ImageUpload__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ImageUpload */ "./resources/js/components/ImageUpload.vue");
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -2476,6 +2465,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2488,7 +2479,7 @@ __webpack_require__.r(__webpack_exports__);
       body: "",
       image: null,
       imageSrc: "",
-      limit: 280,
+      limit: 255,
       avatar: this.user.avatar,
       clear: false,
       errors: {}
@@ -2503,6 +2494,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    bodyKeyDown: function bodyKeyDown() {
+      delete this.errors.body;
+    },
     autosize: function autosize() {
       var textarea = this.$refs["tweet"];
       setTimeout(function () {
@@ -3781,7 +3775,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("image-upload", {
-        staticClass: "mr-1",
+        staticClass: "mr-1 mt-4",
         attrs: { name: "avatar" },
         on: { loaded: _vm.onLoad }
       })
@@ -3822,7 +3816,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("image-upload", {
-        staticClass: "mr-1",
+        staticClass: "mr-1 mt-4",
         attrs: { name: "banner" },
         on: { loaded: _vm.onLoad }
       })
@@ -4019,7 +4013,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "overflow-hidden relative w-64 mt-4 mb-" },
+    { staticClass: "overflow-hidden relative mb-" },
     [
       _vm._t("default", [
         _c(
@@ -4251,9 +4245,7 @@ var render = function() {
             },
             domProps: { value: _vm.body },
             on: {
-              keydown: function($event) {
-                delete _vm.errors.body
-              },
+              keydown: _vm.bodyKeyDown,
               input: function($event) {
                 if ($event.target.composing) {
                   return
@@ -4300,111 +4292,114 @@ var render = function() {
               })
             : _vm._e(),
           _vm._v(" "),
-          _c(
-            "footer",
-            { staticClass: "flex items-center justify-between" },
-            [
-              _c("img", {
-                staticClass: "rounded-full mr-2",
-                attrs: {
-                  src: _vm.avatar,
-                  alt: "Your Avatar",
-                  width: "50",
-                  height: "50"
-                }
-              }),
-              _vm._v(" "),
+          _c("footer", { staticClass: "flex items-center justify-between" }, [
+            _c("img", {
+              staticClass: "rounded-full mr-2",
+              attrs: {
+                src: _vm.avatar,
+                alt: "Your Avatar",
+                width: "50",
+                height: "50"
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex items-center" }, [
               _c(
-                "image-upload",
-                {
-                  staticClass: "mr-1",
-                  attrs: { name: "image", clear: _vm.clear },
-                  on: { loaded: _vm.onLoad }
-                },
+                "div",
+                { staticClass: "mr-6" },
                 [
-                  _vm._t("default", [
-                    _c(
-                      "button",
-                      {
-                        staticClass:
-                          "bg-blue-300 focus:outline-none text-white font-bold py-2 px-2 rounded-full",
-                        attrs: { type: "button" }
-                      },
-                      [
+                  _c(
+                    "image-upload",
+                    {
+                      attrs: { name: "image", clear: _vm.clear },
+                      on: { loaded: _vm.onLoad }
+                    },
+                    [
+                      _vm._t("default", [
                         _c(
+                          "button",
+                          {
+                            staticClass:
+                              "bg-blue-300 focus:outline-none text-white font-bold py-2 px-2 rounded-full",
+                            attrs: { type: "button" }
+                          },
+                          [
+                            _c(
+                              "svg",
+                              {
+                                staticClass: "h-6 w-6 text-blue-500",
+                                attrs: {
+                                  xmlns: "http://www.w3.org/2000/svg",
+                                  viewBox: "0 0 20 20"
+                                }
+                              },
+                              [
+                                _c("path", {
+                                  attrs: {
+                                    fill: "currentColor",
+                                    d:
+                                      "M19 2H1a1 1 0 00-1 1v14a1 1 0 001 1h18a1 1 0 001-1V3a1 1 0 00-1-1zm-1 14H2V4h16v12zm-3.685-5.123l-3.231 1.605-3.77-6.101L4 14h12l-1.685-3.123zM13.25 9a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5z"
+                                  }
+                                })
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    ],
+                    2
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm.body.length > 0
+                ? _c("div", { staticClass: "mr-6" }, [
+                    !_vm.limitExceed
+                      ? _c(
                           "svg",
                           {
-                            staticClass: "h-6 w-6 text-blue-500",
-                            attrs: {
-                              xmlns: "http://www.w3.org/2000/svg",
-                              viewBox: "0 0 20 20"
-                            }
+                            staticClass: "circular-chart h-8 w-8",
+                            attrs: { viewBox: "0 0 36 36" }
                           },
                           [
                             _c("path", {
+                              staticClass: "circle-bg",
+                              attrs: {
+                                d:
+                                  "M18 2.0845\n              a 15.9155 15.9155 0 0 1 0 31.831\n              a 15.9155 15.9155 0 0 1 0 -31.831"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("path", {
+                              staticClass: "circle",
                               attrs: {
                                 fill: "currentColor",
+                                stroke: _vm.limitExceed ? "#E53E3E" : "#4299e1",
+                                "stroke-dasharray": _vm.characterLeft + " 100",
                                 d:
-                                  "M19 2H1a1 1 0 00-1 1v14a1 1 0 001 1h18a1 1 0 001-1V3a1 1 0 00-1-1zm-1 14H2V4h16v12zm-3.685-5.123l-3.231 1.605-3.77-6.101L4 14h12l-1.685-3.123zM13.25 9a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5z"
+                                  "M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
                               }
                             })
                           ]
                         )
-                      ]
-                    )
+                      : _c("span", { staticClass: "text-sm text-red-600" }, [
+                          _vm._v(_vm._s(_vm.characterLeft))
+                        ])
                   ])
-                ],
-                2
-              ),
+                : _vm._e(),
               _vm._v(" "),
-              _c("div", { staticClass: "flex items-center" }, [
-                _c("div", { staticClass: "mr-6" }, [
-                  !_vm.limitExceed
-                    ? _c(
-                        "svg",
-                        {
-                          staticClass: "circular-chart h-8 w-8",
-                          attrs: { viewBox: "0 0 36 36" }
-                        },
-                        [
-                          _c("path", {
-                            staticClass: "circle-bg",
-                            attrs: {
-                              d:
-                                "M18 2.0845\n              a 15.9155 15.9155 0 0 1 0 31.831\n              a 15.9155 15.9155 0 0 1 0 -31.831"
-                            }
-                          }),
-                          _vm._v(" "),
-                          _c("path", {
-                            staticClass: "circle",
-                            attrs: {
-                              fill: "currentColor",
-                              stroke: _vm.limitExceed ? "#E53E3E" : "#4299e1",
-                              "stroke-dasharray": _vm.characterLeft + " 100",
-                              d:
-                                "M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                            }
-                          })
-                        ]
-                      )
-                    : _c("span", { staticClass: "text-sm text-red-600" }, [
-                        _vm._v(_vm._s(_vm.characterLeft))
-                      ])
-                ]),
-                _vm._v(" "),
-                _c(
-                  "button",
-                  {
-                    staticClass:
-                      "bg-blue-500 rounded-full shadow text-sm px-10 text-white hover:bg-blue-600 h-10 focus:outline-none",
-                    attrs: { type: "submit" }
-                  },
-                  [_vm._v("Publish")]
-                )
-              ])
-            ],
-            1
-          )
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "bg-blue-500 rounded-full shadow text-sm px-10 text-white hover:bg-blue-600 h-10 focus:outline-none",
+                  attrs: { type: "submit" }
+                },
+                [_vm._v("Publish")]
+              )
+            ])
+          ])
         ]
       )
     ]
