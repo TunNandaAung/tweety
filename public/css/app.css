@@ -623,6 +623,10 @@ video {
   }
 }
 
+.dropdown-toggle > button:focus {
+  outline: 0;
+}
+
 body {
   width: 100vw;
   overflow-x: hidden;

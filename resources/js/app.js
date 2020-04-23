@@ -15,6 +15,13 @@ import Flash from "./components/Flash";
 import FollowButton from "./components/FollowButton";
 import FriendsList from "./components/FriendsList";
 import PublishTweetPanel from "./components/PublishTweetPanel";
+import Dropdown from "./components/Dropdown";
+import ConfirmDeleteModal from "./utils/ConfirmDeleteModal";
+
+import VModal from "vue-js-modal";
+
+Vue.use(VModal);
+
 import TurbolinksAdapter from "vue-turbolinks";
 
 window.events = new Vue();
@@ -35,7 +42,9 @@ document.addEventListener("turbolinks:load", () => {
             Flash,
             FollowButton,
             FriendsList,
-            PublishTweetPanel
+            PublishTweetPanel,
+            Dropdown,
+            ConfirmDeleteModal
         },
         store,
         el: "#app"

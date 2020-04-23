@@ -36,4 +36,17 @@ class TweetsController extends Controller
 
         return redirect()->route('home')->with('flash', 'Your tweet has been published!');
     }
+
+    public function destroy(Tweet $tweet)
+    {
+        $this->authorize('edit', $tweet->user);
+
+        $tweet->delete();
+        
+        if (request()->wantsJson()) {
+            return ['message' => '/tweets'];
+        }
+        
+        return redirect('/tweets');
+    }
 }
