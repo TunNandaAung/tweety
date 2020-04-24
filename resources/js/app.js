@@ -23,6 +23,8 @@ import VModal from "vue-js-modal";
 Vue.use(VModal);
 
 import TurbolinksAdapter from "vue-turbolinks";
+import Turbolinks from "turbolinks";
+Turbolinks.start();
 
 window.events = new Vue();
 

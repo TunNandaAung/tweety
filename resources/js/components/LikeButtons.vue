@@ -4,10 +4,10 @@
     <form @submit.prevent="like">
       <button
         type="submit"
-        class="flex items-center mr-4 focus:outline-none hover:text-blue-500"
+        class="flex items-center mr-4 focus:outline-none hover:text-blue-500 hover:bg-blue-200 p-2 rounded-lg"
         :class="isLiked ? 'text-blue-500 bg-blue-200 rounded-lg p-2' : 'text-gray-500'"
       >
-        <svg viewBox="0 0 20 20" class="mr-1 w-3" style="transform: scaleX(-1)">
+        <svg viewBox="0 0 20 20" class="mr-1 w-4" style="transform: scaleX(-1)">
           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g class="fill-current">
               <path
@@ -25,10 +25,10 @@
     <form @submit.prevent="dislike">
       <button
         type="submit"
-        class="flex items-center focus:outline-none hover:text-blue-500"
+        class="flex items-center focus:outline-none hover:text-blue-500 hover:bg-blue-200 p-2 rounded-lg"
         :class="isDisliked ? 'text-blue-500 bg-blue-200 rounded-lg p-2' : 'text-gray-500'"
       >
-        <svg viewBox="0 0 20 20" class="mr-1 w-3">
+        <svg viewBox="0 0 20 20" class="mr-1 w-4">
           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g class="fill-current">
               <path

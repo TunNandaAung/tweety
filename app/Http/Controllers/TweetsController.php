@@ -2,13 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Tweet;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class TweetsController extends Controller
 {
+    protected $shouldFlash = false;
+    
     public function index()
     {
+        //session(['shouldFlash' => true]);
+        //dd(Session::pull('shouldFlash'));
+        // if (Session::pull('shouldFlash')) {
+        //     Session::flash('flash', 'Your tweet has been published!');
+        // }
+
         return view('tweets.index', [
             'tweets' => auth()->user()->timeline()
         ]);
@@ -44,6 +53,7 @@ class TweetsController extends Controller
         $tweet->delete();
         
         if (request()->wantsJson()) {
+            //session(['shouldFlash' => true]);
             return ['message' => '/tweets'];
         }
         
