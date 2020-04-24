@@ -18949,8 +18949,15 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     followFriend: function followFriend(_ref2, friend) {
       var commit = _ref2.commit;
+      // return axios
+      //     .post(`/profiles/${friend.username}/follow`)
+      //     .then(response => {
+      //         response.data.detached.length > 0
+      //             ? commit("UNFOLLOW_FRIEND", friend)
+      //             : commit("FOLLOW_FRIEND", friend);
+      //     });
       return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/profiles/".concat(friend.username, "/follow")).then(function (response) {
-        response.data.detached.length > 0 ? commit("UNFOLLOW_FRIEND", friend) : commit("FOLLOW_FRIEND", friend);
+        response.data === 1 ? commit("UNFOLLOW_FRIEND", friend) : commit("FOLLOW_FRIEND", friend);
       });
     }
   }

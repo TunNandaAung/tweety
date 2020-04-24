@@ -36,10 +36,17 @@ export default new Vuex.Store({
             });
         },
         followFriend({ commit }, friend) {
+            // return axios
+            //     .post(`/profiles/${friend.username}/follow`)
+            //     .then(response => {
+            //         response.data.detached.length > 0
+            //             ? commit("UNFOLLOW_FRIEND", friend)
+            //             : commit("FOLLOW_FRIEND", friend);
+            //     });
             return axios
                 .post(`/profiles/${friend.username}/follow`)
                 .then(response => {
-                    response.data.detached.length > 0
+                    response.data === 1
                         ? commit("UNFOLLOW_FRIEND", friend)
                         : commit("FOLLOW_FRIEND", friend);
                 });

@@ -3,10 +3,14 @@
 
 namespace App;
 
+use App\Notifications\FollowedUnfollowed;
+
 trait Followable
 {
     public function follow(User $user)
     {
+        $user->notify(new FollowedUnfollowed(current_user()));
+        
         return $this->follows()->save($user);
     }
 
@@ -17,7 +21,12 @@ trait Followable
 
     public function toggleFollow(User $user)
     {
-        return $this->follows()->toggle($user);
+        //return $this->follows()->toggle($user);
+        if ($this->following($user)) {
+            return $this->unfollow($user);
+        }
+
+        return $this->follow($user);
     }
 
 
