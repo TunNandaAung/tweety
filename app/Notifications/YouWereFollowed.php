@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class FollowedUnfollowed extends Notification
+class YouWereFollowed extends Notification
 {
     use Queueable;
 

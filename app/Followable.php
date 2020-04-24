@@ -3,13 +3,13 @@
 
 namespace App;
 
-use App\Notifications\FollowedUnfollowed;
+use App\Notifications\YouWereFollowed;
 
 trait Followable
 {
     public function follow(User $user)
     {
-        $user->notify(new FollowedUnfollowed(current_user()));
+        $user->notify(new YouWereFollowed(current_user()));
         
         return $this->follows()->save($user);
     }

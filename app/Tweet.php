@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Events\TweetWasPublished;
+
 class Tweet extends Model
 {
     use Likable;
@@ -13,8 +15,31 @@ class Tweet extends Model
     
     protected $guarded = [];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($tweet) {
+            event(new TweetWasPublished($tweet));
+        });
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getBodyAttribute($body)
+    {
+        return \Purify::clean($body);
+    }
+
+    public function setBodyAttribute($body)
+    {
+        $this->attributes['body'] = preg_replace(
+            '/@([\w\-\.]+)/',
+            '<a href="/profiles/$1">$0</a>',
+            $body
+        );
     }
 }
