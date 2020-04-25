@@ -46,7 +46,7 @@ class YouWereFollowed extends Notification
         return [
             'message' => $this->message(),
             'notifier' => $this->user,
-            'path' => $this->user->path(),
+            'link' => $this->user->path(),
         ];
     }
 

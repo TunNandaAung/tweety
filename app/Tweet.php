@@ -38,7 +38,7 @@ class Tweet extends Model
     {
         $this->attributes['body'] = preg_replace(
             '/@([\w\-\.]+)/',
-            '<a href="/profiles/$1">$0</a>',
+            '<a href="/profiles/$1" class="text-blue-500 hover:underline">$0</a>',
             $body
         );
     }

@@ -13,7 +13,6 @@
         "axios": "^0.19",
         "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
-        "jquery": "^3.2",
         "laravel-mix": "^5.0.1",
         "lodash": "^4.17.13",
         "popper.js": "^1.12",
@@ -26,8 +25,10 @@
     "dependencies": {
         "mix-tailwindcss": "^1.2.0",
         "tailwindcss": "^1.2.0",
+        "tributejs": "^5.1.3",
         "turbolinks": "^5.2.0",
         "vue-js-modal": "^1.3.35",
+        "vue-tribute": "^1.0.4",
         "vue-turbolinks": "^2.1.0",
         "vuex": "^3.2.0"
     }
