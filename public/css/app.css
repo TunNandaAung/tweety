@@ -3131,6 +3131,10 @@ body::-webkit-scrollbar-thumb {
   border-radius: 1.25rem;
 }
 
+.rounded-xl {
+  border-radius: 1.50rem;
+}
+
 .rounded-full {
   border-radius: 9999px;
 }
@@ -3235,6 +3239,26 @@ body::-webkit-scrollbar-thumb {
   border-bottom-left-radius: 1.25rem;
 }
 
+.rounded-t-xl {
+  border-top-left-radius: 1.50rem;
+  border-top-right-radius: 1.50rem;
+}
+
+.rounded-r-xl {
+  border-top-right-radius: 1.50rem;
+  border-bottom-right-radius: 1.50rem;
+}
+
+.rounded-b-xl {
+  border-bottom-right-radius: 1.50rem;
+  border-bottom-left-radius: 1.50rem;
+}
+
+.rounded-l-xl {
+  border-top-left-radius: 1.50rem;
+  border-bottom-left-radius: 1.50rem;
+}
+
 .rounded-t-full {
   border-top-left-radius: 9999px;
   border-top-right-radius: 9999px;
@@ -3333,6 +3357,22 @@ body::-webkit-scrollbar-thumb {
 
 .rounded-bl-lg {
   border-bottom-left-radius: 1.25rem;
+}
+
+.rounded-tl-xl {
+  border-top-left-radius: 1.50rem;
+}
+
+.rounded-tr-xl {
+  border-top-right-radius: 1.50rem;
+}
+
+.rounded-br-xl {
+  border-bottom-right-radius: 1.50rem;
+}
+
+.rounded-bl-xl {
+  border-bottom-left-radius: 1.50rem;
 }
 
 .rounded-tl-full {
@@ -16617,6 +16657,10 @@ body::-webkit-scrollbar-thumb {
     border-radius: 1.25rem;
   }
 
+  .sm\:rounded-xl {
+    border-radius: 1.50rem;
+  }
+
   .sm\:rounded-full {
     border-radius: 9999px;
   }
@@ -16721,6 +16765,26 @@ body::-webkit-scrollbar-thumb {
     border-bottom-left-radius: 1.25rem;
   }
 
+  .sm\:rounded-t-xl {
+    border-top-left-radius: 1.50rem;
+    border-top-right-radius: 1.50rem;
+  }
+
+  .sm\:rounded-r-xl {
+    border-top-right-radius: 1.50rem;
+    border-bottom-right-radius: 1.50rem;
+  }
+
+  .sm\:rounded-b-xl {
+    border-bottom-right-radius: 1.50rem;
+    border-bottom-left-radius: 1.50rem;
+  }
+
+  .sm\:rounded-l-xl {
+    border-top-left-radius: 1.50rem;
+    border-bottom-left-radius: 1.50rem;
+  }
+
   .sm\:rounded-t-full {
     border-top-left-radius: 9999px;
     border-top-right-radius: 9999px;
@@ -16819,6 +16883,22 @@ body::-webkit-scrollbar-thumb {
 
   .sm\:rounded-bl-lg {
     border-bottom-left-radius: 1.25rem;
+  }
+
+  .sm\:rounded-tl-xl {
+    border-top-left-radius: 1.50rem;
+  }
+
+  .sm\:rounded-tr-xl {
+    border-top-right-radius: 1.50rem;
+  }
+
+  .sm\:rounded-br-xl {
+    border-bottom-right-radius: 1.50rem;
+  }
+
+  .sm\:rounded-bl-xl {
+    border-bottom-left-radius: 1.50rem;
   }
 
   .sm\:rounded-tl-full {
@@ -30104,6 +30184,10 @@ body::-webkit-scrollbar-thumb {
     border-radius: 1.25rem;
   }
 
+  .md\:rounded-xl {
+    border-radius: 1.50rem;
+  }
+
   .md\:rounded-full {
     border-radius: 9999px;
   }
@@ -30208,6 +30292,26 @@ body::-webkit-scrollbar-thumb {
     border-bottom-left-radius: 1.25rem;
   }
 
+  .md\:rounded-t-xl {
+    border-top-left-radius: 1.50rem;
+    border-top-right-radius: 1.50rem;
+  }
+
+  .md\:rounded-r-xl {
+    border-top-right-radius: 1.50rem;
+    border-bottom-right-radius: 1.50rem;
+  }
+
+  .md\:rounded-b-xl {
+    border-bottom-right-radius: 1.50rem;
+    border-bottom-left-radius: 1.50rem;
+  }
+
+  .md\:rounded-l-xl {
+    border-top-left-radius: 1.50rem;
+    border-bottom-left-radius: 1.50rem;
+  }
+
   .md\:rounded-t-full {
     border-top-left-radius: 9999px;
     border-top-right-radius: 9999px;
@@ -30306,6 +30410,22 @@ body::-webkit-scrollbar-thumb {
 
   .md\:rounded-bl-lg {
     border-bottom-left-radius: 1.25rem;
+  }
+
+  .md\:rounded-tl-xl {
+    border-top-left-radius: 1.50rem;
+  }
+
+  .md\:rounded-tr-xl {
+    border-top-right-radius: 1.50rem;
+  }
+
+  .md\:rounded-br-xl {
+    border-bottom-right-radius: 1.50rem;
+  }
+
+  .md\:rounded-bl-xl {
+    border-bottom-left-radius: 1.50rem;
   }
 
   .md\:rounded-tl-full {
@@ -43591,6 +43711,10 @@ body::-webkit-scrollbar-thumb {
     border-radius: 1.25rem;
   }
 
+  .lg\:rounded-xl {
+    border-radius: 1.50rem;
+  }
+
   .lg\:rounded-full {
     border-radius: 9999px;
   }
@@ -43695,6 +43819,26 @@ body::-webkit-scrollbar-thumb {
     border-bottom-left-radius: 1.25rem;
   }
 
+  .lg\:rounded-t-xl {
+    border-top-left-radius: 1.50rem;
+    border-top-right-radius: 1.50rem;
+  }
+
+  .lg\:rounded-r-xl {
+    border-top-right-radius: 1.50rem;
+    border-bottom-right-radius: 1.50rem;
+  }
+
+  .lg\:rounded-b-xl {
+    border-bottom-right-radius: 1.50rem;
+    border-bottom-left-radius: 1.50rem;
+  }
+
+  .lg\:rounded-l-xl {
+    border-top-left-radius: 1.50rem;
+    border-bottom-left-radius: 1.50rem;
+  }
+
   .lg\:rounded-t-full {
     border-top-left-radius: 9999px;
     border-top-right-radius: 9999px;
@@ -43793,6 +43937,22 @@ body::-webkit-scrollbar-thumb {
 
   .lg\:rounded-bl-lg {
     border-bottom-left-radius: 1.25rem;
+  }
+
+  .lg\:rounded-tl-xl {
+    border-top-left-radius: 1.50rem;
+  }
+
+  .lg\:rounded-tr-xl {
+    border-top-right-radius: 1.50rem;
+  }
+
+  .lg\:rounded-br-xl {
+    border-bottom-right-radius: 1.50rem;
+  }
+
+  .lg\:rounded-bl-xl {
+    border-bottom-left-radius: 1.50rem;
   }
 
   .lg\:rounded-tl-full {
@@ -57078,6 +57238,10 @@ body::-webkit-scrollbar-thumb {
     border-radius: 1.25rem;
   }
 
+  .xl\:rounded-xl {
+    border-radius: 1.50rem;
+  }
+
   .xl\:rounded-full {
     border-radius: 9999px;
   }
@@ -57182,6 +57346,26 @@ body::-webkit-scrollbar-thumb {
     border-bottom-left-radius: 1.25rem;
   }
 
+  .xl\:rounded-t-xl {
+    border-top-left-radius: 1.50rem;
+    border-top-right-radius: 1.50rem;
+  }
+
+  .xl\:rounded-r-xl {
+    border-top-right-radius: 1.50rem;
+    border-bottom-right-radius: 1.50rem;
+  }
+
+  .xl\:rounded-b-xl {
+    border-bottom-right-radius: 1.50rem;
+    border-bottom-left-radius: 1.50rem;
+  }
+
+  .xl\:rounded-l-xl {
+    border-top-left-radius: 1.50rem;
+    border-bottom-left-radius: 1.50rem;
+  }
+
   .xl\:rounded-t-full {
     border-top-left-radius: 9999px;
     border-top-right-radius: 9999px;
@@ -57280,6 +57464,22 @@ body::-webkit-scrollbar-thumb {
 
   .xl\:rounded-bl-lg {
     border-bottom-left-radius: 1.25rem;
+  }
+
+  .xl\:rounded-tl-xl {
+    border-top-left-radius: 1.50rem;
+  }
+
+  .xl\:rounded-tr-xl {
+    border-top-right-radius: 1.50rem;
+  }
+
+  .xl\:rounded-br-xl {
+    border-bottom-right-radius: 1.50rem;
+  }
+
+  .xl\:rounded-bl-xl {
+    border-bottom-left-radius: 1.50rem;
   }
 
   .xl\:rounded-tl-full {

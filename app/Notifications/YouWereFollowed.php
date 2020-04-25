@@ -52,6 +52,6 @@ class YouWereFollowed extends Notification
 
     public function message()
     {
-        return sprintf('%s is now following you.', $this->user->username);
+        return sprintf('%s followed you.', $this->user->username);
     }
 }
