@@ -20,6 +20,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\TweetWasPublished' => [
             'App\Listeners\NotifyMentionedUsers',
+            '\App\Listeners\NotifyFollowers'
         ],
     ];
 
