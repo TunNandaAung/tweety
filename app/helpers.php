@@ -15,9 +15,11 @@ function get_notification_view($notificationType)
 function get_notification_color($notificationType)
 {
     $colors = [
-        'App\Notifications\YouWereFollowed' => 'border-blue-400',
-        'App\Notifications\YouWereMentioned' => 'border-purple-400',
-        'App\Notifications\RecentlyTweeted' => 'border-teal-400'
+        'App\Notifications\YouWereFollowed' => 'border-blue-500',
+        'App\Notifications\YouWereMentioned' => 'border-purple-500',
+        'App\Notifications\RecentlyTweeted' => 'border-teal-500',
+        'App\Notifications\TweetWasLiked' => 'border-blue-600',
+        'App\Notifications\TweetWasDisliked' => 'border-red-500',
     ];
 
     return $colors[$notificationType];

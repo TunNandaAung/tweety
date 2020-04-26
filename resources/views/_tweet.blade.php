@@ -39,7 +39,7 @@
     <div>
         
        @can('edit',$tweet->user)
-            <dropdown align="right" width="200px">
+            <dropdown align="right" width="200px" v-cloak>
                 <template v-slot:trigger>
                     <button
                         class="flex items-center text-default no-underline text-sm focus:outline-none"

@@ -735,6 +735,10 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
+[v-cloak] {
+  display: none;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
