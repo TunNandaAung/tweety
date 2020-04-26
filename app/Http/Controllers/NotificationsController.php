@@ -8,8 +8,9 @@ class NotificationsController extends Controller
 {
     public function index()
     {
-        $notifications = current_user()->notifications;
+        $readNotifications = current_user()->notifications->where('read_at', '!=', null);
+        $unreadNotifications = current_user()->unreadNotifications;
         //return $notifications;
-        return view('notifications.index', compact('notifications'));
+        return view('notifications.index', compact('readNotifications', 'unreadNotifications'));
     }
 }
