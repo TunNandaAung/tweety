@@ -17,6 +17,7 @@ import FriendsList from "./components/FriendsList";
 import PublishTweetPanel from "./components/PublishTweetPanel";
 import Dropdown from "./components/Dropdown";
 import ConfirmDeleteModal from "./utils/ConfirmDeleteModal";
+import AddReplyModal from "./utils/AddReplyModal";
 
 import VModal from "vue-js-modal";
 
@@ -46,7 +47,8 @@ document.addEventListener("turbolinks:load", () => {
             FriendsList,
             PublishTweetPanel,
             Dropdown,
-            ConfirmDeleteModal
+            ConfirmDeleteModal,
+            AddReplyModal
         },
         store,
         el: "#app"
