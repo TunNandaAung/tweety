@@ -2145,7 +2145,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      followed: this.following
+      followed: this.following,
+      unfollowText: null
     };
   },
   methods: {
@@ -2165,7 +2166,10 @@ __webpack_require__.r(__webpack_exports__);
       this.followed = false;
     },
     hover: function hover() {
-      this.text = "Unfollow";
+      this.followed ? this.unfollowText = "Unfollow" : this.unfollowText = null;
+    },
+    mouseleave: function mouseleave() {
+      this.unfollowText = null;
     }
   }
 });
@@ -2436,34 +2440,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_tribute__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-tribute */ "./node_modules/vue-tribute/dist/vue-tribute.es.js");
 /* harmony import */ var tributejs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! tributejs */ "./node_modules/tributejs/dist/tribute.min.js");
 /* harmony import */ var tributejs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(tributejs__WEBPACK_IMPORTED_MODULE_3__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -4230,11 +4206,11 @@ var render = function() {
         {
           staticClass:
             "bg-blue-500 rounded-full shadow py-2 px-6 text-white text-sm font-bold focus:outline-none",
-          class: _vm.followed ? "hover:bg-red-500" : "hover:bg-blue-600",
+          class: _vm.followed ? "hover:bg-red-600" : "hover:bg-blue-600",
           attrs: { type: "submit" },
-          on: { mouseover: _vm.hover, mouseleave: _vm.hover }
+          on: { mouseover: _vm.hover, mouseleave: _vm.mouseleave }
         },
-        [_vm._v(_vm._s(_vm.text))]
+        [_vm._v(_vm._s(_vm.unfollowText ? _vm.unfollowText : _vm.text))]
       )
     ]
   )
@@ -4619,7 +4595,7 @@ var render = function() {
                     attrs: { type: "button" },
                     on: { click: _vm.clearImage }
                   },
-                  [_vm._v("\n                Clear\n            ")]
+                  [_vm._v("Clear")]
                 )
               ])
             : _vm._e(),
@@ -4706,7 +4682,7 @@ var render = function() {
                               staticClass: "circle-bg",
                               attrs: {
                                 d:
-                                  "M18 2.0845\n            a 15.9155 15.9155 0 0 1 0 31.831\n            a 15.9155 15.9155 0 0 1 0 -31.831"
+                                  "M18 2.0845\n              a 15.9155 15.9155 0 0 1 0 31.831\n              a 15.9155 15.9155 0 0 1 0 -31.831"
                               }
                             }),
                             _vm._v(" "),
@@ -4723,7 +4699,11 @@ var render = function() {
                           ]
                         )
                       : _c("span", { staticClass: "text-sm text-red-600" }, [
-                          _vm._v(_vm._s(_vm.characterLeft))
+                          _vm._v(
+                            "\n            " +
+                              _vm._s(_vm.characterLeft) +
+                              "\n          "
+                          )
                         ])
                   ])
                 : _vm._e(),
@@ -4732,10 +4712,10 @@ var render = function() {
                 "button",
                 {
                   staticClass:
-                    "bg-blue-500 rounded-full shadow text-sm px-10 text-white hover:bg-blue-600 h-10 focus:outline-none",
+                    "bg-blue-500 rounded-full shadow font-bold text-sm px-10 text-white hover:bg-blue-600 h-10 focus:outline-none",
                   attrs: { type: "submit" }
                 },
-                [_vm._v("\n                    Publish\n                ")]
+                [_vm._v("Publish")]
               )
             ])
           ])

@@ -4,10 +4,10 @@
     <button
       type="submit"
       class="bg-blue-500 rounded-full shadow py-2 px-6 text-white text-sm font-bold focus:outline-none"
-      :class="followed ? 'hover:bg-red-500' : 'hover:bg-blue-600'"
+      :class="followed ? 'hover:bg-red-600' : 'hover:bg-blue-600'"
       @mouseover="hover"
-      @mouseleave="hover"
-    >{{ text }}</button>
+      @mouseleave="mouseleave"
+    >{{ unfollowText ? unfollowText : text }}</button>
   </form>
 </template>
 
@@ -27,7 +27,8 @@ export default {
   },
   data() {
     return {
-      followed: this.following
+      followed: this.following,
+      unfollowText: null
     };
   },
   methods: {
@@ -45,7 +46,12 @@ export default {
       this.followed = false;
     },
     hover() {
-      this.text = "Unfollow";
+      this.followed
+        ? (this.unfollowText = "Unfollow")
+        : (this.unfollowText = null);
+    },
+    mouseleave() {
+      this.unfollowText = null;
     }
   }
 };
