@@ -23,12 +23,15 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
     Route::get('/tweets', 'TweetsController@index')->name('home');
+    Route::get('/tweets/{tweet}', 'TweetsController@show')->name('show-tweet');
     Route::post('/tweets', 'TweetsController@store')->name('create-tweet');
     Route::delete('/tweets/{tweet}', 'TweetsController@destroy')->name('delete-tweet');
 
 
     Route::post('/tweets/{tweet}/like', 'TweetsLikesController@store')->name('like-tweet');
     Route::delete('/tweets/{tweet}/like', 'TweetsLikesController@destroy')->name('dislike-tweet');
+
+    Route::post('/tweets/{tweet}/reply','RepliesController@store')->name('create-reply');
 
     Route::post('/profiles/{user}/follow', 'FollowsController@store')->name('follows');
     Route::get('/profiles/{user}/edit', 'ProfilesController@edit')->middleware('can:edit,user')->name('edit-profile');

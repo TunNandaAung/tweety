@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Events\TweetWasPublished;
+use App\Reply;
 
 class Tweet extends Model
 {
@@ -29,6 +30,11 @@ class Tweet extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function replies()
+    {
+        return $this->hasMany(Reply::class);
+    }
+
     public function getBodyAttribute($body)
     {
         return \Purify::clean($body);
@@ -41,5 +47,20 @@ class Tweet extends Model
             '<a href="/profiles/$1" class="text-blue-500 hover:underline">$0</a>',
             $body
         );
+    }
+
+    public function getThreadedReplies()
+    {
+        return $this->Replies()->with('owner')->get()->threaded();
+    }
+   
+
+    public function addReply($reply)
+    {
+        $reply = $this->replies()->create($reply);
+
+        // event(new ThreadReceivedNewReply($reply));
+
+        //return $reply;
     }
 }

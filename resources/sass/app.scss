@@ -57,6 +57,23 @@ body {
         transform: rotate(359deg);
     }
 }
+.timeline-contents-item:not(:last-child) .timeline-contents-activity:after {
+    content: "";
+    display: block;
+    height: calc(100% - 20px);
+    position: absolute;
+    top: 40px;
+    width: 1px;
+    background-image: linear-gradient(
+            180deg,
+            transparent,
+            transparent 50%,
+            #fff 0,
+            #fff
+        ),
+        linear-gradient(90deg, #6cb2eb, #6cb2eb);
+    background-size: 2px 8px;
+}
 
 [v-cloak] {
     display: none;

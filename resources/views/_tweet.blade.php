@@ -17,9 +17,9 @@
             <h5 class="font-bold mb-4">{{ $tweet->user->name }}</h5>
         </a>
 
-        <p class="text-sm mb-3">
+        <a class="text-sm mb-3" href="{{ route('show-tweet',$tweet) }}">
             {!! $tweet->body !!}
-        </p>
+        </a>
 
         @if($tweet->image !== null)
         <div class="mb-3">
