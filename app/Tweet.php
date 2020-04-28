@@ -51,9 +51,13 @@ class Tweet extends Model
 
     public function getThreadedReplies()
     {
-        return $this->Replies()->with('owner')->get()->threaded();
+        return $this->replies()->with('owner')->get()->threaded();
     }
-   
+    
+    public function showTweet()
+    {
+        return static::where('tweet_id', $this->id)->withLikes($this->id)->first();
+    }
 
     public function addReply($reply)
     {
@@ -62,5 +66,10 @@ class Tweet extends Model
         // event(new ThreadReceivedNewReply($reply));
 
         return $reply;
+    }
+
+    public function path()
+    {
+        return "/tweets/{$this->id}";
     }
 }

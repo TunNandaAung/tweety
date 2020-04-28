@@ -9,8 +9,16 @@ use App\Notifications\TweetWasDisliked;
 
 trait Likable
 {
-    public function scopeWithLikes(Builder $query)
+    public function scopeWithLikes(Builder $query, $id = null)
     {
+        $id ?
+        $query->leftJoinSub(
+            "select tweet_id,sum(liked) likes, sum(!liked) dislikes from likes group by tweet_id having tweet_id = {$id}",
+            'likes',
+            'likes.tweet_id',
+            'tweets.id'
+        ) :
+            
         $query->leftJoinSub(
             'select tweet_id,sum(liked) likes, sum(!liked) dislikes from likes group by tweet_id',
             'likes',
@@ -18,6 +26,16 @@ trait Likable
             'tweets.id'
         );
     }
+
+    // public function likes()
+    // {
+    //     return $this->hasMany(Like::class)->where('liked', true);
+    // }
+
+    // public function dislikes()
+    // {
+    //     return $this->hasMany(Like::class)->where('liked', false);
+    // }
 
     public function isDislikedBy(User $user)
     {

@@ -742,7 +742,7 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   top: 40px;
   width: 1px;
-  background-image: linear-gradient(180deg, transparent, transparent 50%, #fff 0, #fff), linear-gradient(90deg, #6cb2eb, #6cb2eb);
+  background-image: linear-gradient(180deg, transparent, transparent 50%, #000000, #000000), linear-gradient(90deg, #6cb2eb, #6cb2eb);
   background-size: 2px 8px;
 }
 

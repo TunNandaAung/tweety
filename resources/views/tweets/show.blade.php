@@ -25,15 +25,15 @@
                 </a>
         
                 @if($tweet->image !== null)
-                <div class="mb-3">
-                    <img
-                        src="{{ asset($tweet->image) }}"
-                        alt="tweet-image"
-                        class="rounded-lg mb-1 h-64 w-full object-cover"
-                        width="50"
-                        height="50"
-                    >
-                </div>
+                    <div class="mb-3">
+                        <img
+                            src="{{ asset($tweet->image) }}"
+                            alt="tweet-image"
+                            class="rounded-lg mb-1 h-64 w-full object-cover"
+                            width="50"
+                            height="50"
+                        >
+                    </div>
                 @endif
         
                 {{-- <x-like-buttons :tweet="$tweet"></x-like-buttons> --}}
@@ -75,9 +75,13 @@
 
     <h3 class="text-lg font-bold mb-6"> Comments</h3>
 
-    <div class="border border-gray-300 rounded-lg">
-        @include('replies.list',['collection' => $replies['root']])
-    </div>
+    @if($replies->count())
+        <div class="border border-gray-300 rounded-lg">
+            @include('replies.list',['collection' => $replies['root']])
+        </div>
+    @else
+        No comments yet!
+    @endif
 
     @include('replies.form')
 </x-app>
