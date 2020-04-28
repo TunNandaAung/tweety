@@ -22,6 +22,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\NotifyMentionedUsers',
             '\App\Listeners\NotifyFollowers'
         ],
+        'App\Events\TweetReceivedNewReply' =>[
+            'App\Listeners\NotifyMentionedUsers',
+            'App\Listeners\NotifyOwner',
+        ]
     ];
 
     /**

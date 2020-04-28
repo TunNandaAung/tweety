@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 use App\Events\TweetWasPublished;
+use App\Events\TweetReceivedNewReply;
 use App\Reply;
 
 class Tweet extends Model
@@ -56,14 +57,14 @@ class Tweet extends Model
     
     public function showTweet()
     {
-        return static::where('tweet_id', $this->id)->withLikes($this->id)->first();
+        return static::where('id', $this->id)->withLikes($this->id)->first();
     }
 
     public function addReply($reply)
     {
         $reply = $this->replies()->create($reply);
 
-        // event(new ThreadReceivedNewReply($reply));
+        event(new TweetReceivedNewReply($reply));
 
         return $reply;
     }

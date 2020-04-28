@@ -6,24 +6,26 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use App\Reply;
 
-class YouWereMentioned extends Notification
+class ReceivedNewReply extends Notification
 {
     use Queueable;
 
-    protected $subject;
 
+    protected $subject;
+    protected $reply;
+    protected $isTweet;
     /**
      * Create a new notification instance.
      *
-     * @param $subject
+     * @return void
      */
-    public function __construct($subject)
+    public function __construct($subject, $reply, $isTweet)
     {
         $this->subject = $subject;
+        $this->reply = $reply;
+        $this->isTweet = $isTweet;
     }
-
 
     /**
      * Get the notification's delivery channels.
@@ -42,13 +44,13 @@ class YouWereMentioned extends Notification
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
-    // public function toMail($notifiable)
-    // {
-    //     return (new MailMessage)
-    //                 ->line('The introduction to the notification.')
-    //                 ->action('Notification Action', url('/'))
-    //                 ->line('Thank you for using our application!');
-    // }
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', url('/'))
+                    ->line('Thank you for using our application!');
+    }
 
     /**
      * Get the array representation of the notification.
@@ -60,21 +62,13 @@ class YouWereMentioned extends Notification
     {
         return [
             'message' => $this->message(),
-            'notifier' => $this->user(),
-            'link' => '/tweets'
+            'notifier' => $this->reply->owner,
+            'link' => $this->reply->path()
         ];
     }
 
     public function message()
     {
-        return sprintf('%s mentioned you in %s', $this->user()->username, $this->subject instanceof Reply ? 'a reply.' : 'in a tweet.');
-    }
-
-    /**
-     * Get the associated user for the subject.
-     */
-    public function user()
-    {
-        return $this->subject instanceof Reply ? $this->subject->owner : $this->subject->user;
+        return sprintf('%s replied to your %s.', $this->reply->owner->name, $this->isTweet ? 'tweet' : 'reply');
     }
 }

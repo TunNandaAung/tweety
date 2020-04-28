@@ -20,6 +20,7 @@ function get_notification_color($notificationType)
         'App\Notifications\RecentlyTweeted' => 'border-teal-500',
         'App\Notifications\TweetWasLiked' => 'border-blue-600',
         'App\Notifications\TweetWasDisliked' => 'border-red-500',
+        'App\Notifications\ReceivedNewReply' => 'border-indigo-500'
     ];
 
     return $colors[$notificationType];
