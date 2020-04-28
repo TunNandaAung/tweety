@@ -1,6 +1,5 @@
 <?php
 
-auth()->loginUsingId(1);
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-auth()->loginUsingId(1);
+auth()->loginUsingId(12);
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/tweets/{tweet}/like', 'TweetsLikesController@store')->name('like-tweet');
     Route::delete('/tweets/{tweet}/like', 'TweetsLikesController@destroy')->name('dislike-tweet');
 
-    Route::post('/tweets/{tweet}/reply','RepliesController@store')->name('create-reply');
+    Route::post('/tweets/{tweet}/reply', 'RepliesController@store')->name('create-reply');
 
     Route::post('/profiles/{user}/follow', 'FollowsController@store')->name('follows');
     Route::get('/profiles/{user}/edit', 'ProfilesController@edit')->middleware('can:edit,user')->name('edit-profile');

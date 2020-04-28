@@ -1,4 +1,14 @@
 <x-master>
+    <x-slot name="script">
+        <script>
+            window.App = {!! json_encode([
+                'csrfToken' => csrf_token(),
+                'user' => Auth::user(),
+                'signedIn' => Auth::check()
+            ]) !!};
+        </script>
+    </x-slot>
+
     <section class="px-8">
         <main class="container mx-auto">
             <div class="lg:flex lg:justify-center">

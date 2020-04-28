@@ -61,6 +61,6 @@ class Tweet extends Model
 
         // event(new ThreadReceivedNewReply($reply));
 
-        //return $reply;
+        return $reply;
     }
 }

@@ -2748,6 +2748,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2758,10 +2786,12 @@ __webpack_require__.r(__webpack_exports__);
     return {
       body: "",
       tweetID: "",
-      userID: "",
+      replyingTo: "",
+      avatar: window.App.user.avatar,
       parentID: null,
+      parentBody: "",
+      owner: "",
       limit: 255,
-      avatar: "",
       errors: {},
       tributeOptions: new tributejs__WEBPACK_IMPORTED_MODULE_1___default.a({
         values: function values(text, cb) {
@@ -2794,15 +2824,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     beforeOpen: function beforeOpen(event) {
-      console.log(event.params.id);
       this.tweetID = event.params.tweetID;
       this.parentID = event.params.parentID;
+      this.parentBody = event.params.parentBody;
+      this.owner = event.params.owner;
     },
     submit: function submit() {
       var _this = this;
 
       var data = this.createFormData();
-      axios.post("/tweets/".concat(this.tweetID, "/reply")).then(function (response) {
+      axios.post("/tweets/".concat(this.tweetID, "/reply"), data).then(function (response) {
         location = response.data.message;
       })["catch"](function (errors) {
         _this.errors = errors.response.data.errors;
@@ -2814,6 +2845,10 @@ __webpack_require__.r(__webpack_exports__);
 
       if (this.image !== null) {
         data.append("image", this.image);
+      }
+
+      if (this.parentID !== null) {
+        data.append("parent_id", this.parentID);
       }
 
       return data;
@@ -4999,35 +5034,83 @@ var render = function() {
     {
       attrs: {
         name: "add-reply",
-        classes: "p-2 bg-white shadow-lg rounded-lg w-64",
+        classes: "p-4 bg-white shadow-lg rounded-lg w-64",
         height: "auto"
       },
       on: { "before-open": _vm.beforeOpen }
     },
     [
-      _c("div", { staticClass: "flex justify-end mb-6" }, [
+      _c("div", { staticClass: "flex justify-end" }, [
         _c(
-          "svg",
+          "button",
           {
-            staticClass: "w-8 text-red-600 hover:text-red-700",
-            attrs: { xmlns: "http://www.w3.org/2000/svg" }
+            staticClass:
+              "focus:outline-none bg-transparent p-1 hover:bg-blue-300 text-center rounded-full",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.$modal.hide("add-reply")
+              }
+            }
           },
           [
-            _c("path", {
-              attrs: {
-                fill: "currentColor",
-                d:
-                  "M4.93 19.07A10 10 0 1119.07 4.93 10 10 0 014.93 19.07zm1.41-1.41A8 8 0 1017.66 6.34 8 8 0 006.34 17.66zM13.41 12l1.42 1.41a1 1 0 11-1.42 1.42L12 13.4l-1.41 1.42a1 1 0 11-1.42-1.42L10.6 12l-1.42-1.41a1 1 0 111.42-1.42L12 10.6l1.41-1.42a1 1 0 111.42 1.42L13.4 12z"
-              }
-            })
+            _c(
+              "svg",
+              {
+                staticClass: "h-5 w-5 text-blue-500 hover:text-blue-600",
+                attrs: { xmlns: "http://www.w3.org/2000/svg" }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    fill: "currentColor",
+                    d:
+                      "M14.348,14.849c-0.469,0.469-1.229,0.469-1.697,0L10,11.819l-2.651,3.029c-0.469,0.469-1.229,0.469-1.697,0\n\t            c-0.469-0.469-0.469-1.229,0-1.697l2.758-3.15L5.651,6.849c-0.469-0.469-0.469-1.228,0-1.697s1.228-0.469,1.697,0L10,8.183\n\t            l2.651-3.031c0.469-0.469,1.228-0.469,1.697,0s0.469,1.229,0,1.697l-2.758,3.152l2.758,3.15\n\t            C14.817,13.62,14.817,14.38,14.348,14.849z"
+                  }
+                })
+              ]
+            )
           ]
         )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "mb-4 ml-4" }, [
+        _c("div", { staticClass: "flex" }, [
+          _c("div", { staticClass: "mr-2 flex-shrink-0" }, [
+            _c("img", {
+              staticClass: "rounded-full mr-2",
+              attrs: {
+                src: _vm.owner.avatar,
+                alt: "",
+                width: "50",
+                height: "50"
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex-1" }, [
+            _c("h5", { staticClass: "font-bold mb-4" }, [
+              _vm._v(_vm._s(_vm.owner.name))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "mb-4" }, [
+              _c("p", [_vm._v(_vm._s(_vm.parentBody))])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "text-gray-600 bg-white" }, [
+          _vm._v("\n        Replying to\n        "),
+          _c("span", { staticClass: "text-blue-500" }, [
+            _vm._v(_vm._s("@" + _vm.owner.username))
+          ])
+        ])
       ]),
       _vm._v(" "),
       _c(
         "form",
         {
-          staticClass: "p-6",
+          staticClass: "p-4",
           attrs: { method: "POST", enctype: "multipart/form-data" },
           on: {
             submit: function($event) {
@@ -5059,7 +5142,7 @@ var render = function() {
               ],
               ref: "tweet",
               staticClass:
-                "w-full focus:outline-none focus:placeholder-gray-800 bg-white",
+                "w-full focus:outline-none placeholder-blue-800 focus:placeholder-black bg-white mb-4",
               attrs: {
                 name: "body",
                 id: "body",
@@ -5114,7 +5197,7 @@ var render = function() {
                               staticClass: "circle-bg",
                               attrs: {
                                 d:
-                                  "M18 2.0845\n              a 15.9155 15.9155 0 0 1 0 31.831\n              a 15.9155 15.9155 0 0 1 0 -31.831"
+                                  "M18 2.0845\n                a 15.9155 15.9155 0 0 1 0 31.831\n                a 15.9155 15.9155 0 0 1 0 -31.831"
                               }
                             }),
                             _vm._v(" "),
@@ -5132,9 +5215,9 @@ var render = function() {
                         )
                       : _c("span", { staticClass: "text-sm text-red-600" }, [
                           _vm._v(
-                            "\n            " +
+                            "\n              " +
                               _vm._s(_vm.characterLeft) +
-                              "\n          "
+                              "\n            "
                           )
                         ])
                   ])

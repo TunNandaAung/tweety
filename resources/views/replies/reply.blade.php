@@ -23,22 +23,22 @@
             </a>
     
             @if($reply->image !== null)
-                <div class="mb-3">
+                <div class="mb-6">
                     <img
                         src="{{ asset($reply->image) }}"
                         alt="tweet-image"
                         class="rounded-lg mb-1 h-64 w-full object-cover"
-                        width="50"
-                        height="50"
                     >
                 </div>
             @endif
             
-            <div class="flex mb-4 py-3">
-                <button @click.prevent="$modal.show('add-reply',{'tweetID':{{$reply->tweet->id }},'parentID':{{$reply->id }}})">
+            <div class="flex items-center pt-2">
+                <button class="focus:outline-none" 
+                    @click.prevent="$modal.show('add-reply',{'tweetID':{{$reply->tweet->id }},'parentID':{{$reply->id }},'owner':{{ $reply->owner }},'parentBody':'{{ $reply->body}}' })"
+                >
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-gray-600">
                         <path fill="currentColor" 
-                        d="M2 15V5c0-1.1.9-2 2-2h16a2 2 0 012 2v15a1 1 0 01-1.7.7L16.58 17H4a2 2 0 01-2-2zM20 5H4v10h13a1 1 0 01.7.3l2.3 2.29V5z"
+                            d="M18,6v7c0,1.1-0.9,2-2,2h-4v3l-4-3H4c-1.101,0-2-0.9-2-2V6c0-1.1,0.899-2,2-2h12C17.1,4,18,4.9,18,6z"
                         />
                     </svg>
                 </button>
@@ -49,9 +49,9 @@
     </div>
     
     @if(isset($replies[$reply->id]))
-    <div class="ml-6">
-        @include('replies.list',['collection' => $replies[$reply->id]])
-    </div>
+        <div class="ml-6 -mb-4">
+            @include('replies.list',['collection' => $replies[$reply->id]])
+        </div>
     @endif
 
     <add-reply-modal></add-reply-modal>

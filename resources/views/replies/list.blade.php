@@ -1,4 +1,3 @@
 @foreach($collection as $reply)
-   @include('replies.reply')
-    
+   @include('replies.reply') 
 @endforeach
