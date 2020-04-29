@@ -1,3 +1,4 @@
+<a href="{{ route('show-tweet',$tweet) }}">
 <div class="flex p-4 {{ $loop->last ? '' :  'border-b border-gray-400'}}">
 
     <div class="mr-2 flex-shrink-0">
@@ -6,23 +7,28 @@
                 src="{{ $tweet->user->avatar }}"
                 alt=""
                 class="rounded-full mr-2"
-                width="50"
-                height="50"
+                width="40"
+                height="40"
             >
         </a>
     </div>
 
     <div class="flex-1">
-        <a href="{{ route('profile',$tweet->user) }}">
-            <h5 class="font-bold mb-4">{{ $tweet->user->name }}</h5>
-        </a>
-
-        <a class="text-sm mb-3" href="{{ route('show-tweet',$tweet) }}">
+        <div class="flex items-baseline mb-2">
+            <a href="{{ route('profile',$tweet->user) }}" class="mr-3">
+                <h5 class="font-bold">{{ $tweet->user->name }}</h5>
+            </a>
+            <span class="font-bold text-sm text-gray-600 mr-3">{{ '@'. $tweet->user->username }}</span>
+           
+            <span class="text-sm text-gray-600">{{ '. '.$tweet->created_at->diffForHumans() }}</span>
+        </div>
+        
+        <a class="mb-4" href="{{ route('show-tweet',$tweet) }}">
             {!! $tweet->body !!}
         </a>
 
         @if($tweet->image !== null)
-        <div class="mb-3">
+        <div class="mt-2 mb-3">
             <img
                 src="{{ asset($tweet->image) }}"
                 alt="tweet-image"
@@ -66,3 +72,4 @@
      <confirm-delete-modal></confirm-delete-modal>
     @endcan
 </div>
+</a>

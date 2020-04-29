@@ -4653,7 +4653,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex items-center" }, [
+  return _c("div", { staticClass: "flex items-center -ml-2" }, [
     _c(
       "form",
       {
@@ -4679,7 +4679,7 @@ var render = function() {
             _c(
               "svg",
               {
-                staticClass: "mr-1 w-4",
+                staticClass: "mr-1 w-3",
                 staticStyle: { transform: "scaleX(-1)" },
                 attrs: { viewBox: "0 0 20 20" }
               },
@@ -4741,7 +4741,7 @@ var render = function() {
           [
             _c(
               "svg",
-              { staticClass: "mr-1 w-4", attrs: { viewBox: "0 0 20 20" } },
+              { staticClass: "mr-1 w-3", attrs: { viewBox: "0 0 20 20" } },
               [
                 _c(
                   "g",
