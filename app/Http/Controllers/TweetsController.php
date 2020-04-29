@@ -26,7 +26,7 @@ class TweetsController extends Controller
     public function show(Tweet $tweet)
     {
         // return $tweet->getThreadedReplies();
-        return view('tweets.show', ['tweet'=> $tweet->showTweet(), 'replies' => $tweet->getThreadedReplies()]);
+        return view('tweets.show', ['tweet'=> $tweet->showTweet()]);
     }
 
     public function store()

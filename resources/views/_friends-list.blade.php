@@ -26,5 +26,4 @@
 
     </ul>
 </div> --}}
-
 <friends-list></friends-list>

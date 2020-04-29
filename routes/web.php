@@ -32,6 +32,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/tweets/{tweet}/reply', 'RepliesController@store')->name('create-reply');
 
+    Route::get('tweets/{tweet}/replies', 'RepliesController@index')->name('replies');
+
     Route::post('/profiles/{user}/follow', 'FollowsController@store')->name('follows');
     Route::get('/profiles/{user}/edit', 'ProfilesController@edit')->middleware('can:edit,user')->name('edit-profile');
     Route::patch('/profiles/{user}', 'ProfilesController@update')->middleware('can:edit,user')->name('update-profile');

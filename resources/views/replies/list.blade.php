@@ -1,5 +1,4 @@
-@foreach($collection as $reply)
-   {{-- @include('replies.reply')  --}}
+{{-- @foreach($collection as $reply)
    <reply :reply="{{ $reply }}" :tweet="{{ $tweet}}" :last="{{ $loop->last == 1 ? 'true' : 'false'}}">
       
       @if(isset($reply->children))
@@ -8,4 +7,6 @@
         </div>
     @endif
    </reply>
-@endforeach
+@endforeach --}}
+
+ <replies :tweet="{{$tweet}}"></replies> 

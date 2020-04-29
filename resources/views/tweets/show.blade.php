@@ -75,13 +75,15 @@
 
     <h3 class="text-lg font-bold mb-6"> Comments</h3>
 
-    @if($replies->count())
+    {{-- @if($replies->count())
         <div class="border border-gray-300 rounded-lg">
             @include('replies.list',['collection' => $replies])
         </div>
     @else
         No comments yet!
-    @endif
-
+    @endif --}}
+    <div class="border border-gray-300 rounded-lg">
+        @include('replies.list')
+    </div>
     @include('replies.form')
 </x-app>

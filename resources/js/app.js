@@ -51,8 +51,8 @@ document.addEventListener("turbolinks:load", () => {
             Dropdown,
             ConfirmDeleteModal,
             AddReplyModal,
-            Reply,
-            Replies
+            Replies,
+            Reply
         },
         store,
         el: "#app"
