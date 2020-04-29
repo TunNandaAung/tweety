@@ -15,12 +15,12 @@
     
         <div class="flex-1">
             <div class="flex items-baseline mb-2">
-                <a href="{{ route('profile',$tweet->user) }}" class="mr-3">
-                    <h5 class="font-bold">{{ $tweet->user->name }}</h5>
+                <a href="{{ route('profile',$reply->owner) }}" class="mr-3">
+                    <h5 class="font-bold">{{ $reply->owner->name }}</h5>
                 </a>
-                <span class="font-bold text-sm text-gray-600 mr-3">{{ '@'. $tweet->user->username }}</span>
+                <span class="font-bold text-sm text-gray-600 mr-3">{{ '@'. $reply->owner->username }}</span>
                
-                <span class="text-sm text-gray-600">{{ '. '.$tweet->created_at->diffForHumans() }}</span>
+                <span class="text-sm text-gray-600">{{ '. '.$reply->created_at->diffForHumans() }}</span>
             </div>
     
             <a class="text-sm mb-4">

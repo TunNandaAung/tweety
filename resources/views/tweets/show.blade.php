@@ -77,7 +77,7 @@
 
     @if($replies->count())
         <div class="border border-gray-300 rounded-lg">
-            @include('replies.list',['collection' => $replies['root']])
+            @include('replies.list',['collection' => $replies])
         </div>
     @else
         No comments yet!
