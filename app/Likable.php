@@ -9,6 +9,13 @@ use App\Notifications\TweetWasDisliked;
 
 trait Likable
 {
+    protected static function bootLikable()
+    {
+        static::deleting(function ($model) {
+            $model->likes->each->delete();
+        });
+    }
+
     public function scopeWithLikes(Builder $query, $id = null)
     {
         $id ?
