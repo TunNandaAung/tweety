@@ -65,7 +65,7 @@ class Reply extends Model
 
         $page = ceil($replyPosition / $perPage);
 
-        return $this->tweet->path()."/?page={$page}#reply-{$this->id}";
+        return $this->tweet->path()."#reply-{$this->id}";
     }
 
     public function getPathAttribute()
