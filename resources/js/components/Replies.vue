@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="(reply, index) in items" :key="reply.id">
+        <div v-for="(reply, index) in items" :key="reply.id" ref="replies">
             <reply :reply="reply" :tweet="tweet" :last="index === last">
                 <div class="ml-6 -mb-4" v-if="reply.children">
                     <!-- {{-- @include('replies.list',['collection' => reply.children]) --}} -->
@@ -14,34 +14,69 @@
                             :last="
                                 index === Object.keys(reply.children).length - 1
                             "
-                        >
-                        </reply>
+                        ></reply>
                     </div>
                 </div>
             </reply>
         </div>
+
+        <load-more
+            :container="container"
+            @ready="loadMore"
+            v-if="shouldPaginate"
+        ></load-more>
     </div>
 </template>
 
 <script>
 import Reply from "./Reply";
 import collection from "../mixins/collection";
+import LoadMore from "../utils/LoadMore";
 
 export default {
     props: ["tweet"],
     name: "replies",
-    components: { Reply },
+    components: { Reply, LoadMore },
     mixins: [collection],
 
+    data() {
+        return {
+            page: 1,
+            last_page: false,
+            prevUrl: false,
+            nextUrl: false,
+            dataSet: [],
+            container: this.$refs["replies"]
+        };
+    },
+    watch: {
+        dataSet() {
+            this.page = this.dataSet.current_page;
+            this.prevUrl = this.dataSet.prev_page_url;
+            this.nextUrl = this.dataSet.next_page_url;
+            this.last_page = this.dataSet.last_page;
+        },
+        page() {
+            this.fetch(this.page);
+        }
+    },
     created() {
         this.fetch();
     },
     computed: {
         last() {
             return Object.keys(this.items).length - 1;
+        },
+        shouldPaginate() {
+            return this.page <= this.last_page - 1;
         }
     },
+
     methods: {
+        broadcast() {
+            return this.$emit("changed", this.page);
+        },
+
         fetch(page) {
             axios.get(this.url(page)).then(this.refresh);
         },
@@ -58,9 +93,14 @@ export default {
 
         refresh({ data }) {
             this.dataSet = data;
-            this.items = data.data;
-
-            window.scrollTo(0, 0);
+            this.items.length == 0
+                ? (this.items = data.data)
+                : data.data.map(item => this.items.push(item));
+        },
+        loadMore() {
+            if (this.shouldPaginate) {
+                this.page++;
+            }
         }
     }
 };

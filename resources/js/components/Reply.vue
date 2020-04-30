@@ -19,9 +19,9 @@
                     <a :href="'/profiles/' + reply.owner.username" class="mr-3">
                         <h5 class="font-bold">{{ reply.owner.name }}</h5>
                     </a>
-                    <span class="font-bold text-sm text-gray-600 mr-3">{{
-                        "@" + reply.owner.username
-                    }}</span>
+                    <span class="font-bold text-sm text-gray-600 mr-3">
+                        {{ "@" + reply.owner.username }}
+                    </span>
 
                     <span class="text-sm text-gray-600"
                         >. {{ reply.created_at | diffForHumans }}</span
@@ -61,12 +61,6 @@
             </div>
         </div>
 
-        <!-- @if(isset($replies[$reply->id]))
-        <div class="ml-6 -mb-4">
-            @include('replies.list',['collection' => $replies[$reply->id]])
-        </div>
-    @endif-->
-
         <slot></slot>
 
         <add-reply-modal></add-reply-modal>
@@ -77,6 +71,7 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import AddReplyModal from "../utils/AddReplyModal";
+import LoadMore from "../utils/LoadMore";
 
 dayjs.extend(relativeTime);
 
