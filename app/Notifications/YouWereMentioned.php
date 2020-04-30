@@ -61,7 +61,7 @@ class YouWereMentioned extends Notification
         return [
             'message' => $this->message(),
             'notifier' => $this->user(),
-            'link' => '/tweets'
+            'link' => $this->subject->path(),
         ];
     }
 

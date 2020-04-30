@@ -11,6 +11,8 @@ class Reply extends Model
 {
     protected $guarded = [];
 
+    protected $appends = ['path'];
+
     public function owner()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -57,7 +59,18 @@ class Reply extends Model
 
     public function path()
     {
-        return $this->tweet->path();
+        $perPage = 3;
+
+        $replyPosition = $this->tweet->replies()->pluck('id')->search($this->id) + 1;
+
+        $page = ceil($replyPosition / $perPage);
+
+        return $this->tweet->path()."/?page={$page}#reply-{$this->id}";
+    }
+
+    public function getPathAttribute()
+    {
+        return $this->path();
     }
 
     public function scopeChildless($query)

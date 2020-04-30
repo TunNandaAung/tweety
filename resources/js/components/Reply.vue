@@ -1,6 +1,10 @@
 <template>
     <!-- <div class="p-4 {{ $loop->last ? '' : 'border-b border-gray-400'}}"> -->
-    <div class="p-4" :class="last ? '' : 'border-b border-gray-400'">
+    <div
+        class="p-4"
+        :class="last ? '' : 'border-b border-gray-400'"
+        :id="'reply-' + id"
+    >
         <div class="flex">
             <div class="mr-2 flex-shrink-0">
                 <a :href="'/profiles/' + reply.owner.username">
@@ -81,6 +85,11 @@ export default {
     components: { AddReplyModal },
     created() {
         dayjs.extend(relativeTime);
+    },
+    data() {
+        return {
+            id: this.reply.id
+        };
     },
     filters: {
         diffForHumans: date => {

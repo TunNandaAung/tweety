@@ -2828,6 +2828,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -2841,6 +2845,11 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__W
   },
   created: function created() {
     dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default.a);
+  },
+  data: function data() {
+    return {
+      id: this.reply.id
+    };
   },
   filters: {
     diffForHumans: function diffForHumans(date) {
@@ -22548,7 +22557,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "p-4", class: _vm.last ? "" : "border-b border-gray-400" },
+    {
+      staticClass: "p-4",
+      class: _vm.last ? "" : "border-b border-gray-400",
+      attrs: { id: "reply-" + _vm.id }
+    },
     [
       _c("div", { staticClass: "flex" }, [
         _c("div", { staticClass: "mr-2 flex-shrink-0" }, [
