@@ -2376,6 +2376,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     tweet: {
@@ -22131,7 +22153,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "flex items-center -ml-2" }, [
+  return _c("div", { staticClass: "flex items-center" }, [
     _c(
       "form",
       {
@@ -22150,14 +22172,14 @@ var render = function() {
               "flex items-center mr-4 focus:outline-none hover:text-blue-500 hover:bg-blue-200 p-2 rounded-lg",
             class: _vm.isLiked
               ? "text-blue-500 bg-blue-200 rounded-lg p-2"
-              : "text-gray-500",
+              : "text-gray-600",
             attrs: { type: "submit" }
           },
           [
             _c(
               "svg",
               {
-                staticClass: "mr-1 w-3",
+                staticClass: "mr-1 w-4 h-4",
                 staticStyle: { transform: "scaleX(-1)" },
                 attrs: { viewBox: "0 0 20 20" }
               },
@@ -22213,13 +22235,13 @@ var render = function() {
               "flex items-center focus:outline-none hover:text-blue-500 hover:bg-blue-200 p-2 rounded-lg",
             class: _vm.isDisliked
               ? "text-blue-500 bg-blue-200 rounded-lg p-2"
-              : "text-gray-500",
+              : "text-gray-600",
             attrs: { type: "submit" }
           },
           [
             _c(
               "svg",
-              { staticClass: "mr-1 w-3", attrs: { viewBox: "0 0 20 20" } },
+              { staticClass: "mr-1 w-4 h-4", attrs: { viewBox: "0 0 20 20" } },
               [
                 _c(
                   "g",

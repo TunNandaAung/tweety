@@ -13,7 +13,7 @@ class Tweet extends Model
     use Likable;
 
     
-    protected $appends = ['is_liked','is_disliked'];
+    protected $appends = ['is_liked','is_disliked','replies_count'];
     
     protected $guarded = [];
 
@@ -33,6 +33,11 @@ class Tweet extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getRepliesCountAttribute()
+    {
+        return $this->replies->count();
     }
 
     public function replies()
