@@ -18,8 +18,8 @@ import PublishTweetPanel from "./components/PublishTweetPanel";
 import Dropdown from "./components/Dropdown";
 import ConfirmDeleteModal from "./utils/ConfirmDeleteModal";
 import AddReplyModal from "./utils/AddReplyModal";
-import Reply from "./components/Reply";
 import Replies from "./components/Replies";
+import NotificationLink from "./components/NotificationLink";
 
 import VModal from "vue-js-modal";
 
@@ -52,7 +52,7 @@ document.addEventListener("turbolinks:load", () => {
             ConfirmDeleteModal,
             AddReplyModal,
             Replies,
-            Reply
+            NotificationLink
         },
         store,
         el: "#app"
