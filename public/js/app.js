@@ -2719,10 +2719,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -22575,65 +22571,69 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm._l(_vm.items, function(reply, index) {
-        return _c(
+  return _c("div", [
+    _vm.items.length > 0
+      ? _c(
           "div",
-          { key: reply.id, ref: "replies", refInFor: true },
           [
-            _c(
-              "reply",
-              {
-                attrs: {
-                  reply: reply,
-                  tweet: _vm.tweet,
-                  last: index === _vm.last
-                }
-              },
-              [
-                reply.children
-                  ? _c(
-                      "div",
-                      { staticClass: "ml-6 -mb-4" },
-                      _vm._l(reply.children, function(children, index) {
-                        return _c(
-                          "div",
-                          { key: children.id },
-                          [
-                            _c("reply", {
-                              attrs: {
-                                reply: children,
-                                tweet: _vm.tweet,
-                                last:
-                                  index ===
-                                  Object.keys(reply.children).length - 1
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      }),
-                      0
-                    )
-                  : _vm._e()
-              ]
-            )
+            _vm._l(_vm.items, function(reply, index) {
+              return _c(
+                "div",
+                { key: reply.id, ref: "replies", refInFor: true },
+                [
+                  _c(
+                    "reply",
+                    {
+                      attrs: {
+                        reply: reply,
+                        tweet: _vm.tweet,
+                        last: index === _vm.last
+                      }
+                    },
+                    [
+                      reply.children
+                        ? _c(
+                            "div",
+                            { staticClass: "ml-6 -mb-4" },
+                            _vm._l(reply.children, function(children, index) {
+                              return _c(
+                                "div",
+                                { key: children.id },
+                                [
+                                  _c("reply", {
+                                    attrs: {
+                                      reply: children,
+                                      tweet: _vm.tweet,
+                                      last:
+                                        index ===
+                                        Object.keys(reply.children).length - 1
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            }),
+                            0
+                          )
+                        : _vm._e()
+                    ]
+                  )
+                ],
+                1
+              )
+            }),
+            _vm._v(" "),
+            _vm.shouldPaginate
+              ? _c("load-more", {
+                  attrs: { container: _vm.container },
+                  on: { ready: _vm.loadMore }
+                })
+              : _vm._e()
           ],
-          1
+          2
         )
-      }),
-      _vm._v(" "),
-      _vm.shouldPaginate
-        ? _c("load-more", {
-            attrs: { container: _vm.container },
-            on: { ready: _vm.loadMore }
-          })
-        : _vm._e()
-    ],
-    2
-  )
+      : _c("span", { staticClass: "px-2 py-8" }, [_vm._v("No comments yet!")])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

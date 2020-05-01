@@ -37,7 +37,7 @@ class Tweet extends Model
 
     public function getRepliesCountAttribute()
     {
-        return $this->replies->count();
+        return $this->replies()->count();
     }
 
     public function replies()

@@ -1,5 +1,4 @@
 <a href="{{ route('show-tweet',$tweet) }}">
-<div class="flex p-4 {{ $loop->last ? '' :  'border-b border-gray-400'}}">
 
     <div class="mr-2 flex-shrink-0">
         <a href="{{ route('profile',$tweet->user) }}">
@@ -87,5 +86,4 @@
     @can('edit',$tweet->user)
      <confirm-delete-modal></confirm-delete-modal>
     @endcan
-</div>
 </a>
