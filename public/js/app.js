@@ -2693,6 +2693,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Reply__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Reply */ "./resources/js/components/Reply.vue");
 /* harmony import */ var _mixins_collection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mixins/collection */ "./resources/js/mixins/collection.js");
 /* harmony import */ var _utils_LoadMore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/LoadMore */ "./resources/js/utils/LoadMore.vue");
+/* harmony import */ var _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/AddReplyModal */ "./resources/js/utils/AddReplyModal.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2719,32 +2727,35 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["tweet"],
+  props: ["tweet", "replies"],
   name: "replies",
   components: {
     Reply: _Reply__WEBPACK_IMPORTED_MODULE_0__["default"],
-    LoadMore: _utils_LoadMore__WEBPACK_IMPORTED_MODULE_2__["default"]
+    LoadMore: _utils_LoadMore__WEBPACK_IMPORTED_MODULE_2__["default"],
+    AddReplyModal: _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   mixins: [_mixins_collection__WEBPACK_IMPORTED_MODULE_1__["default"]],
   data: function data() {
     return {
       page: 1,
       last_page: false,
-      prevUrl: false,
-      nextUrl: false,
       dataSet: [],
+      childrenReplies: [],
       container: this.$refs["replies"]
     };
   },
   watch: {
     dataSet: function dataSet() {
       this.page = this.dataSet.current_page;
-      this.prevUrl = this.dataSet.prev_page_url;
-      this.nextUrl = this.dataSet.next_page_url;
       this.last_page = this.dataSet.last_page;
     },
     page: function page() {
@@ -2752,20 +2763,25 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.fetch();
+    var _this = this;
+
+    if (this.replies) {
+      this.replies.map(function (item) {
+        return _this.items.push(item);
+      });
+    } else this.fetch();
+
+    this.$store.dispatch("setReplies", this.items); // console.log(JSON.stringify(this.items));
   },
-  computed: {
+  computed: _objectSpread({
     last: function last() {
       return Object.keys(this.items).length - 1;
     },
     shouldPaginate: function shouldPaginate() {
       return this.page <= this.last_page - 1;
     }
-  },
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["allReplies"])),
   methods: {
-    broadcast: function broadcast() {
-      return this.$emit("changed", this.page);
-    },
     fetch: function fetch(page) {
       axios.get(this.url(page)).then(this.refresh);
     },
@@ -2778,12 +2794,12 @@ __webpack_require__.r(__webpack_exports__);
       return "".concat(location.pathname, "/replies?page=").concat(page);
     },
     refresh: function refresh(_ref) {
-      var _this = this;
+      var _this2 = this;
 
       var data = _ref.data;
       this.dataSet = data;
-      this.items.length == 0 ? this.items = data.data : data.data.map(function (item) {
-        return _this.items.push(item);
+      data.data.map(function (item) {
+        return _this2.items.push(item);
       });
     },
     loadMore: function loadMore() {
@@ -2809,8 +2825,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dayjs/plugin/relativeTime */ "./node_modules/dayjs/plugin/relativeTime.js");
 /* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/AddReplyModal */ "./resources/js/utils/AddReplyModal.vue");
-/* harmony import */ var _utils_LoadMore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/LoadMore */ "./resources/js/utils/LoadMore.vue");
+/* harmony import */ var _utils_LoadMore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/LoadMore */ "./resources/js/utils/LoadMore.vue");
 //
 //
 //
@@ -2869,22 +2884,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 
 
 
@@ -2892,9 +2891,6 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__W
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["reply", "tweet", "last"],
   name: "reply",
-  components: {
-    AddReplyModal: _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_2__["default"]
-  },
   created: function created() {
     dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default.a);
   },
@@ -2928,38 +2924,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_tribute__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-tribute */ "./node_modules/vue-tribute/dist/vue-tribute.es.js");
 /* harmony import */ var tributejs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! tributejs */ "./node_modules/tributejs/dist/tribute.min.js");
 /* harmony import */ var tributejs__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(tributejs__WEBPACK_IMPORTED_MODULE_1__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -3152,8 +3116,15 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var data = this.createFormData();
-      axios.post("/tweets/".concat(this.tweetID, "/reply"), data).then(function (response) {
-        location = response.data.message;
+      axios.post("/tweets/".concat(this.tweetID, "/reply"), data).then(function (_ref) {
+        var data = _ref.data;
+        _this.body = "";
+
+        _this.$modal.hide("add-reply");
+
+        flash("Your reply has been posted");
+
+        _this.$emit("created", data);
       })["catch"](function (errors) {
         _this.errors = errors.response.data.errors;
       });
@@ -22571,69 +22542,68 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _vm.items.length > 0
-      ? _c(
-          "div",
-          [
-            _vm._l(_vm.items, function(reply, index) {
-              return _c(
-                "div",
-                { key: reply.id, ref: "replies", refInFor: true },
-                [
-                  _c(
-                    "reply",
-                    {
-                      attrs: {
-                        reply: reply,
-                        tweet: _vm.tweet,
-                        last: index === _vm.last
-                      }
-                    },
-                    [
-                      reply.children
-                        ? _c(
-                            "div",
-                            { staticClass: "ml-6 -mb-4" },
-                            _vm._l(reply.children, function(children, index) {
-                              return _c(
-                                "div",
-                                { key: children.id },
-                                [
-                                  _c("reply", {
-                                    attrs: {
-                                      reply: children,
-                                      tweet: _vm.tweet,
-                                      last:
-                                        index ===
-                                        Object.keys(reply.children).length - 1
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            }),
-                            0
-                          )
-                        : _vm._e()
-                    ]
-                  )
-                ],
-                1
-              )
-            }),
-            _vm._v(" "),
-            _vm.shouldPaginate
-              ? _c("load-more", {
-                  attrs: { container: _vm.container },
-                  on: { ready: _vm.loadMore }
-                })
-              : _vm._e()
-          ],
-          2
-        )
-      : _c("span", { staticClass: "px-2 py-8" }, [_vm._v("No comments yet!")])
-  ])
+  return _c(
+    "div",
+    [
+      _vm.items.length > 0
+        ? _c(
+            "div",
+            [
+              _vm._l(_vm.items, function(reply, index) {
+                return _c(
+                  "div",
+                  { key: reply.id, ref: "replies", refInFor: true },
+                  [
+                    _c(
+                      "reply",
+                      {
+                        ref: "reply-" + reply.id,
+                        refInFor: true,
+                        attrs: {
+                          reply: reply,
+                          tweet: _vm.tweet,
+                          last: index === _vm.last
+                        }
+                      },
+                      [
+                        _vm._v("\n        " + _vm._s() + "\n        "),
+                        reply.children
+                          ? _c(
+                              "div",
+                              { staticClass: "ml-6 -mb-4" },
+                              [
+                                _c("replies", {
+                                  attrs: {
+                                    tweet: _vm.tweet,
+                                    replies: reply.children
+                                  }
+                                })
+                              ],
+                              1
+                            )
+                          : _vm._e()
+                      ]
+                    )
+                  ],
+                  1
+                )
+              }),
+              _vm._v(" "),
+              _vm.shouldPaginate
+                ? _c("load-more", {
+                    attrs: { container: _vm.container },
+                    on: { ready: _vm.loadMore }
+                  })
+                : _vm._e()
+            ],
+            2
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c("add-reply-modal", { on: { created: _vm.add } })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -22702,13 +22672,7 @@ var render = function() {
             _c(
               "span",
               { staticClass: "font-bold text-sm text-gray-600 mr-3" },
-              [
-                _vm._v(
-                  "\n                    " +
-                    _vm._s("@" + _vm.reply.owner.username) +
-                    "\n                "
-                )
-              ]
+              [_vm._v(_vm._s("@" + _vm.reply.owner.username))]
             ),
             _vm._v(" "),
             _c("span", { staticClass: "text-sm text-gray-600" }, [
@@ -22728,7 +22692,7 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "focus:outline-none text-center hover:text-green-500 hover:bg-green-200 p-2 rounded-lg text-gray-600",
+                  "focus:outline-none text-center hover:text-green-500 hover:bg-green-200 p-2 rounded-lg text-gray-600 flex items-center",
                 on: {
                   click: function($event) {
                     $event.preventDefault()
@@ -22745,7 +22709,7 @@ var render = function() {
                 _c(
                   "svg",
                   {
-                    staticClass: "w-5 h-5",
+                    staticClass: "w-5 h-5 mr-1",
                     attrs: { xmlns: "http://www.w3.org/2000/svg" }
                   },
                   [
@@ -22757,16 +22721,18 @@ var render = function() {
                       }
                     })
                   ]
-                )
+                ),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-xs" }, [
+                  _vm._v(_vm._s(_vm.reply.children_count))
+                ])
               ]
             )
           ])
         ])
       ]),
       _vm._v(" "),
-      _vm._t("default"),
-      _vm._v(" "),
-      _c("add-reply-modal")
+      _vm._t("default")
     ],
     2
   )
@@ -22864,7 +22830,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("p", { staticClass: "text-gray-600 bg-white" }, [
-          _vm._v("\n                Replying to\n                "),
+          _vm._v("\n        Replying to\n        "),
           _c("span", { staticClass: "text-blue-500" }, [
             _vm._v(_vm._s("@" + _vm.owner.username))
           ])
@@ -22978,11 +22944,7 @@ var render = function() {
                           ]
                         )
                       : _c("span", { staticClass: "text-sm text-red-600" }, [
-                          _vm._v(
-                            "\n                            " +
-                              _vm._s(_vm.characterLeft) +
-                              "\n                        "
-                          )
+                          _vm._v(_vm._s(_vm.characterLeft))
                         ])
                   ])
                 : _vm._e(),
@@ -22994,11 +22956,7 @@ var render = function() {
                     "bg-blue-500 rounded-full shadow font-bold text-sm px-10 text-white hover:bg-blue-600 h-10 focus:outline-none",
                   attrs: { type: "submit" }
                 },
-                [
-                  _vm._v(
-                    "\n                        Publish\n                    "
-                  )
-                ]
+                [_vm._v("Publish")]
               )
             ])
           ])
@@ -37604,7 +37562,15 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     add: function add(item) {
-      this.items.push(item);
+      if (item.parent_id != null) {
+        var parent_id = item.parent_id;
+        var parent = this.items.findIndex(function (data) {
+          return data.id == parent_id;
+        });
+        console.log(JSON.stringify(this.items));
+        this.items[parent].children.push(item);
+      } else this.items.push(item);
+
       this.$emit("added");
     },
     remove: function remove(index) {
@@ -37638,7 +37604,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   state: {
     friends: [],
     friendsTotal: 0,
-    loading: false
+    loading: false,
+    allReplies: []
   },
   mutations: {
     FOLLOW_FRIEND: function FOLLOW_FRIEND(state, friend) {
@@ -37655,6 +37622,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     },
     UNFOLLOW_FRIEND: function UNFOLLOW_FRIEND(state, friend) {
       state.friends.splice(state.friends.indexOf(friend), 1);
+    },
+    SET_REPLIES: function SET_REPLIES(state, replies) {
+      state.allReplies = replies;
     }
   },
   actions: {
@@ -37680,6 +37650,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/profiles/".concat(friend.username, "/follow")).then(function (response) {
         response.data === 1 ? commit("UNFOLLOW_FRIEND", friend) : commit("FOLLOW_FRIEND", friend);
       });
+    },
+    setReplies: function setReplies(_ref3, replies) {
+      var commit = _ref3.commit;
+      commit("SET_REPLIES", replies);
     }
   }
 }));

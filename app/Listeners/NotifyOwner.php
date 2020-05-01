@@ -28,13 +28,9 @@ class NotifyOwner
     {
         $hasParent = $event->reply->parent_id !== null;
 
-        $replyOwner = $event->reply->parent->owner;
-
-        $tweetOwner = $event->reply->tweet->user;
+        $owner = $hasParent ?  $event->reply->parent->owner :  $event->reply->tweet->user;
         
-        $owner = $hasParent ? $replyOwner : $tweetOwner;
-        
-        if ($owner->is($tweetOwner) || $owner->is($replyOwner)) {
+        if ($owner->is($event->reply->owner) || $owner->is($event->reply->tweet->user)) {
             return;
         }
 

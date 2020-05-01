@@ -11,7 +11,10 @@ class Reply extends Model
 {
     protected $guarded = [];
 
-    protected $appends = ['path'];
+    protected $appends = ['path','children_count'];
+    
+    protected $with=['children'];
+    
 
     public function owner()
     {
@@ -47,9 +50,15 @@ class Reply extends Model
         );
     }
 
+
     public function children()
     {
         return $this->hasMany(Reply::class, 'parent_id', 'id')->with('owner');
+    }
+
+    public function getChildrenCountAttribute()
+    {
+        return $this->children()->count();
     }
 
     public function allChildrenReplies()

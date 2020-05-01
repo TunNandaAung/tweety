@@ -22,16 +22,16 @@ class RepliesController extends Controller
             'body' => 'required|max:255',
         ]);
 
-        $tweet->addReply([
+        return $tweet->addReply([
             'body' => $attributes['body'],
             'user_id' => auth()->id(),
             'parent_id' => request('parent_id', null)
         ]);
         
-        if (request()->wantsJson()) {
-            return ['message' => "/tweets/{$tweet->id}"];
-        }
+        // if (request()->wantsJson()) {
+        //     return ['message' => "/tweets/{$tweet->id}"];
+        // }
 
-        return back();
+        // return back();
     }
 }

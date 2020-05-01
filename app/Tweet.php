@@ -63,7 +63,7 @@ class Tweet extends Model
     {
         //return $this->replies()->paginate(3)->with('owner')->get()->threaded();
         //dd($this->replies()->with('allChildrenReplies')->get());
-        return $this->replies()->with('children', 'owner')->whereNull('parent_id')->paginate(2);
+        return $this->replies()->with('owner')->whereNull('parent_id')->paginate(10);
     }
     
     public function showTweet()
