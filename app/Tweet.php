@@ -74,7 +74,7 @@ class Tweet extends Model
     public function addReply($reply)
     {
         $reply = $this->replies()->create($reply);
-
+        
         event(new TweetReceivedNewReply($reply));
 
         return $reply;

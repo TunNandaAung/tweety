@@ -31,7 +31,7 @@
         <div class="flex-1">
           <h5 class="font-bold mb-4">{{ owner.name }}</h5>
           <div class="mb-4">
-            <p>{{ parentBody }}</p>
+            <p v-html="parentBody"></p>
           </div>
         </div>
       </div>
@@ -143,11 +143,11 @@ export default {
     return {
       body: "",
       tweetID: "",
-      replyingTo: "",
       avatar: window.App.user.avatar,
       parentID: null,
       parentBody: "",
       owner: "",
+      isRoot: false,
       limit: 255,
       errors: {},
       tributeOptions: new Tribute({
@@ -176,6 +176,11 @@ export default {
     },
     limitExceed() {
       return this.body.length > this.limit;
+    },
+    replyingTo() {
+      return this.owner.username === window.App.user.username || this.isRoot
+        ? ""
+        : "@" + this.owner.username + " ";
     }
   },
   methods: {
@@ -184,6 +189,7 @@ export default {
       this.parentID = event.params.parentID;
       this.parentBody = event.params.parentBody;
       this.owner = event.params.owner;
+      this.isRoot = event.params.isRoot;
     },
     submit() {
       let data = this.createFormData();
@@ -204,7 +210,7 @@ export default {
     createFormData() {
       let data = new FormData();
 
-      data.append("body", this.body);
+      data.append("body", this.replyingTo + this.body);
       if (this.image !== null) {
         data.append("image", this.image);
       }

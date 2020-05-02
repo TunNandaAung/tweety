@@ -2,10 +2,15 @@
   <div>
     <div v-if="items.length > 0">
       <div v-for="(reply, index) in items" :key="reply.id" ref="replies">
-        <reply :reply="reply" :tweet="tweet" :last="index === last" :ref="'reply-'+reply.id">
-          {{ }}
+        <reply
+          :reply="reply"
+          :tweet="tweet"
+          :last="index === last"
+          :ref="'reply-'+reply.id"
+          :childrenCount="items[index].children_count"
+        >
           <div class="ml-6 -mb-4" v-if="reply.children">
-            <!-- <div v-for="(children, index) in reply.children" :key="children.id">
+            <div v-for="(children, index) in reply.children" :key="children.id">
               <reply
                 :reply="children"
                 :tweet="tweet"
@@ -13,8 +18,8 @@
                                 index === Object.keys(reply.children).length - 1
                             "
               ></reply>
-            </div>-->
-            <replies :tweet="tweet" :replies="reply.children"></replies>
+            </div>
+            <!-- <replies :tweet="tweet" :replies="reply.children"></replies> -->
           </div>
         </reply>
       </div>
@@ -63,7 +68,6 @@ export default {
       this.replies.map(item => this.items.push(item));
     } else this.fetch();
 
-    this.$store.dispatch("setReplies", this.items);
     // console.log(JSON.stringify(this.items));
   },
   computed: {

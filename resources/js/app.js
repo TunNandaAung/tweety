@@ -20,6 +20,7 @@ import ConfirmDeleteModal from "./utils/ConfirmDeleteModal";
 import AddReplyModal from "./utils/AddReplyModal";
 import Replies from "./components/Replies";
 import NotificationLink from "./components/NotificationLink";
+import ReplyButton from "./components/ReplyButton";
 
 import VModal from "vue-js-modal";
 
@@ -52,7 +53,8 @@ document.addEventListener("turbolinks:load", () => {
             ConfirmDeleteModal,
             AddReplyModal,
             Replies,
-            NotificationLink
+            NotificationLink,
+            ReplyButton
         },
         store,
         el: "#app"

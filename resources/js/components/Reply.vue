@@ -34,9 +34,10 @@
             @click.prevent="
                             $modal.show('add-reply', {
                                 tweetID: `${tweet.id}`,
-                                parentID: `${reply.id}`,
+                                parentID: parentID,
                                 owner: reply.owner,
-                                parentBody: `${reply.body}`
+                                parentBody: `${reply.body}`,
+                                isRoot: isRoot,
                             })
                         "
           >
@@ -46,7 +47,7 @@
                 d="M18,6v7c0,1.1-0.9,2-2,2h-4v3l-4-3H4c-1.101,0-2-0.9-2-2V6c0-1.1,0.899-2,2-2h12C17.1,4,18,4.9,18,6z"
               />
             </svg>
-            <span class="text-xs">{{ reply.children_count }}</span>
+            <span class="text-xs" v-if="!reply.parent_id">{{ this.childrenCount }}</span>
           </button>
         </div>
       </div>
@@ -64,14 +65,26 @@ import LoadMore from "../utils/LoadMore";
 dayjs.extend(relativeTime);
 
 export default {
-  props: ["reply", "tweet", "last"],
+  props: ["reply", "tweet", "last", "childrenCount"],
   name: "reply",
   created() {
     dayjs.extend(relativeTime);
+    console.log(this.count);
+  },
+  computed: {
+    parentID() {
+      return this.reply.parent_id === null
+        ? this.reply.id
+        : this.reply.parent_id;
+    },
+    isRoot() {
+      return this.reply.parent_id === null;
+    }
   },
   data() {
     return {
-      id: this.reply.id
+      id: this.reply.id,
+      count: this.childrenCount
     };
   },
   filters: {

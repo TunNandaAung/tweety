@@ -9,7 +9,8 @@ export default new Vuex.Store({
         friends: [],
         friendsTotal: 0,
         loading: false,
-        allReplies: []
+        allReplies: [],
+        repliesCount: 0
     },
     mutations: {
         FOLLOW_FRIEND(state, friend) {
@@ -27,8 +28,11 @@ export default new Vuex.Store({
         UNFOLLOW_FRIEND(state, friend) {
             state.friends.splice(state.friends.indexOf(friend), 1);
         },
-        SET_REPLIES(state, replies) {
-            state.allReplies = replies;
+        SET_REPLIES_COUNT(state, count) {
+            state.repliesCount = count;
+        },
+        INCREASE_REPLIES_COUNT(state) {
+            state.repliesCount += 1;
         }
     },
     actions: {
@@ -55,8 +59,11 @@ export default new Vuex.Store({
                         : commit("FOLLOW_FRIEND", friend);
                 });
         },
-        setReplies({ commit }, replies) {
-            commit("SET_REPLIES", replies);
+        fetchRepliesCount({ commit }, count) {
+            commit("SET_REPLIES_COUNT", count);
+        },
+        addReply({ commit }) {
+            commit("INCREASE_REPLIES_COUNT");
         }
     }
 });

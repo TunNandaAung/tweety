@@ -11,11 +11,14 @@ export default {
                 let parent_id = item.parent_id;
 
                 let parent = this.items.findIndex(data => data.id == parent_id);
-                console.log(JSON.stringify(this.items));
+
                 this.items[parent].children.push(item);
+                this.items[parent].children_count += 1;
             } else this.items.push(item);
 
             this.$emit("added");
+
+            this.$store.dispatch("addReply");
         },
 
         remove(index) {
