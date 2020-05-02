@@ -13,7 +13,7 @@ class Reply extends Model
 
     protected $appends = ['path','children_count'];
     
-    protected $with=['children'];
+    protected $with=['owner'];
     
 
     public function owner()

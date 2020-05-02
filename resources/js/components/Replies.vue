@@ -2,33 +2,12 @@
   <div>
     <div v-if="items.length > 0">
       <div v-for="(reply, index) in items" :key="reply.id" ref="replies">
-        <reply
-          :reply="reply"
-          :tweet="tweet"
-          :last="index === last"
-          :ref="'reply-'+reply.id"
-          :childrenCount="items[index].children_count"
-        >
-          <div class="ml-6 -mb-4" v-if="reply.children">
-            <div v-for="(children, index) in reply.children" :key="children.id">
-              <reply
-                :reply="children"
-                :tweet="tweet"
-                :last="
-                                index === Object.keys(reply.children).length - 1
-                            "
-              ></reply>
-            </div>
-            <!-- <replies :tweet="tweet" :replies="reply.children"></replies> -->
-          </div>
-        </reply>
+        <reply :reply="reply" :tweet="tweet" :last="index === last" :ref="'reply-'+reply.id"></reply>
       </div>
 
       <load-more :container="container" @ready="loadMore" v-if="shouldPaginate"></load-more>
     </div>
     <!-- <span class="px-2 py-8" v-else>No comments yet!</span> -->
-
-    <add-reply-modal @created="add"></add-reply-modal>
   </div>
 </template>
 
@@ -51,6 +30,7 @@ export default {
       last_page: false,
       dataSet: [],
       childrenReplies: [],
+      showChildren: false,
       container: this.$refs["replies"]
     };
   },
@@ -103,6 +83,9 @@ export default {
       if (this.shouldPaginate) {
         this.page++;
       }
+    },
+    loadChildren() {
+      this.showChildren = true;
     }
   }
 };

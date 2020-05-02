@@ -1,13 +1,13 @@
 <template>
   <modal
-    name="add-reply"
+    :name="'add-reply-'+id"
     classes="p-4 bg-white shadow-lg rounded-lg w-64"
     height="auto"
     @before-open="beforeOpen"
   >
     <div class="flex justify-end">
       <button
-        @click.prevent="$modal.hide('add-reply')"
+        @click.prevent="$modal.hide(`add-reply-${id}`)"
         class="focus:outline-none bg-transparent p-1 hover:bg-blue-300 text-center rounded-full"
       >
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 hover:text-blue-600">
@@ -66,15 +66,15 @@
 
       <!-- <hr class="mb-4" />
 
-        <div class="rounded-full relative" v-if="imageSrc">
-          <img :src="imageSrc" class="rounded-lg mb-1 h-56 w-full object-cover" alt="tweet-image" />
-          <button
-            type="button"
-            class="absolute text-white text-right px-4 py-1 bg-black rounded-full"
-            style="left:88%;top:5%"
-            @click="clearImage"
-          >Clear</button>
-        </div>
+          <div class="rounded-full relative" v-if="imageSrc">
+            <img :src="imageSrc" class="rounded-lg mb-1 h-56 w-full object-cover" alt="tweet-image" />
+            <button
+              type="button"
+              class="absolute text-white text-right px-4 py-1 bg-black rounded-full"
+              style="left:88%;top:5%"
+              @click="clearImage"
+            >Clear</button>
+          </div>
 
       <span class="text-xs text-red-600" v-text="errors.image[0]" v-if="errors.image"></span>-->
 
@@ -83,25 +83,25 @@
 
         <div class="flex items-center">
           <!-- <div class="mr-6">
-              <image-upload :name="'image'" :clear="clear" @loaded="onLoad">
-                <slot>
-                  <button
-                    type="button"
-                    class="bg-blue-300 focus:outline-none text-white font-bold py-2 px-2 rounded-full"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20"
-                      class="h-6 w-6 text-blue-500"
+                <image-upload :name="'image'" :clear="clear" @loaded="onLoad">
+                  <slot>
+                    <button
+                      type="button"
+                      class="bg-blue-300 focus:outline-none text-white font-bold py-2 px-2 rounded-full"
                     >
-                      <path
-                        fill="currentColor"
-                        d="M19 2H1a1 1 0 00-1 1v14a1 1 0 001 1h18a1 1 0 001-1V3a1 1 0 00-1-1zm-1 14H2V4h16v12zm-3.685-5.123l-3.231 1.605-3.77-6.101L4 14h12l-1.685-3.123zM13.25 9a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5z"
-                      />
-                    </svg>
-                  </button>
-                </slot>
-              </image-upload>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        class="h-6 w-6 text-blue-500"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M19 2H1a1 1 0 00-1 1v14a1 1 0 001 1h18a1 1 0 001-1V3a1 1 0 00-1-1zm-1 14H2V4h16v12zm-3.685-5.123l-3.231 1.605-3.77-6.101L4 14h12l-1.685-3.123zM13.25 9a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5z"
+                        />
+                      </svg>
+                    </button>
+                  </slot>
+                </image-upload>
           </div>-->
 
           <div class="mr-6" v-if="body.length > 0">
@@ -109,8 +109,8 @@
               <path
                 class="circle-bg"
                 d="M18 2.0845
-                a 15.9155 15.9155 0 0 1 0 31.831
-                a 15.9155 15.9155 0 0 1 0 -31.831"
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
               />
               <path
                 fill="currentColor"
@@ -139,6 +139,7 @@ import Tribute from "tributejs";
 
 export default {
   components: { VueTribute },
+  props: ["id"],
   data() {
     return {
       body: "",
@@ -198,7 +199,7 @@ export default {
         .post(`/tweets/${this.tweetID}/reply`, data)
         .then(({ data }) => {
           this.body = "";
-          this.$modal.hide("add-reply");
+          this.$modal.hide(`add-reply-${this.id}`);
 
           flash("Your reply has been posted");
           this.$emit("created", data);

@@ -7,16 +7,13 @@ export default {
 
     methods: {
         add(item) {
-            if (item.parent_id != null) {
-                let parent_id = item.parent_id;
-
-                let parent = this.items.findIndex(data => data.id == parent_id);
-
-                this.items[parent].children.push(item);
-                this.items[parent].children_count += 1;
-            } else this.items.push(item);
+            this.items.push(item);
 
             this.$emit("added");
+
+            if (typeof this.replies_count !== "undefined") {
+                this.replies_count += 1;
+            }
 
             this.$store.dispatch("addReply");
         },

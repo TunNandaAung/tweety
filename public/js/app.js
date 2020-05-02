@@ -2714,27 +2714,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2755,6 +2734,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       last_page: false,
       dataSet: [],
       childrenReplies: [],
+      showChildren: false,
       container: this.$refs["replies"]
     };
   },
@@ -2810,6 +2790,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       if (this.shouldPaginate) {
         this.page++;
       }
+    },
+    loadChildren: function loadChildren() {
+      this.showChildren = true;
     }
   }
 });
@@ -2830,6 +2813,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dayjs/plugin/relativeTime */ "./node_modules/dayjs/plugin/relativeTime.js");
 /* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _utils_LoadMore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/LoadMore */ "./resources/js/utils/LoadMore.vue");
+/* harmony import */ var _mixins_collection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/collection */ "./resources/js/mixins/collection.js");
+/* harmony import */ var _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/AddReplyModal */ "./resources/js/utils/AddReplyModal.vue");
 //
 //
 //
@@ -2889,16 +2874,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
+
 
 
 
 dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["reply", "tweet", "last", "childrenCount"],
+  props: ["reply", "tweet", "last"],
   name: "reply",
+  mixins: [_mixins_collection__WEBPACK_IMPORTED_MODULE_3__["default"]],
+  components: {
+    AddReplyModal: _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_4__["default"]
+  },
   created: function created() {
     dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default.a);
-    console.log(this.count);
+    console.log("Items:" + this.reply.id + ":" + this.items.length);
   },
   computed: {
     parentID: function parentID() {
@@ -2906,12 +2903,17 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__W
     },
     isRoot: function isRoot() {
       return this.reply.parent_id === null;
+    },
+    shouldDisplyBtn: function shouldDisplyBtn() {
+      return this.items.length != this.reply.children_count && this.reply.children_count > 0;
     }
   },
   data: function data() {
     return {
       id: this.reply.id,
-      count: this.childrenCount
+      showChildren: false,
+      replies_count: this.reply.children_count,
+      clicked: false
     };
   },
   filters: {
@@ -2921,6 +2923,27 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__W
       }
 
       return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).fromNow();
+    }
+  },
+  methods: {
+    showModal: function showModal() {
+      this.$modal.show("add-reply-".concat(this.reply.id), {
+        tweetID: "".concat(this.tweet.id),
+        parentID: this.parentID,
+        owner: this.reply.owner,
+        parentBody: "".concat(this.reply.body),
+        isRoot: this.isRoot
+      });
+    },
+    loadChildren: function loadChildren() {
+      var _this = this;
+
+      axios.get("/api/replies/".concat(this.id, "/children")).then(function (_ref) {
+        var data = _ref.data;
+        _this.items = data;
+        console.log("Items:" + _this.reply.id + ":" + _this.items.length);
+        _this.showChildren = true;
+      });
     }
   }
 });
@@ -3121,6 +3144,7 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     VueTribute: vue_tribute__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
+  props: ["id"],
   data: function data() {
     return {
       body: "",
@@ -3180,7 +3204,7 @@ __webpack_require__.r(__webpack_exports__);
         var data = _ref.data;
         _this.body = "";
 
-        _this.$modal.hide("add-reply");
+        _this.$modal.hide("add-reply-".concat(_this.id));
 
         flash("Your reply has been posted");
 
@@ -22602,78 +22626,41 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm.items.length > 0
-        ? _c(
-            "div",
-            [
-              _vm._l(_vm.items, function(reply, index) {
-                return _c(
-                  "div",
-                  { key: reply.id, ref: "replies", refInFor: true },
-                  [
-                    _c(
-                      "reply",
-                      {
-                        ref: "reply-" + reply.id,
-                        refInFor: true,
-                        attrs: {
-                          reply: reply,
-                          tweet: _vm.tweet,
-                          last: index === _vm.last,
-                          childrenCount: _vm.items[index].children_count
-                        }
-                      },
-                      [
-                        reply.children
-                          ? _c(
-                              "div",
-                              { staticClass: "ml-6 -mb-4" },
-                              _vm._l(reply.children, function(children, index) {
-                                return _c(
-                                  "div",
-                                  { key: children.id },
-                                  [
-                                    _c("reply", {
-                                      attrs: {
-                                        reply: children,
-                                        tweet: _vm.tweet,
-                                        last:
-                                          index ===
-                                          Object.keys(reply.children).length - 1
-                                      }
-                                    })
-                                  ],
-                                  1
-                                )
-                              }),
-                              0
-                            )
-                          : _vm._e()
-                      ]
-                    )
-                  ],
-                  1
-                )
-              }),
-              _vm._v(" "),
-              _vm.shouldPaginate
-                ? _c("load-more", {
-                    attrs: { container: _vm.container },
-                    on: { ready: _vm.loadMore }
+  return _c("div", [
+    _vm.items.length > 0
+      ? _c(
+          "div",
+          [
+            _vm._l(_vm.items, function(reply, index) {
+              return _c(
+                "div",
+                { key: reply.id, ref: "replies", refInFor: true },
+                [
+                  _c("reply", {
+                    ref: "reply-" + reply.id,
+                    refInFor: true,
+                    attrs: {
+                      reply: reply,
+                      tweet: _vm.tweet,
+                      last: index === _vm.last
+                    }
                   })
-                : _vm._e()
-            ],
-            2
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("add-reply-modal", { on: { created: _vm.add } })
-    ],
-    1
-  )
+                ],
+                1
+              )
+            }),
+            _vm._v(" "),
+            _vm.shouldPaginate
+              ? _c("load-more", {
+                  attrs: { container: _vm.container },
+                  on: { ready: _vm.loadMore }
+                })
+              : _vm._e()
+          ],
+          2
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -22716,8 +22703,8 @@ var render = function() {
                 attrs: {
                   src: _vm.reply.owner.avatar,
                   alt: "",
-                  width: "50",
-                  height: "50"
+                  width: "40",
+                  height: "40"
                 }
               })
             ]
@@ -22766,13 +22753,7 @@ var render = function() {
                 on: {
                   click: function($event) {
                     $event.preventDefault()
-                    return _vm.$modal.show("add-reply", {
-                      tweetID: "" + _vm.tweet.id,
-                      parentID: _vm.parentID,
-                      owner: _vm.reply.owner,
-                      parentBody: "" + _vm.reply.body,
-                      isRoot: _vm.isRoot
-                    })
+                    return _vm.showModal($event)
                   }
                 }
               },
@@ -22796,7 +22777,7 @@ var render = function() {
                 _vm._v(" "),
                 !_vm.reply.parent_id
                   ? _c("span", { staticClass: "text-xs" }, [
-                      _vm._v(_vm._s(this.childrenCount))
+                      _vm._v(_vm._s(_vm.replies_count))
                     ])
                   : _vm._e()
               ]
@@ -22805,7 +22786,54 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._t("default")
+      _vm._t("default"),
+      _vm._v(" "),
+      _vm.items.length > 0
+        ? _c(
+            "div",
+            { staticClass: "ml-6 -mb-4" },
+            _vm._l(_vm.items, function(child, index) {
+              return _c(
+                "div",
+                { key: child.id },
+                [
+                  _c("reply", {
+                    attrs: {
+                      reply: child,
+                      tweet: _vm.tweet,
+                      last: index === Object.keys(_vm.items).length - 1
+                    }
+                  })
+                ],
+                1
+              )
+            }),
+            0
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.shouldDisplyBtn,
+              expression: "shouldDisplyBtn"
+            }
+          ],
+          staticClass: "text-blue-500 text-xs hover:text-blue-600",
+          on: { click: _vm.loadChildren }
+        },
+        [_vm._v("View Replies")]
+      ),
+      _vm._v(" "),
+      _c("add-reply-modal", {
+        key: _vm.reply.id,
+        attrs: { id: _vm.reply.id },
+        on: { created: _vm.add }
+      })
     ],
     2
   )
@@ -22888,7 +22916,7 @@ var render = function() {
     "modal",
     {
       attrs: {
-        name: "add-reply",
+        name: "add-reply-" + _vm.id,
         classes: "p-4 bg-white shadow-lg rounded-lg w-64",
         height: "auto"
       },
@@ -22904,7 +22932,7 @@ var render = function() {
             on: {
               click: function($event) {
                 $event.preventDefault()
-                return _vm.$modal.hide("add-reply")
+                return _vm.$modal.hide("add-reply-" + _vm.id)
               }
             }
           },
@@ -23052,7 +23080,7 @@ var render = function() {
                               staticClass: "circle-bg",
                               attrs: {
                                 d:
-                                  "M18 2.0845\n                a 15.9155 15.9155 0 0 1 0 31.831\n                a 15.9155 15.9155 0 0 1 0 -31.831"
+                                  "M18 2.0845\n                  a 15.9155 15.9155 0 0 1 0 31.831\n                  a 15.9155 15.9155 0 0 1 0 -31.831"
                               }
                             }),
                             _vm._v(" "),
@@ -37759,16 +37787,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     add: function add(item) {
-      if (item.parent_id != null) {
-        var parent_id = item.parent_id;
-        var parent = this.items.findIndex(function (data) {
-          return data.id == parent_id;
-        });
-        this.items[parent].children.push(item);
-        this.items[parent].children_count += 1;
-      } else this.items.push(item);
-
+      this.items.push(item);
       this.$emit("added");
+
+      if (typeof this.replies_count !== "undefined") {
+        this.replies_count += 1;
+      }
+
       this.$store.dispatch("addReply");
     },
     remove: function remove(index) {
