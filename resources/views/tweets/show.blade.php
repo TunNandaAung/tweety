@@ -15,7 +15,7 @@
     @else
         No comments yet!
     @endif --}}
-    <div class="border border-gray-300 rounded-lg">
+    <div>
         @include('replies.list')
     </div>
     @include('replies.form')

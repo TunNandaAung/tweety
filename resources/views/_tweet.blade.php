@@ -76,7 +76,7 @@
                 </template>
 
 
-                <button type="submit" class="px-2 py-2 w-full text-left class text-red-500 rounded hover:bg-red-600 hover:text-white"  @click.prevent="$modal.show('confirm-delete',{'id':{{$tweet->id }}})">
+                <button type="submit" class="px-2 py-2 w-full text-left class text-red-500 rounded hover:bg-red-600 hover:text-white"  @click.prevent="$modal.show('confirm-delete-tweet',{'id':{{$tweet->id }}})">
                     Delete
                 </button>
 
@@ -85,6 +85,6 @@
     </div>
 
     @can('edit',$tweet->user)
-     <confirm-delete-modal></confirm-delete-modal>
+     <delete-tweet-modal></delete-tweet-modal>
     @endcan
 </a>

@@ -1,13 +1,22 @@
 <template>
   <div>
-    <div v-if="items.length > 0">
+    <span class="flex items-center justify-center" :class="loading ? 'loader' : ''"></span>
+
+    <div class="border border-gray-300 rounded-lg" v-if="items.length > 0">
       <div v-for="(reply, index) in items" :key="reply.id" ref="replies">
-        <reply :reply="reply" :tweet="tweet" :last="index === last" :ref="'reply-'+reply.id"></reply>
+        <reply
+          :reply="reply"
+          :tweet="tweet"
+          :last="index === last"
+          :ref="'reply-'+reply.id"
+          :index="index"
+          @removed="remove(index,null,reply.children_count + 1)"
+        ></reply>
       </div>
 
       <load-more :container="container" @ready="loadMore" v-if="shouldPaginate"></load-more>
     </div>
-    <!-- <span class="px-2 py-8" v-else>No comments yet!</span> -->
+    <span class="px-2 py-8" v-else v-show="!loading">No comments yet!</span>
   </div>
 </template>
 
@@ -28,7 +37,8 @@ export default {
   data() {
     return {
       childrenReplies: [],
-      container: this.$refs["replies"]
+      container: this.$refs["replies"],
+      loading: false
     };
   },
   created() {
@@ -48,7 +58,11 @@ export default {
 
   methods: {
     fetch(page) {
-      axios.get(this.url(page)).then(this.refresh);
+      this.loading = true;
+      axios.get(this.url(page)).then(response => {
+        this.refresh(response);
+        this.loading = false;
+      });
     },
 
     url(page) {

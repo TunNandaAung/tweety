@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tweet;
+use App\Reply;
 
 class RepliesController extends Controller
 {
@@ -33,5 +34,18 @@ class RepliesController extends Controller
         // }
 
         // return back();
+    }
+
+    public function destroy(Reply $reply)
+    {
+        $this->authorize('edit', $reply->owner);
+        
+        $reply->delete();
+
+        if (request()->expectsJson()) {
+            return response(['status' => 'Reply deleted']);
+        }
+
+        return back();
     }
 }

@@ -18,10 +18,14 @@ export default {
             this.$store.dispatch("addReply");
         },
 
-        remove(index) {
+        remove(index, parentID = null, count) {
+            console.log(count);
             this.items.splice(index, 1);
+            this.$store.dispatch("removeReply", count);
 
-            this.$emit("removed");
+            if (typeof this.replies_count !== "undefined") {
+                this.replies_count -= 1;
+            }
         }
     }
 };
