@@ -14,6 +14,7 @@
 <script>
 import Reply from "./Reply";
 import collection from "../mixins/collection";
+import pagination from "../mixins/pagination";
 import LoadMore from "../utils/LoadMore";
 import AddReplyModal from "../utils/AddReplyModal";
 import { mapState } from "vuex";
@@ -22,33 +23,18 @@ export default {
   props: ["tweet", "replies"],
   name: "replies",
   components: { Reply, LoadMore, AddReplyModal },
-  mixins: [collection],
+  mixins: [collection, pagination],
 
   data() {
     return {
-      page: 1,
-      last_page: false,
-      dataSet: [],
       childrenReplies: [],
-      showChildren: false,
       container: this.$refs["replies"]
     };
-  },
-  watch: {
-    dataSet() {
-      this.page = this.dataSet.current_page;
-      this.last_page = this.dataSet.last_page;
-    },
-    page() {
-      this.fetch(this.page);
-    }
   },
   created() {
     if (this.replies) {
       this.replies.map(item => this.items.push(item));
     } else this.fetch();
-
-    // console.log(JSON.stringify(this.items));
   },
   computed: {
     last() {
@@ -78,14 +64,6 @@ export default {
     refresh({ data }) {
       this.dataSet = data;
       data.data.map(item => this.items.push(item));
-    },
-    loadMore() {
-      if (this.shouldPaginate) {
-        this.page++;
-      }
-    },
-    loadChildren() {
-      this.showChildren = true;
     }
   }
 };

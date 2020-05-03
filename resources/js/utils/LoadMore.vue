@@ -1,32 +1,32 @@
 <template>
-    <div class="loader"></div>
+  <div class="loader"></div>
 </template>
 <script>
 import { throttle } from "lodash";
 
 export default {
-    props: {
-        container: {}
-    },
+  props: {
+    container: {}
+  },
 
-    mounted() {
-        window.addEventListener("scroll", this.loadMore);
-    },
+  mounted() {
+    window.addEventListener("scroll", this.loadMore);
+  },
 
-    methods: {
-        loadMore: throttle(function(e) {
-            if (this.shouldLoadMore()) {
-                this.$emit("ready");
-            }
-        }, 300),
+  methods: {
+    loadMore: throttle(function(e) {
+      if (this.shouldLoadMore()) {
+        this.$emit("ready");
+      }
+    }, 300),
 
-        shouldLoadMore() {
-            let bottomOfWindow =
-                window.pageYOffset >=
-                (document.documentElement.offsetTop + window.innerHeight) * 0.3;
+    shouldLoadMore() {
+      let bottomOfWindow =
+        window.pageYOffset >=
+        document.documentElement.offsetTop + window.innerHeight;
 
-            return bottomOfWindow;
-        }
+      return bottomOfWindow;
     }
+  }
 };
 </script>

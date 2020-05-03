@@ -68,6 +68,7 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import LoadMore from "../utils/LoadMore";
 import collection from "../mixins/collection";
+import pagination from "../mixins/pagination";
 import AddReplyModal from "../utils/AddReplyModal";
 
 dayjs.extend(relativeTime);
@@ -75,7 +76,7 @@ dayjs.extend(relativeTime);
 export default {
   props: ["reply", "tweet", "last"],
   name: "reply",
-  mixins: [collection],
+  mixins: [collection, pagination],
   components: {
     AddReplyModal
   },
@@ -86,10 +87,8 @@ export default {
     return {
       id: this.reply.id,
       showChildren: false,
-      replies_count: this.reply.children_count,
-      dataSet: [],
       page: 0,
-      last_page: false
+      replies_count: this.reply.children_count
     };
   },
   filters: {
@@ -120,17 +119,6 @@ export default {
       return this.page === 0 || this.page <= this.last_page - 1;
     }
   },
-
-  watch: {
-    dataSet() {
-      this.page = this.dataSet.current_page;
-      this.last_page = this.dataSet.last_page;
-    },
-    page() {
-      this.fetch(this.page);
-    }
-  },
-
   methods: {
     showModal() {
       this.$modal.show(`add-reply-${this.reply.id}`, {
@@ -157,12 +145,6 @@ export default {
       }
 
       return `/api/replies/${this.reply.id}/children?page=${page}`;
-    },
-    loadMore() {
-      if (this.shouldPaginate) {
-        this.page++;
-        console.log(this.page);
-      }
     }
   }
 };

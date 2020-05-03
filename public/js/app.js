@@ -2692,9 +2692,10 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Reply__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Reply */ "./resources/js/components/Reply.vue");
 /* harmony import */ var _mixins_collection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mixins/collection */ "./resources/js/mixins/collection.js");
-/* harmony import */ var _utils_LoadMore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/LoadMore */ "./resources/js/utils/LoadMore.vue");
-/* harmony import */ var _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/AddReplyModal */ "./resources/js/utils/AddReplyModal.vue");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var _mixins_pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/pagination */ "./resources/js/mixins/pagination.js");
+/* harmony import */ var _utils_LoadMore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/LoadMore */ "./resources/js/utils/LoadMore.vue");
+/* harmony import */ var _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/AddReplyModal */ "./resources/js/utils/AddReplyModal.vue");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -2719,33 +2720,21 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["tweet", "replies"],
   name: "replies",
   components: {
     Reply: _Reply__WEBPACK_IMPORTED_MODULE_0__["default"],
-    LoadMore: _utils_LoadMore__WEBPACK_IMPORTED_MODULE_2__["default"],
-    AddReplyModal: _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_3__["default"]
+    LoadMore: _utils_LoadMore__WEBPACK_IMPORTED_MODULE_3__["default"],
+    AddReplyModal: _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
-  mixins: [_mixins_collection__WEBPACK_IMPORTED_MODULE_1__["default"]],
+  mixins: [_mixins_collection__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_pagination__WEBPACK_IMPORTED_MODULE_2__["default"]],
   data: function data() {
     return {
-      page: 1,
-      last_page: false,
-      dataSet: [],
       childrenReplies: [],
-      showChildren: false,
       container: this.$refs["replies"]
     };
-  },
-  watch: {
-    dataSet: function dataSet() {
-      this.page = this.dataSet.current_page;
-      this.last_page = this.dataSet.last_page;
-    },
-    page: function page() {
-      this.fetch(this.page);
-    }
   },
   created: function created() {
     var _this = this;
@@ -2754,8 +2743,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.replies.map(function (item) {
         return _this.items.push(item);
       });
-    } else this.fetch(); // console.log(JSON.stringify(this.items));
-
+    } else this.fetch();
   },
   computed: _objectSpread({
     last: function last() {
@@ -2764,7 +2752,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     shouldPaginate: function shouldPaginate() {
       return this.page <= this.last_page - 1;
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapState"])(["allReplies"])),
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_5__["mapState"])(["allReplies"])),
   methods: {
     fetch: function fetch(page) {
       axios.get(this.url(page)).then(this.refresh);
@@ -2785,14 +2773,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       data.data.map(function (item) {
         return _this2.items.push(item);
       });
-    },
-    loadMore: function loadMore() {
-      if (this.shouldPaginate) {
-        this.page++;
-      }
-    },
-    loadChildren: function loadChildren() {
-      this.showChildren = true;
     }
   }
 });
@@ -2814,7 +2794,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _utils_LoadMore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/LoadMore */ "./resources/js/utils/LoadMore.vue");
 /* harmony import */ var _mixins_collection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/collection */ "./resources/js/mixins/collection.js");
-/* harmony import */ var _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/AddReplyModal */ "./resources/js/utils/AddReplyModal.vue");
+/* harmony import */ var _mixins_pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mixins/pagination */ "./resources/js/mixins/pagination.js");
+/* harmony import */ var _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/AddReplyModal */ "./resources/js/utils/AddReplyModal.vue");
 //
 //
 //
@@ -2880,6 +2861,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 
 
@@ -2889,9 +2871,9 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__W
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["reply", "tweet", "last"],
   name: "reply",
-  mixins: [_mixins_collection__WEBPACK_IMPORTED_MODULE_3__["default"]],
+  mixins: [_mixins_collection__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_pagination__WEBPACK_IMPORTED_MODULE_4__["default"]],
   components: {
-    AddReplyModal: _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_4__["default"]
+    AddReplyModal: _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   created: function created() {
     dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default.a);
@@ -2900,10 +2882,8 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__W
     return {
       id: this.reply.id,
       showChildren: false,
-      replies_count: this.reply.children_count,
-      dataSet: [],
       page: 0,
-      last_page: false
+      replies_count: this.reply.children_count
     };
   },
   filters: {
@@ -2927,15 +2907,6 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__W
     },
     shouldPaginate: function shouldPaginate() {
       return this.page === 0 || this.page <= this.last_page - 1;
-    }
-  },
-  watch: {
-    dataSet: function dataSet() {
-      this.page = this.dataSet.current_page;
-      this.last_page = this.dataSet.last_page;
-    },
-    page: function page() {
-      this.fetch(this.page);
     }
   },
   methods: {
@@ -2968,12 +2939,6 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__W
       }
 
       return "/api/replies/".concat(this.reply.id, "/children?page=").concat(page);
-    },
-    loadMore: function loadMore() {
-      if (this.shouldPaginate) {
-        this.page++;
-        console.log(this.page);
-      }
     }
   }
 });
@@ -3355,7 +3320,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     }, 300),
     shouldLoadMore: function shouldLoadMore() {
-      var bottomOfWindow = window.pageYOffset >= (document.documentElement.offsetTop + window.innerHeight) * 0.3;
+      var bottomOfWindow = window.pageYOffset >= document.documentElement.offsetTop + window.innerHeight;
       return bottomOfWindow;
     }
   }
@@ -37829,6 +37794,43 @@ __webpack_require__.r(__webpack_exports__);
     remove: function remove(index) {
       this.items.splice(index, 1);
       this.$emit("removed");
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/mixins/pagination.js":
+/*!*******************************************!*\
+  !*** ./resources/js/mixins/pagination.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      dataSet: [],
+      page: 1,
+      last_page: false
+    };
+  },
+  watch: {
+    dataSet: function dataSet() {
+      this.page = this.dataSet.current_page;
+      this.last_page = this.dataSet.last_page;
+    },
+    page: function page() {
+      this.fetch(this.page);
+    }
+  },
+  methods: {
+    loadMore: function loadMore() {
+      if (this.shouldPaginate) {
+        this.page++;
+      }
     }
   }
 });
