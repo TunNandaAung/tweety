@@ -8,6 +8,8 @@ class FriendsController extends Controller
 {
     public function index()
     {
-        return auth()->user()->follows;
+        return cache()->rememberForever('friends', function () {
+            return auth()->user()->follows;
+        });
     }
 }

@@ -21,6 +21,7 @@ trait Followable
 
     public function toggleFollow(User $user)
     {
+        cache()->forget('friends');
         //return $this->follows()->toggle($user);
         if ($this->following($user)) {
             return $this->unfollow($user);
