@@ -1,6 +1,4 @@
-<a href="{{ route('show-tweet',$tweet) }}">
-
-    <div class="mr-2 flex-shrink-0">
+   <div class="mr-2 flex-shrink-0">
         <a href="{{ route('profile',$tweet->user) }}">
             <img
                 src="{{ $tweet->user->avatar }}"
@@ -69,8 +67,8 @@
                         
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 text-gray-700">
-                        <path fill="currentColor" d="M15.3 9.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/>
-                    </svg>
+                            <path fill="currentColor" d="M15.3 9.3a1 1 0 0 1 1.4 1.4l-4 4a1 1 0 0 1-1.4 0l-4-4a1 1 0 0 1 1.4-1.4l3.3 3.29 3.3-3.3z"/>
+                        </svg>
                     
                     </button>
                 </template>
@@ -87,4 +85,3 @@
     @can('edit',$tweet->user)
      <delete-tweet-modal></delete-tweet-modal>
     @endcan
-</a>

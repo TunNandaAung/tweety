@@ -13,7 +13,7 @@
         <main class="container mx-auto">
             <div class="lg:flex lg:justify-center">
                 @auth
-                <div class="lg:w-32 h-screen lg:fixed lg:left-0 lg:ml-56">
+                <div class="lg:w-48 lg:h-screen lg:fixed lg:left-0 lg:ml-56">
                     @include ('_sidebar-links')
                 </div>
                 @endauth
