@@ -24,7 +24,9 @@
     },
     "dependencies": {
         "dayjs": "^1.8.25",
+        "in-viewport": "^3.6.0",
         "mix-tailwindcss": "^1.2.0",
+        "portal-vue": "^2.1.7",
         "tailwindcss": "^1.2.0",
         "tributejs": "^5.1.3",
         "turbolinks": "^5.2.0",

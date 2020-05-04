@@ -78,4 +78,11 @@ body {
 [v-cloak] {
     display: none;
 }
+
+.is-floating {
+    bottom: 1%;
+    left: 18%;
+    position: sticky;
+}
+
 @tailwind utilities;

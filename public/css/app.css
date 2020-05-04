@@ -750,6 +750,13 @@ body::-webkit-scrollbar-thumb {
   display: none;
 }
 
+.is-floating {
+  bottom: 1%;
+  left: 18%;
+  position: -webkit-sticky;
+  position: sticky;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

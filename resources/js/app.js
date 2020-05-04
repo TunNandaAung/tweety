@@ -23,7 +23,9 @@ import NotificationLink from "./components/NotificationLink";
 import ReplyButton from "./components/ReplyButton";
 
 import VModal from "vue-js-modal";
+import PortalVue from "portal-vue";
 
+Vue.use(PortalVue);
 Vue.use(VModal);
 
 import TurbolinksAdapter from "vue-turbolinks";
