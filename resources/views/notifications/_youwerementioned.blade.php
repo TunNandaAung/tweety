@@ -29,8 +29,9 @@
                 </div>
 
             </div>
-            {{-- {{ str_limit($project->description, 100) }} --}}
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime voluptates sequi adipisci quibusdam repellat ducimus. Laboriosam velit quaerat necessitatibus blanditiis!</p>
+            @if(isset($notification->data['description']))
+                <p>{!! Str::limit($notification->data['description'],100) !!}</p>
+            @endif
         </div>
 
     </div>

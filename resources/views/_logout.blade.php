@@ -1,7 +1,7 @@
 <footer>
-    <dropdown align="right" width="200px" v-cloak>
+    <dropdown align="right" width="400px" v-cloak>
         <template v-slot:trigger>
-            <li class="flex items-center rounded-full bg-transparent px-1 py-1 hover:bg-gray-200 hover:text-black">
+            <li class="flex items-center rounded-full bg-transparent px-1 py-1 hover:bg-gray-200 hover:text-black cursor-pointer -ml-4">
                 <img
                     src="{{ current_user()->avatar }}"
                     alt=""
@@ -10,7 +10,7 @@
                     height="30"
                 >
 
-                <div class="flex flex-col mr-5">
+                <div class="flex flex-col mr-5 text-left">
                     <span class="text-sm font-bold"> {{ Str::limit(current_user()->name,12) }}</span>
                     <span class="text-xs text-gray-700 font-semibold">{{ Str::limit('@'. current_user()->username,12) }}</span>
                 </div>
@@ -36,7 +36,7 @@
                 >
 
                 <div class="flex flex-col mr-5 items-start">
-                    <span class="font-bold"> {{ current_user()->name }}</span>
+                    <span class="font-bold text-left text-sm whitespace-no-wrap overflow-hidden"> {{ current_user()->name }}</span>
                     <span class="text-sm text-gray-700 font-semibold">{{ '@'. current_user()->username }}</span>
                 </div>
 

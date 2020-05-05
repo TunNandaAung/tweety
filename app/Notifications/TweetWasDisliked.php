@@ -62,6 +62,7 @@ class TweetWasDisliked extends Notification
             'message' => $this->message(),
             'notifier' => $this->user(),
             'link' => $this->tweet->path(),
+            'description' => $this->tweet->body,
         ];
     }
 

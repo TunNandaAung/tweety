@@ -63,7 +63,8 @@ class ReceivedNewReply extends Notification
         return [
             'message' => $this->message(),
             'notifier' => $this->reply->owner,
-            'link' => $this->reply->path()
+            'link' => $this->reply->path(),
+            'description' => $this->reply->body,
         ];
     }
 

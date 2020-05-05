@@ -62,6 +62,7 @@ class YouWereMentioned extends Notification
             'message' => $this->message(),
             'notifier' => $this->user(),
             'link' => $this->subject->path(),
+            'description' => $this->subject->body,
         ];
     }
 

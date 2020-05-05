@@ -44,17 +44,5 @@
         </a>
     </li>
 
-    {{-- <form method="POST" action="/logout">
-        @csrf
-        <li>
-            <button
-                class="font-bold text-lg mb-4 block rounded-full bg-transparent px-2 py-1 hover:bg-red-600 hover:text-white text-center"
-                type="Submit"
-            >
-                Logout
-            </button>
-        </li>
-
-    </form> --}}
     @include("_logout")
 </ul>
