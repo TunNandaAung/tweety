@@ -2266,8 +2266,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     name: {
@@ -2389,18 +2387,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    tweet: {
+    subject: {
       type: Object,
       required: true
+    },
+    name: {
+      type: String
     }
   },
   data: function data() {
     return {
-      isLiked: this.tweet.is_liked,
-      isDisliked: this.tweet.is_disliked,
-      likeCount: this.tweet.likes_count || 0,
-      dislikeCount: this.tweet.dislikes_count || 0,
-      endpoint: "/tweets/".concat(this.tweet.id, "/like")
+      isLiked: this.subject.is_liked,
+      isDisliked: this.subject.is_disliked,
+      likeCount: this.subject.likes_count || 0,
+      dislikeCount: this.subject.dislikes_count || 0,
+      endpoint: "/".concat(this.name, "/").concat(this.subject.id, "/like")
     };
   },
   methods: {
@@ -2845,6 +2846,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/AddReplyModal */ "./resources/js/utils/AddReplyModal.vue");
 /* harmony import */ var _utils_DeleteReplyModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/DeleteReplyModal */ "./resources/js/utils/DeleteReplyModal.vue");
 /* harmony import */ var _Dropdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Dropdown */ "./resources/js/components/Dropdown.vue");
+/* harmony import */ var _LikeButtons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./LikeButtons */ "./resources/js/components/LikeButtons.vue");
 //
 //
 //
@@ -2946,6 +2948,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+
 
 
 
@@ -2962,7 +2967,8 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__W
   components: {
     AddReplyModal: _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_5__["default"],
     DeleteReplyModal: _utils_DeleteReplyModal__WEBPACK_IMPORTED_MODULE_6__["default"],
-    Dropdown: _Dropdown__WEBPACK_IMPORTED_MODULE_7__["default"]
+    Dropdown: _Dropdown__WEBPACK_IMPORTED_MODULE_7__["default"],
+    LikeButtons: _LikeButtons__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
   created: function created() {
     dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default.a);
@@ -23293,7 +23299,7 @@ var render = function() {
               "shadow bg-blue-500 hover:bg-blue-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-full",
             attrs: { type: "button" }
           },
-          [_vm._v("\n            Choose File\n        ")]
+          [_vm._v("Choose File")]
         )
       ]),
       _vm._v(" "),
@@ -23968,45 +23974,55 @@ var render = function() {
                   domProps: { innerHTML: _vm._s(_vm.reply.body) }
                 }),
                 _vm._v(" "),
-                _c("div", { staticClass: "flex items-center pt-2 -ml-2" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass:
-                        "focus:outline-none text-center hover:text-green-500 hover:bg-green-200 p-2 rounded-lg text-gray-600 flex items-center",
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.showModal($event)
+                _c(
+                  "div",
+                  { staticClass: "flex items-center pt-2 -ml-2" },
+                  [
+                    _c("like-buttons", {
+                      staticClass: "mr-2",
+                      attrs: { subject: _vm.reply, name: "replies" }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "focus:outline-none text-center hover:text-green-500 hover:bg-green-200 p-2 rounded-lg text-gray-600 flex items-center",
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.showModal($event)
+                          }
                         }
-                      }
-                    },
-                    [
-                      _c(
-                        "svg",
-                        {
-                          staticClass: "w-5 h-5 mr-1",
-                          attrs: { xmlns: "http://www.w3.org/2000/svg" }
-                        },
-                        [
-                          _c("path", {
-                            attrs: {
-                              fill: "currentColor",
-                              d:
-                                "M18,6v7c0,1.1-0.9,2-2,2h-4v3l-4-3H4c-1.101,0-2-0.9-2-2V6c0-1.1,0.899-2,2-2h12C17.1,4,18,4.9,18,6z"
-                            }
-                          })
-                        ]
-                      ),
-                      _vm._v(" "),
-                      !_vm.reply.parent_id
-                        ? _c("span", { staticClass: "text-xs" }, [
-                            _vm._v(_vm._s(_vm.replies_count))
-                          ])
-                        : _vm._e()
-                    ]
-                  )
-                ])
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "w-5 h-5 mr-1",
+                            attrs: { xmlns: "http://www.w3.org/2000/svg" }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                fill: "currentColor",
+                                d:
+                                  "M18,6v7c0,1.1-0.9,2-2,2h-4v3l-4-3H4c-1.101,0-2-0.9-2-2V6c0-1.1,0.899-2,2-2h12C17.1,4,18,4.9,18,6z"
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        !_vm.reply.parent_id
+                          ? _c("span", { staticClass: "text-xs" }, [
+                              _vm._v(_vm._s(_vm.replies_count))
+                            ])
+                          : _vm._e()
+                      ]
+                    )
+                  ],
+                  1
+                )
               ]),
               _vm._v(" "),
               _vm.isOwner

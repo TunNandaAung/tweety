@@ -56,18 +56,21 @@
 <script>
 export default {
   props: {
-    tweet: {
+    subject: {
       type: Object,
       required: true
+    },
+    name: {
+      type: String
     }
   },
   data() {
     return {
-      isLiked: this.tweet.is_liked,
-      isDisliked: this.tweet.is_disliked,
-      likeCount: this.tweet.likes_count || 0,
-      dislikeCount: this.tweet.dislikes_count || 0,
-      endpoint: `/tweets/${this.tweet.id}/like`
+      isLiked: this.subject.is_liked,
+      isDisliked: this.subject.is_disliked,
+      likeCount: this.subject.likes_count || 0,
+      dislikeCount: this.subject.dislikes_count || 0,
+      endpoint: `/${this.name}/${this.subject.id}/like`
     };
   },
   methods: {

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Tweet;
 use Illuminate\Http\Request;
+use App\Tweet;
 
-class TweetsLikesController extends Controller
+class TweetLikesController extends Controller
 {
     public function store(Tweet $tweet)
     {

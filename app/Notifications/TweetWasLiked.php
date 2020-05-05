@@ -6,12 +6,13 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use App\Reply;
 
 class TweetWasLiked extends Notification
 {
     use Queueable;
 
-    protected $tweet;
+    protected $subject;
     protected $user;
 
     /**
@@ -19,9 +20,9 @@ class TweetWasLiked extends Notification
      *
      * @return void
      */
-    public function __construct($tweet, $user)
+    public function __construct($subject, $user)
     {
-        $this->tweet = $tweet;
+        $this->subject = $subject;
         $this->user = $user;
     }
 
@@ -61,14 +62,14 @@ class TweetWasLiked extends Notification
         return [
             'message' => $this->message(),
             'notifier' => $this->user(),
-            'link' => $this->tweet->path(),
-            'description' => $this->tweet->body,
+            'link' => $this->subject->path(),
+            'description' => $this->subject->body,
         ];
     }
 
     public function message()
     {
-        return sprintf('%s liked your tweet', $this->user()->username);
+        return sprintf('%s liked your %s', $this->user()->username, $this->subject instanceof Reply ? 'reply.' : 'tweet.');
     }
 
     /**

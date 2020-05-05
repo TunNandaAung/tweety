@@ -39,7 +39,7 @@
         {{-- <x-like-buttons :tweet="$tweet"></x-like-buttons> --}}
         <div class="flex items-center text-center -ml-2">
             
-            <like-buttons :tweet="{{ $tweet }}" class="mr-2"></like-buttons>
+            <like-buttons :subject="{{ $tweet }}" name="tweets" class="mr-2"></like-buttons>
 
             {{-- <button
                 class="focus:outline-none text-center hover:text-green-600 hover:bg-green-200 p-2 rounded-lg text-gray-600 flex items-center"

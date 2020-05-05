@@ -90,11 +90,9 @@ trait Likable
             return $this->removeLike($user);
         }
         
-        $this->user->notify(
-            $liked
-            ? new TweetWasLiked($tweet = $this, current_user())
-            : new TweetWasDisliked($tweet = $this, current_user())
-        );
+        $owner = $this instanceof Reply ? $this->owner : $this->user;
+
+        $this->notifyOwner($owner, $liked);
         
         return $this->likes()->updateOrCreate([
             'user_id' => $user ? $user->id : auth()->id(),
@@ -107,5 +105,16 @@ trait Likable
     public function removeLike($user = null)
     {
         return $this->likes()->delete($user, null);
+    }
+
+    public function notifyOwner($owner, $liked)
+    {
+        if ($owner->isNot(current_user())) {
+            $owner->notify(
+                $liked
+            ? new TweetWasLiked($subject = $this, current_user())
+            : new TweetWasDisliked($subject = $this, current_user())
+            );
+        }
     }
 }

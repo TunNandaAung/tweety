@@ -8,10 +8,13 @@ use App\Tweet;
 use App\ReplyCollection;
 
 class Reply extends Model
-{
+{   
+
+    use Likable;
+    
     protected $guarded = [];
 
-    protected $appends = ['path','children_count'];
+    protected $appends = ['path','children_count','is_liked','is_disliked','likes_count','dislikes_count'];
     
     protected $with=['owner'];
     

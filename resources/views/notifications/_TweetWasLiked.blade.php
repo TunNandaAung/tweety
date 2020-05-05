@@ -25,13 +25,14 @@
                 <div>
                     <a  href="{{ $notification->data['link'] }}"
                         class="bg-white rounded-full border border-gray-300 py-2 px-4 text-black text-xs mr-2 font-bold hover:bg-blue-500 hover:text-white">
-                        View Tweet
+                        View {{ Str::endsWith($notification->data['message'], 'tweet.') ? 'Tweet' : 'Reply'}}
                     </a>
                 </div>
 
             </div>
-            {{-- {{ str_limit($project->description, 100) }} --}}
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime voluptates sequi adipisci quibusdam repellat ducimus. Laboriosam velit quaerat necessitatibus blanditiis!</p>
+            @if(isset($notification->data['description']))
+                <p>{!! Str::limit($notification->data['description'],100) !!}</p>
+            @endif
         </div>
 
     </div>

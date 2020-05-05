@@ -30,6 +30,8 @@
         </div>
           @endif-->
           <div class="flex items-center pt-2 -ml-2">
+            <like-buttons :subject="reply" name="replies" class="mr-2"></like-buttons>
+
             <button
               class="focus:outline-none text-center hover:text-green-500 hover:bg-green-200 p-2 rounded-lg text-gray-600 flex items-center"
               @click.prevent="showModal"
@@ -108,6 +110,7 @@ import pagination from "../mixins/pagination";
 import AddReplyModal from "../utils/AddReplyModal";
 import DeleteReplyModal from "../utils/DeleteReplyModal";
 import Dropdown from "./Dropdown";
+import LikeButtons from "./LikeButtons";
 
 dayjs.extend(relativeTime);
 
@@ -118,7 +121,8 @@ export default {
   components: {
     AddReplyModal,
     DeleteReplyModal,
-    Dropdown
+    Dropdown,
+    LikeButtons
   },
   created() {
     dayjs.extend(relativeTime);

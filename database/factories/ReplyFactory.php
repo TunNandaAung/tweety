@@ -10,5 +10,6 @@ $factory->define(Reply::class, function (Faker $faker) {
         'user_id'=>factory(App\User::class),
         'tweet_id' => factory(App\Tweet::class),
         'body'=>$faker->sentence,
+        'parent_id' => null
     ];
 });
