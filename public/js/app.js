@@ -2387,20 +2387,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     tweet: {
@@ -2412,8 +2398,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       isLiked: this.tweet.is_liked,
       isDisliked: this.tweet.is_disliked,
-      likeCount: this.tweet.likes || 0,
-      dislikeCount: this.tweet.dislikes || 0,
+      likeCount: this.tweet.likes_count || 0,
+      dislikeCount: this.tweet.dislikes_count || 0,
       endpoint: "/tweets/".concat(this.tweet.id, "/like")
     };
   },

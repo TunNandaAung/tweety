@@ -17,7 +17,8 @@ class TweetsController extends Controller
         // if (Session::pull('shouldFlash')) {
         //     Session::flash('flash', 'Your tweet has been published!');
         // }
-
+        
+        // return auth()->user()->timeline();
         return view('tweets.index', [
             'tweets' => auth()->user()->timeline()
         ]);

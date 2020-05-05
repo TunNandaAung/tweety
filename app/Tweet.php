@@ -13,7 +13,7 @@ class Tweet extends Model
     use Likable;
 
     
-    protected $appends = ['is_liked','is_disliked','replies_count'];
+    protected $appends = ['is_liked','is_disliked','replies_count','likes_count','dislikes_count'];
     
     protected $guarded = [];
 
@@ -68,7 +68,7 @@ class Tweet extends Model
     
     public function showTweet()
     {
-        return static::where('id', $this->id)->withLikes($this->id)->first();
+        return static::where('id', $this->id)->first();
     }
 
     public function addReply($reply)
