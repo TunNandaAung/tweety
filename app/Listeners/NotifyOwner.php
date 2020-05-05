@@ -6,7 +6,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Notifications\ReceivedNewReply;
 
-class NotifyOwner
+class NotifyOwner implements ShouldQueue
 {
     /**
      * Create the event listener.
@@ -29,18 +29,26 @@ class NotifyOwner
     public function handle($event)
     {
         $hasParent = $event->reply->parent_id !== null;
-
-        $owner = $hasParent ?  $event->reply->parent->owner :  $event->reply->tweet->user;
         
-        // if ($owner->is(current_user())) {
-        //     return false;
-        // }
+        $owner = $this->getOwner($event);
+     
         $owner
             ->notify(new ReceivedNewReply($event->reply->tweet, $event->reply, $isTweet = !$hasParent));
     }
 
     public function shouldQueue($event)
     {
-        return false;
+        $owner = $this->getOwner($event);
+        
+        return $event->reply->owner->isNot($owner);
+    }
+
+    public function getOwner($event)
+    {
+        $hasParent = $event->reply->parent_id !== null;
+
+        $owner = $hasParent ?  $event->reply->parent->owner :  $event->reply->tweet->user;
+        
+        return $owner;
     }
 }
