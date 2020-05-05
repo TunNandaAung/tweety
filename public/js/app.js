@@ -2745,6 +2745,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2765,7 +2771,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     return {
       childrenReplies: [],
       container: this.$refs["replies"],
-      loading: false
+      loading: false,
+      currentAvatar: window.App.user.avatar
     };
   },
   created: function created() {
@@ -23826,6 +23833,38 @@ var render = function() {
             },
             [_vm._v("No comments yet!")]
           ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "border border-gray-400 rounded-lg py-6 px-8 mt-8 focus:outline-none focus:border-blue-400 hover:border-blue-400",
+          attrs: { id: "add-reply-field" },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.showModal($event)
+            }
+          }
+        },
+        [
+          _c("footer", { staticClass: "flex items-center py-6" }, [
+            _c("img", {
+              staticClass: "rounded-full mr-10",
+              attrs: {
+                src: _vm.currentAvatar,
+                alt: "Your Avatar",
+                width: "50",
+                height: "50"
+              }
+            }),
+            _vm._v(" "),
+            _c("h3", { staticClass: "text-gray-600" }, [
+              _vm._v("Reply to tweet.")
+            ])
+          ])
+        ]
+      ),
       _vm._v(" "),
       _c(
         "portal",
