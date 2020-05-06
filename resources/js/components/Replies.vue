@@ -16,7 +16,7 @@
 
       <load-more :container="container" @ready="loadMore" v-if="shouldPaginate"></load-more>
     </div>
-    <span class="px-2 py-8" v-else v-show="!loading">No comments yet!</span>
+    <span class="px-2 py-8" v-else v-show="!loading">No replies yet!</span>
 
     <div
       class="border border-gray-400 rounded-lg py-6 px-8 mt-8 focus:outline-none focus:border-blue-400 hover:border-blue-400"

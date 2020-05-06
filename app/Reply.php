@@ -8,8 +8,7 @@ use App\Tweet;
 use App\ReplyCollection;
 
 class Reply extends Model
-{   
-
+{
     use Likable;
     
     protected $guarded = [];
@@ -85,7 +84,8 @@ class Reply extends Model
 
         $page = ceil($replyPosition / $perPage);
 
-        return $this->tweet->path()."#reply-{$this->id}";
+        //return $this->tweet->path()."#reply-{$this->id}";
+        return $this->tweet->path()."/replies/{$this->id}";
     }
 
     public function getPathAttribute()

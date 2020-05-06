@@ -13,12 +13,18 @@ class RepliesController extends Controller
         return $tweet->getThreadedReplies();
     }
 
+    public function show(Tweet $tweet, Reply $reply)
+    {
+        return view(
+            'replies.show',
+            ['tweet' => $tweet,
+            'reply' => $reply
+        ]
+        );
+    }
+
     public function store(Tweet $tweet)
     {
-        // return $tweet->addReply([
-        //     'body' => request('body'),
-        //     'user_id' => auth()->id()
-        // ])->load('owner');
         $attributes = request()->validate([
             'body' => 'required|max:255',
         ]);
@@ -28,12 +34,6 @@ class RepliesController extends Controller
             'user_id' => auth()->id(),
             'parent_id' => request('parent_id', null)
         ]);
-        
-        // if (request()->wantsJson()) {
-        //     return ['message' => "/tweets/{$tweet->id}"];
-        // }
-
-        // return back();
     }
 
     public function destroy(Reply $reply)

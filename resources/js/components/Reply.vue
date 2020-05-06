@@ -156,7 +156,7 @@ export default {
     },
     shouldDisplyBtn() {
       return (
-        this.items.length != this.reply.children_count &&
+        this.items.length < this.reply.children_count &&
         this.reply.children_count > 0
       );
     },

@@ -3006,7 +3006,7 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__W
       return this.reply.parent_id === null;
     },
     shouldDisplyBtn: function shouldDisplyBtn() {
-      return this.items.length != this.reply.children_count && this.reply.children_count > 0;
+      return this.items.length < this.reply.children_count && this.reply.children_count > 0;
     },
     repliesLeft: function repliesLeft() {
       return this.reply.children_count - this.items.length;
@@ -23833,7 +23833,7 @@ var render = function() {
               ],
               staticClass: "px-2 py-8"
             },
-            [_vm._v("No comments yet!")]
+            [_vm._v("No replies yet!")]
           ),
       _vm._v(" "),
       _c(
@@ -38084,15 +38084,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _utils_DeleteTweetModal__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./utils/DeleteTweetModal */ "./resources/js/utils/DeleteTweetModal.vue");
 /* harmony import */ var _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./utils/AddReplyModal */ "./resources/js/utils/AddReplyModal.vue");
 /* harmony import */ var _components_Replies__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/Replies */ "./resources/js/components/Replies.vue");
-/* harmony import */ var _components_NotificationLink__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/NotificationLink */ "./resources/js/components/NotificationLink.vue");
-/* harmony import */ var _components_ReplyButton__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/ReplyButton */ "./resources/js/components/ReplyButton.vue");
-/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! vue-js-modal */ "./node_modules/vue-js-modal/dist/index.js");
-/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(vue_js_modal__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var portal_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! portal-vue */ "./node_modules/portal-vue/dist/portal-vue.common.js");
-/* harmony import */ var portal_vue__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(portal_vue__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var vue_turbolinks__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! vue-turbolinks */ "./node_modules/vue-turbolinks/index.js");
-/* harmony import */ var turbolinks__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! turbolinks */ "./node_modules/turbolinks/dist/turbolinks.js");
-/* harmony import */ var turbolinks__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(turbolinks__WEBPACK_IMPORTED_MODULE_18__);
+/* harmony import */ var _components_Reply__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/Reply */ "./resources/js/components/Reply.vue");
+/* harmony import */ var _components_NotificationLink__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/NotificationLink */ "./resources/js/components/NotificationLink.vue");
+/* harmony import */ var _components_ReplyButton__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/ReplyButton */ "./resources/js/components/ReplyButton.vue");
+/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! vue-js-modal */ "./node_modules/vue-js-modal/dist/index.js");
+/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(vue_js_modal__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var portal_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! portal-vue */ "./node_modules/portal-vue/dist/portal-vue.common.js");
+/* harmony import */ var portal_vue__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(portal_vue__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var vue_turbolinks__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! vue-turbolinks */ "./node_modules/vue-turbolinks/index.js");
+/* harmony import */ var turbolinks__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! turbolinks */ "./node_modules/turbolinks/dist/turbolinks.js");
+/* harmony import */ var turbolinks__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(turbolinks__WEBPACK_IMPORTED_MODULE_19__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -38117,11 +38118,12 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(portal_vue__WEBPACK_IMPORTED_MODULE_16___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_15___default.a);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(portal_vue__WEBPACK_IMPORTED_MODULE_17___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_16___default.a);
 
 
-turbolinks__WEBPACK_IMPORTED_MODULE_18___default.a.start();
+turbolinks__WEBPACK_IMPORTED_MODULE_19___default.a.start();
 window.events = new vue__WEBPACK_IMPORTED_MODULE_0___default.a();
 
 window.flash = function (message) {
@@ -38133,7 +38135,7 @@ window.flash = function (message) {
 };
 
 window.Vue = vue__WEBPACK_IMPORTED_MODULE_0___default.a;
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_turbolinks__WEBPACK_IMPORTED_MODULE_17__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_turbolinks__WEBPACK_IMPORTED_MODULE_18__["default"]);
 
 var authorizations = __webpack_require__(/*! ./authorizations */ "./resources/js/authorizations.js");
 
@@ -38166,8 +38168,9 @@ document.addEventListener("turbolinks:load", function () {
       DeleteTweetModal: _utils_DeleteTweetModal__WEBPACK_IMPORTED_MODULE_10__["default"],
       AddReplyModal: _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_11__["default"],
       Replies: _components_Replies__WEBPACK_IMPORTED_MODULE_12__["default"],
-      NotificationLink: _components_NotificationLink__WEBPACK_IMPORTED_MODULE_13__["default"],
-      ReplyButton: _components_ReplyButton__WEBPACK_IMPORTED_MODULE_14__["default"]
+      NotificationLink: _components_NotificationLink__WEBPACK_IMPORTED_MODULE_14__["default"],
+      ReplyButton: _components_ReplyButton__WEBPACK_IMPORTED_MODULE_15__["default"],
+      Reply: _components_Reply__WEBPACK_IMPORTED_MODULE_13__["default"]
     },
     store: _store_store__WEBPACK_IMPORTED_MODULE_1__["default"],
     el: "#app"

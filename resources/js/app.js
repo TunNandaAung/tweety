@@ -19,6 +19,7 @@ import Dropdown from "./components/Dropdown";
 import DeleteTweetModal from "./utils/DeleteTweetModal";
 import AddReplyModal from "./utils/AddReplyModal";
 import Replies from "./components/Replies";
+import Reply from "./components/Reply";
 import NotificationLink from "./components/NotificationLink";
 import ReplyButton from "./components/ReplyButton";
 
@@ -70,7 +71,8 @@ document.addEventListener("turbolinks:load", () => {
             AddReplyModal,
             Replies,
             NotificationLink,
-            ReplyButton
+            ReplyButton,
+            Reply
         },
         store,
         el: "#app"

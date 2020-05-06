@@ -35,6 +35,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/tweets/{tweet}/reply', 'RepliesController@store')->name('create-reply');
     Route::get('/tweets/{tweet}/replies', 'RepliesController@index')->name('replies');
+    Route::get('/tweets/{tweet}/replies/{reply}', 'RepliesController@show')->name('show-reply');
     Route::delete('/replies/{reply}', 'RepliesController@destroy')->name('delete-reply');
 
     Route::post('/profiles/{user}/follow', 'FollowsController@store')->name('follows');

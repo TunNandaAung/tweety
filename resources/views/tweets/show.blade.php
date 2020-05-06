@@ -6,7 +6,7 @@
 
     <hr class="mb-6 mt-6">
 
-    <h3 class="text-lg font-bold mb-6"> Comments</h3>
+    <h3 class="text-lg font-bold mb-6"> Replies</h3>
 
     {{-- @if($replies->count())
         <div class="border border-gray-300 rounded-lg">
