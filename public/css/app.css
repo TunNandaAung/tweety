@@ -757,6 +757,22 @@ body::-webkit-scrollbar-thumb {
   position: sticky;
 }
 
+.page-item {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+}
+
+.page-item:hover {
+  color: #3182ce;
+  background-color: #bee3f8;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

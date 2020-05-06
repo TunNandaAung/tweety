@@ -85,4 +85,12 @@ body {
     position: sticky;
 }
 
+.page-item {
+    @apply px-4 py-2 flex items-center justify-center rounded-full;
+
+    &:hover {
+        @apply text-blue-600 bg-blue-200;
+    }
+}
+
 @tailwind utilities;
