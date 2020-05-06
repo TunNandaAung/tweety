@@ -6,7 +6,7 @@
             {{ $loop->last ? '' :  'border-b border-gray-400'}}"
         >
         
-            @include('_tweet')
+            @include('_tweet',['bladeCount' => true])
         
         </div>
     @empty

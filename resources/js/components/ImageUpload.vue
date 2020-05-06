@@ -7,7 +7,7 @@
       >Choose File</button>
     </slot>
     <input
-      class="cursor-pointer opacity-0 absolute block right-0 top-0"
+      class="cursor-pointer opacity-0 absolute block left-0 top-0"
       type="file"
       ref="input"
       :name="name"

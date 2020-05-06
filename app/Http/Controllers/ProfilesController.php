@@ -32,7 +32,7 @@ class ProfilesController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user)],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'banner' => ['file'],
-            'description' => ['string'],
+            'description' => ['sometimes','string'],
         ]);
 
         if (request('avatar')) {
@@ -46,6 +46,6 @@ class ProfilesController extends Controller
 
         $user->update($attributes);
 
-        return redirect($user->path());
+        return redirect($user->path())->with('flash', 'Your profile has been updated!');
     }
 }

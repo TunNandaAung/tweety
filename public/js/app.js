@@ -23316,8 +23316,7 @@ var render = function() {
       !_vm.clearInput
         ? _c("input", {
             ref: "input",
-            staticClass:
-              "cursor-pointer opacity-0 absolute block right-0 top-0",
+            staticClass: "cursor-pointer opacity-0 absolute block left-0 top-0",
             attrs: { type: "file", name: _vm.name, accept: "image/*" },
             on: { change: _vm.onChange }
           })

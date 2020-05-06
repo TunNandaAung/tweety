@@ -143,7 +143,6 @@
                         id="description"
                         rows="4"
                         name="description"
-                        required
                 >{{ $user->description }}</textarea>
                     @error('description')
                         <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
