@@ -93,7 +93,7 @@
         @click="loadMore"
         v-show="shouldDisplyBtn"
         class="text-blue-500 text-xs hover:text-blue-600"
-      >View Replies</button>
+      >View {{repliesLeft}} More {{ repliesLeft > 1 ? 'Replies' : 'Reply'}}</button>
 
       <add-reply-modal @created="add" :key="reply.id" :id="reply.id"></add-reply-modal>
     </div>
@@ -159,6 +159,9 @@ export default {
         this.items.length != this.reply.children_count &&
         this.reply.children_count > 0
       );
+    },
+    repliesLeft() {
+      return this.reply.children_count - this.items.length;
     },
     shouldPaginate() {
       return this.page === 0 || this.page <= this.last_page - 1;

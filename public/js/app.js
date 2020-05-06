@@ -3008,6 +3008,9 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__W
     shouldDisplyBtn: function shouldDisplyBtn() {
       return this.items.length != this.reply.children_count && this.reply.children_count > 0;
     },
+    repliesLeft: function repliesLeft() {
+      return this.reply.children_count - this.items.length;
+    },
     shouldPaginate: function shouldPaginate() {
       return this.page === 0 || this.page <= this.last_page - 1;
     },
@@ -24193,7 +24196,14 @@ var render = function() {
               staticClass: "text-blue-500 text-xs hover:text-blue-600",
               on: { click: _vm.loadMore }
             },
-            [_vm._v("View Replies")]
+            [
+              _vm._v(
+                "View " +
+                  _vm._s(_vm.repliesLeft) +
+                  " More " +
+                  _vm._s(_vm.repliesLeft > 1 ? "Replies" : "Reply")
+              )
+            ]
           ),
           _vm._v(" "),
           _c("add-reply-modal", {
