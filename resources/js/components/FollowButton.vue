@@ -3,8 +3,8 @@
   <form @submit.prevent="toggle">
     <button
       type="submit"
-      class="bg-blue-500 rounded-full shadow py-2 px-6 text-white text-sm font-bold focus:outline-none"
-      :class="followed ? 'hover:bg-red-600' : 'hover:bg-blue-600'"
+      class="rounded-full shadow py-2 px-6 text-sm font-bold focus:outline-none"
+      :class="followed ? 'bg-blue-500 hover:bg-red-600 text-white' : 'border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white'"
       @mouseover="hover"
       @mouseleave="mouseleave"
     >{{ unfollowText ? unfollowText : text }}</button>

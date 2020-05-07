@@ -23182,8 +23182,10 @@ var render = function() {
         "button",
         {
           staticClass:
-            "bg-blue-500 rounded-full shadow py-2 px-6 text-white text-sm font-bold focus:outline-none",
-          class: _vm.followed ? "hover:bg-red-600" : "hover:bg-blue-600",
+            "rounded-full shadow py-2 px-6 text-sm font-bold focus:outline-none",
+          class: _vm.followed
+            ? "bg-blue-500 hover:bg-red-600 text-white"
+            : "border border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white",
           attrs: { type: "submit" },
           on: { mouseover: _vm.hover, mouseleave: _vm.mouseleave }
         },
