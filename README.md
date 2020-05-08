@@ -13,7 +13,7 @@ This is the repository for the "Laravel From Scratch" [final project](https://la
 
 ### Step 1
 
-Begin by cloning this repository to your machine, and installing all Composer & NPM dependencies.
+Begin by cloning this repository to your machine, and installing all Composer & NPM dependencies using the following commands.
 
 ```bash
 git clone git@github.com:TunNandaAung/tweety.git
