@@ -86,9 +86,21 @@ class InstallCommand extends Command
      */
     protected function welcome()
     {
+        $this->comment($this->tweety());
         $this->info('>> Welcome to the Tweety installation process! <<');
     }
 
+    public function tweety()
+    {
+        return '
+        ████████╗██╗    ██╗███████╗███████╗████████╗██╗   ██╗
+        ╚══██╔══╝██║    ██║██╔════╝██╔════╝╚══██╔══╝╚██╗ ██╔╝
+           ██║   ██║ █╗ ██║█████╗  █████╗     ██║    ╚████╔╝ 
+           ██║   ██║███╗██║██╔══╝  ██╔══╝     ██║     ╚██╔╝  
+           ██║   ╚███╔███╔╝███████╗███████╗   ██║      ██║   
+           ╚═╝    ╚══╝╚══╝ ╚══════╝╚══════╝   ╚═╝      ╚═╝           
+        ';
+    }
     /**
      * Display the completion message.
      */

@@ -39,8 +39,22 @@
             </div>
         </div>
 
-    <p class="text-sm">{{ $user->description }}</p>
-
+        <div class="flex justify-between">
+            @if(isset($user->description))
+                <p class="text-sm font-semibold">{{ $user->description }}</p>
+            @endif
+            
+            <div class="flex justify right">
+                <a class="mr-3 hover:underline hover:text-blue-500 cursor-pointer">
+                    <span class="font-semibold">{{ $followings }} </span>
+                    <span class="text-gray-700">{{ $followings > 0 ? 'Followings' : 'Following' }}</span>
+                </a>
+                <a class="hover:underline hover:text-blue-500 cursor-pointer">
+                    <span class="font-semibold">{{ $followers }} </span>
+                    <span class="text-gray-700">{{ $followers > 0 ? 'Followers' : 'Follower' }} </span>
+                </a>
+            </div>
+        </div>
 
     </header>
 

@@ -24,7 +24,7 @@ npm run dev
 
 ### Step 2
 
-Next, boot up a server and visit Tweety. If using Laravel Valet, the URL will default to `http://tweety.test`.
+Next, boot up a server and visit Tweety. If you are using Laravel Valet, the URL will default to `http://tweety.test`.
 
 ## Extended Functionalities
 
