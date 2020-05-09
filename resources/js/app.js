@@ -22,6 +22,8 @@ import Replies from "./components/Replies";
 import Reply from "./components/Reply";
 import NotificationLink from "./components/NotificationLink";
 import ReplyButton from "./components/ReplyButton";
+import Tabs from "./components/Tabs";
+import Tab from "./components/Tab";
 
 import VModal from "vue-js-modal";
 import PortalVue from "portal-vue";
@@ -72,7 +74,9 @@ document.addEventListener("turbolinks:load", () => {
             Replies,
             NotificationLink,
             ReplyButton,
-            Reply
+            Reply,
+            Tab,
+            Tabs
         },
         store,
         el: "#app"

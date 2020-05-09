@@ -45,11 +45,11 @@
             @endif
             
             <div class="flex justify right">
-                <a class="mr-3 hover:underline hover:text-blue-500 cursor-pointer">
+            <a class="mr-3 hover:underline hover:text-blue-500 cursor-pointer" href="{{ $user->path('following') }}">
                     <span class="font-semibold">{{ $followings }} </span>
                     <span class="text-gray-700">{{ $followings > 0 ? 'Followings' : 'Following' }}</span>
                 </a>
-                <a class="hover:underline hover:text-blue-500 cursor-pointer">
+                <a class="hover:underline hover:text-blue-500 cursor-pointer" href="{{ $user->path('followers') }}">
                     <span class="font-semibold">{{ $followers }} </span>
                     <span class="text-gray-700">{{ $followers > 0 ? 'Followers' : 'Follower' }} </span>
                 </a>

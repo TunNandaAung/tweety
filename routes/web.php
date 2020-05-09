@@ -43,6 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profiles/{user}', 'ProfilesController@update')->middleware('can:edit,user')->name('update-profile');
     Route::get('/explore', 'ExploreController')->name('explore');
 
+    Route::get('/profiles/{user}/followers', 'FollowsController@show')->name('show-followers');
+    Route::get('/profiles/{user}/following', 'FollowsController@show')->name('show-following');
+
     Route::get('/notifications', 'NotificationsController@index')->name('notifications');
 
     Route::get('/api/friends', 'FriendsController@index');
