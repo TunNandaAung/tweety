@@ -16,6 +16,8 @@ class Tweet extends Model
     
     protected $appends = ['is_liked','is_disliked','replies_count','likes_count','dislikes_count'];
     
+    protected $with=['user'];
+
     protected $guarded = [];
 
     protected static function boot()
@@ -84,5 +86,10 @@ class Tweet extends Model
     public function path()
     {
         return "/tweets/{$this->id}";
+    }
+
+    public function toSearchableArray()
+    {
+        return $this->toArray() + ['path' => $this->path()];
     }
 }

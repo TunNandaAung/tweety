@@ -22,10 +22,10 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
     Route::get('/tweets', 'TweetsController@index')->name('home');
+    Route::get('/tweets/search', 'SearchController@show')->name('show-search');
     Route::get('/tweets/{tweet}', 'TweetsController@show')->name('show-tweet');
     Route::post('/tweets', 'TweetsController@store')->name('create-tweet');
     Route::delete('/tweets/{tweet}', 'TweetsController@destroy')->name('delete-tweet');
-
 
     Route::post('/tweets/{tweet}/like', 'TweetLikesController@store')->name('like-tweet');
     Route::delete('/tweets/{tweet}/like', 'TweetLikesController@destroy')->name('dislike-tweet');
