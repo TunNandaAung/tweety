@@ -8051,17 +8051,57 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dayjs */ "./node_modules/dayjs/dayjs.min.js");
-/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! dayjs/plugin/relativeTime */ "./node_modules/dayjs/plugin/relativeTime.js");
-/* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _utils_LoadMore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/LoadMore */ "./resources/js/utils/LoadMore.vue");
-/* harmony import */ var _mixins_collection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../mixins/collection */ "./resources/js/mixins/collection.js");
-/* harmony import */ var _mixins_pagination__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../mixins/pagination */ "./resources/js/mixins/pagination.js");
-/* harmony import */ var _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../utils/AddReplyModal */ "./resources/js/utils/AddReplyModal.vue");
-/* harmony import */ var _utils_DeleteReplyModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../utils/DeleteReplyModal */ "./resources/js/utils/DeleteReplyModal.vue");
-/* harmony import */ var _Dropdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Dropdown */ "./resources/js/components/Dropdown.vue");
-/* harmony import */ var _LikeButtons__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./LikeButtons */ "./resources/js/components/LikeButtons.vue");
+/* harmony import */ var _utils_LoadMore__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/LoadMore */ "./resources/js/utils/LoadMore.vue");
+/* harmony import */ var _mixins_collection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mixins/collection */ "./resources/js/mixins/collection.js");
+/* harmony import */ var _mixins_pagination__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../mixins/pagination */ "./resources/js/mixins/pagination.js");
+/* harmony import */ var _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/AddReplyModal */ "./resources/js/utils/AddReplyModal.vue");
+/* harmony import */ var _utils_DeleteReplyModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../utils/DeleteReplyModal */ "./resources/js/utils/DeleteReplyModal.vue");
+/* harmony import */ var _Dropdown__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Dropdown */ "./resources/js/components/Dropdown.vue");
+/* harmony import */ var _LikeButtons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./LikeButtons */ "./resources/js/components/LikeButtons.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -8172,21 +8212,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default.a);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["reply", "tweet", "last", "index"],
   name: "reply",
-  mixins: [_mixins_collection__WEBPACK_IMPORTED_MODULE_3__["default"], _mixins_pagination__WEBPACK_IMPORTED_MODULE_4__["default"]],
+  mixins: [_mixins_collection__WEBPACK_IMPORTED_MODULE_1__["default"], _mixins_pagination__WEBPACK_IMPORTED_MODULE_2__["default"]],
   components: {
-    AddReplyModal: _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_5__["default"],
-    DeleteReplyModal: _utils_DeleteReplyModal__WEBPACK_IMPORTED_MODULE_6__["default"],
-    Dropdown: _Dropdown__WEBPACK_IMPORTED_MODULE_7__["default"],
-    LikeButtons: _LikeButtons__WEBPACK_IMPORTED_MODULE_8__["default"]
-  },
-  created: function created() {
-    dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_1___default.a);
+    AddReplyModal: _utils_AddReplyModal__WEBPACK_IMPORTED_MODULE_3__["default"],
+    DeleteReplyModal: _utils_DeleteReplyModal__WEBPACK_IMPORTED_MODULE_4__["default"],
+    Dropdown: _Dropdown__WEBPACK_IMPORTED_MODULE_5__["default"],
+    LikeButtons: _LikeButtons__WEBPACK_IMPORTED_MODULE_6__["default"]
   },
   data: function data() {
     return {
@@ -8196,15 +8230,6 @@ dayjs__WEBPACK_IMPORTED_MODULE_0___default.a.extend(dayjs_plugin_relativeTime__W
       replies_count: this.reply.children_count,
       loading: false
     };
-  },
-  filters: {
-    diffForHumans: function diffForHumans(date) {
-      if (!date) {
-        return null;
-      }
-
-      return dayjs__WEBPACK_IMPORTED_MODULE_0___default()(date).fromNow();
-    }
   },
   computed: {
     parentID: function parentID() {
@@ -53701,7 +53726,11 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Delete")]
+                        [
+                          _vm._v(
+                            "\n                    Delete\n                "
+                          )
+                        ]
                       )
                     ]
                   )
@@ -53760,10 +53789,11 @@ var render = function() {
             },
             [
               _vm._v(
-                "View " +
+                "\n            View " +
                   _vm._s(_vm.repliesLeft) +
-                  " More " +
-                  _vm._s(_vm.repliesLeft > 1 ? "Replies" : "Reply")
+                  " More\n            " +
+                  _vm._s(_vm.repliesLeft > 1 ? "Replies" : "Reply") +
+                  "\n        "
               )
             ]
           ),
@@ -67756,14 +67786,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/Tab */ "./resources/js/components/Tab.vue");
 /* harmony import */ var algoliasearch_lite__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! algoliasearch/lite */ "./node_modules/algoliasearch/dist/algoliasearch-lite.umd.js");
 /* harmony import */ var algoliasearch_lite__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(algoliasearch_lite__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! vue-js-modal */ "./node_modules/vue-js-modal/dist/index.js");
-/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(vue_js_modal__WEBPACK_IMPORTED_MODULE_19__);
-/* harmony import */ var portal_vue__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! portal-vue */ "./node_modules/portal-vue/dist/portal-vue.common.js");
-/* harmony import */ var portal_vue__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(portal_vue__WEBPACK_IMPORTED_MODULE_20__);
-/* harmony import */ var vue_instantsearch__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! vue-instantsearch */ "./node_modules/vue-instantsearch/dist/vue-instantsearch.esm.js");
-/* harmony import */ var vue_turbolinks__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! vue-turbolinks */ "./node_modules/vue-turbolinks/index.js");
-/* harmony import */ var turbolinks__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! turbolinks */ "./node_modules/turbolinks/dist/turbolinks.js");
-/* harmony import */ var turbolinks__WEBPACK_IMPORTED_MODULE_23___default = /*#__PURE__*/__webpack_require__.n(turbolinks__WEBPACK_IMPORTED_MODULE_23__);
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! dayjs */ "./node_modules/dayjs/dayjs.min.js");
+/* harmony import */ var dayjs__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(dayjs__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! dayjs/plugin/relativeTime */ "./node_modules/dayjs/plugin/relativeTime.js");
+/* harmony import */ var dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_20__);
+/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! vue-js-modal */ "./node_modules/vue-js-modal/dist/index.js");
+/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(vue_js_modal__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var portal_vue__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! portal-vue */ "./node_modules/portal-vue/dist/portal-vue.common.js");
+/* harmony import */ var portal_vue__WEBPACK_IMPORTED_MODULE_22___default = /*#__PURE__*/__webpack_require__.n(portal_vue__WEBPACK_IMPORTED_MODULE_22__);
+/* harmony import */ var vue_instantsearch__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! vue-instantsearch */ "./node_modules/vue-instantsearch/dist/vue-instantsearch.esm.js");
+/* harmony import */ var vue_turbolinks__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! vue-turbolinks */ "./node_modules/vue-turbolinks/index.js");
+/* harmony import */ var turbolinks__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! turbolinks */ "./node_modules/turbolinks/dist/turbolinks.js");
+/* harmony import */ var turbolinks__WEBPACK_IMPORTED_MODULE_25___default = /*#__PURE__*/__webpack_require__.n(turbolinks__WEBPACK_IMPORTED_MODULE_25__);
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -67793,12 +67827,14 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_instantsearch__WEBPACK_IMPORTED_MODULE_21__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(portal_vue__WEBPACK_IMPORTED_MODULE_20___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_19___default.a);
 
 
-turbolinks__WEBPACK_IMPORTED_MODULE_23___default.a.start();
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_instantsearch__WEBPACK_IMPORTED_MODULE_23__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(portal_vue__WEBPACK_IMPORTED_MODULE_22___default.a);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_21___default.a);
+
+
+turbolinks__WEBPACK_IMPORTED_MODULE_25___default.a.start();
 window.events = new vue__WEBPACK_IMPORTED_MODULE_0___default.a();
 
 window.flash = function (message) {
@@ -67810,9 +67846,17 @@ window.flash = function (message) {
 };
 
 window.Vue = vue__WEBPACK_IMPORTED_MODULE_0___default.a;
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_turbolinks__WEBPACK_IMPORTED_MODULE_22__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_turbolinks__WEBPACK_IMPORTED_MODULE_24__["default"]);
 
 var authorizations = __webpack_require__(/*! ./authorizations */ "./resources/js/authorizations.js");
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter("diffForHumans", function (date) {
+  if (!date) {
+    return null;
+  }
+
+  return dayjs__WEBPACK_IMPORTED_MODULE_19___default()(date).fromNow();
+});
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.authorize = function () {
   if (!window.App.signedIn) return false;
@@ -67849,6 +67893,14 @@ document.addEventListener("turbolinks:load", function () {
       Reply: _components_Reply__WEBPACK_IMPORTED_MODULE_13__["default"],
       Tab: _components_Tab__WEBPACK_IMPORTED_MODULE_17__["default"],
       Tabs: _components_Tabs__WEBPACK_IMPORTED_MODULE_16__["default"]
+    },
+    created: function created() {
+      dayjs__WEBPACK_IMPORTED_MODULE_19___default.a.extend(dayjs_plugin_relativeTime__WEBPACK_IMPORTED_MODULE_20___default.a);
+    },
+    filters: {
+      getAvatar: function getAvatar(path) {
+        return "/" + path.substr(17, path.length);
+      }
     },
     data: function data() {
       var searchClient = {

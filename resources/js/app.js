@@ -25,6 +25,8 @@ import ReplyButton from "./components/ReplyButton";
 import Tabs from "./components/Tabs";
 import Tab from "./components/Tab";
 import algoliasearch from "algoliasearch/lite";
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
 
 import VModal from "vue-js-modal";
 import PortalVue from "portal-vue";
@@ -48,6 +50,14 @@ window.Vue = Vue;
 
 Vue.use(TurbolinksAdapter);
 let authorizations = require("./authorizations");
+
+Vue.filter("diffForHumans", date => {
+    if (!date) {
+        return null;
+    }
+
+    return dayjs(date).fromNow();
+});
 
 Vue.prototype.authorize = function(...params) {
     if (!window.App.signedIn) return false;
@@ -85,6 +95,14 @@ document.addEventListener("turbolinks:load", () => {
             Reply,
             Tab,
             Tabs
+        },
+        created() {
+            dayjs.extend(relativeTime);
+        },
+        filters: {
+            getAvatar: path => {
+                return "/" + path.substr(17, path.length);
+            }
         },
         data() {
             const searchClient = {
