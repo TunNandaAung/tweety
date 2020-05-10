@@ -7,10 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Events\TweetWasPublished;
 use App\Events\TweetReceivedNewReply;
 use App\Reply;
+use Laravel\Scout\Searchable;
 
 class Tweet extends Model
 {
-    use Likable;
+    use Likable,Searchable;
 
     
     protected $appends = ['is_liked','is_disliked','replies_count','likes_count','dislikes_count'];
