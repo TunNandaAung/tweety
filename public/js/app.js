@@ -8443,7 +8443,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    shouldUpdateUrl: {
+      type: Boolean,
+      "default": true
+    }
+  },
   data: function data() {
     return {
       tabs: [],
@@ -8459,7 +8468,11 @@ __webpack_require__.r(__webpack_exports__);
       this.tabs.map(function (tab) {
         return tab.isActive = tab == _activeTab;
       });
-      this.updateUrl();
+      this.$emit("tabUpdated", this.activeTab.title.toLowerCase());
+
+      if (this.shouldUpdateUrl) {
+        this.updateUrl();
+      }
     }
   },
   methods: {
@@ -68327,6 +68340,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.authorize = function () {
 };
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.signedIn = window.App.signedIn;
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$indexName = "tweets";
 document.addEventListener("turbolinks:load", function () {
   var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     components: {
@@ -69749,8 +69763,26 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
     return {
-      searchClient: searchClient
+      searchClient: searchClient,
+      indexName: "tweets",
+      showTweetHits: true,
+      showUserHits: false
     };
+  },
+  methods: {
+    searchTweets: function searchTweets() {
+      this.updateIndex("tweets");
+      this.showTweetHits = true;
+      this.showUserHits = false;
+    },
+    searchUsers: function searchUsers() {
+      this.updateIndex("users");
+      this.showUserHits = true;
+      this.showTweetHits = false;
+    },
+    updateIndex: function updateIndex(index) {
+      this.indexName = index;
+    }
   }
 });
 

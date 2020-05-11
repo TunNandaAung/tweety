@@ -41,7 +41,25 @@ export default {
         };
 
         return {
-            searchClient
+            searchClient,
+            indexName: "tweets",
+            showTweetHits: true,
+            showUserHits: false
         };
+    },
+    methods: {
+        searchTweets() {
+            this.updateIndex("tweets");
+            this.showTweetHits = true;
+            this.showUserHits = false;
+        },
+        searchUsers() {
+            this.updateIndex("users");
+            this.showUserHits = true;
+            this.showTweetHits = false;
+        },
+        updateIndex(index) {
+            this.indexName = index;
+        }
     }
 };
