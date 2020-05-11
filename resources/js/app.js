@@ -24,15 +24,16 @@ import NotificationLink from "./components/NotificationLink";
 import ReplyButton from "./components/ReplyButton";
 import Tabs from "./components/Tabs";
 import Tab from "./components/Tab";
-import algoliasearch from "algoliasearch/lite";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 import VModal from "vue-js-modal";
 import PortalVue from "portal-vue";
-import InstantSearch from "vue-instantsearch";
+import algoliaSearch from "./mixins/algoliaSearch";
+import { ObserveVisibility } from "vue-observe-visibility";
 
-Vue.use(InstantSearch);
+Vue.directive("observe-visibility", ObserveVisibility);
+
 Vue.use(PortalVue);
 Vue.use(VModal);
 
@@ -72,11 +73,6 @@ Vue.prototype.authorize = function(...params) {
 Vue.prototype.signedIn = window.App.signedIn;
 
 document.addEventListener("turbolinks:load", () => {
-    const algoliaClient = algoliasearch(
-        process.env.MIX_ALGOLIA_APP_ID,
-        process.env.MIX_ALGOLIA_SECRET
-    );
-
     const app = new Vue({
         components: {
             AvatarForm,
@@ -96,41 +92,9 @@ document.addEventListener("turbolinks:load", () => {
             Tab,
             Tabs
         },
+        mixins: [algoliaSearch],
         created() {
             dayjs.extend(relativeTime);
-        },
-        filters: {
-            getAvatar: path => {
-                return "/" + path.substr(17, path.length);
-            }
-        },
-        data() {
-            const searchClient = {
-                search(requests) {
-                    if (requests.every(({ params }) => !params.query)) {
-                        return Promise.resolve({
-                            results: requests.map(() => ({
-                                hits: [],
-                                nbHits: 0,
-                                nbPages: 0,
-                                processingTimeMS: 0
-                            }))
-                        });
-                    }
-
-                    return algoliaClient.search(requests);
-                }
-            };
-
-            return {
-                searchClient,
-                searchFunction(helper) {
-                    const currentQuery = helper.getQueryParameter("?q");
-                    helper
-                        .setQuery("Hello") // we re-apply the previous page
-                        .search();
-                }
-            };
         },
         store,
         el: "#app"
