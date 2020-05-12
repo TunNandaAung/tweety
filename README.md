@@ -22,6 +22,16 @@ php artisan tweety:install
 npm run dev
 ```
 
+#### Instant Search
+
+-   For instant search, you have to create an account at [algolia](https://www.algolia.com/users/sign_up).
+-   Then, you have to reference your algolia app id and algolia secret key in your `.env` file as below.
+
+```bash
+MIX_ALGOLIA_APP_ID=YOUR_ALGOLIA_APP_ID
+MIX_ALGOLIA_SECRET=YOUR_ALGOLIA_SECRET
+```
+
 ### Step 2
 
 Next, boot up a server and visit Tweety. If you are using Laravel Valet, the URL will default to `http://tweety.test`.
