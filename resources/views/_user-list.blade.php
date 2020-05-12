@@ -5,7 +5,7 @@
                     <img
                         src="{{ $user->avatar }}"
                         alt="{{ $user->username }}'s avatar"
-                        width="60"
+                        width="50"
                         class="mr-4 rounded-full"
                     >
     

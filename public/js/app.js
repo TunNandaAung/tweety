@@ -8443,9 +8443,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     shouldUpdateUrl: {
@@ -8468,7 +8465,7 @@ __webpack_require__.r(__webpack_exports__);
       this.tabs.map(function (tab) {
         return tab.isActive = tab == _activeTab;
       });
-      this.$emit("tabUpdated", this.activeTab.title.toLowerCase());
+      this.$emit("updated", this.activeTab.title.toLowerCase());
 
       if (this.shouldUpdateUrl) {
         this.updateUrl();

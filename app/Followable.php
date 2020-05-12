@@ -4,6 +4,7 @@
 namespace App;
 
 use App\Notifications\YouWereFollowed;
+use App\User;
 
 trait Followable
 {
@@ -31,9 +32,11 @@ trait Followable
     }
 
 
-    public function following(User $user)
+    public function following($user)
     {
-        return (bool)$this->follows()->where('following_user_id', $user->id)->exists();
+        return (bool)$this->follows()
+            ->where('following_user_id', $user instanceof User ? $user->id : $user)
+            ->exists();
     }
 
     public function follows()
