@@ -89,5 +89,5 @@ class User extends Authenticatable
     public function toSearchableArray()
     {
         return $this->toArray() + ['path' => $this->path()];
-    }
+    } 
 }

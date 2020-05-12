@@ -36,4 +36,5 @@ Next, boot up a server and visit Tweety. If you are using Laravel Valet, the URL
 6. Display the number of remaining characters allowed whhen writing a new tweet,.
 7. Allow tweets to be deleted.
 8. Mentions and notifications.
-9. One level nested replies.
+9. Two level nested replies.
+10. Instant search with algolia

@@ -1,4 +1,4 @@
-<div class="border border-gray-300 rounded-lg">
+<div>
 
     @forelse($tweets as $tweet)
         <div class="flex p-4 hover:bg-gray-200 
