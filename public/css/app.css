@@ -773,6 +773,52 @@ body::-webkit-scrollbar-thumb {
   background-color: #bee3f8;
 }
 
+.search-box {
+  height: 40px;
+  background-color: #e2e8f0;
+  border-radius: 9999px;
+}
+
+.search-box:hover .search-input {
+  width: 240px;
+  padding: 0 6px;
+}
+
+.search-box:hover > .search-button {
+  background-color: #3182ce;
+}
+
+.search-button {
+  float: right;
+  transition: 0.4s;
+  background-color: #718096;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  width: 2.5rem;
+}
+
+.search-input {
+  border: none;
+  background: none;
+  outline: none;
+  padding: 0;
+  transition: 0.4s;
+  line-height: 40px;
+  width: 0px;
+  color: #2d3748;
+  font-size: 0.875rem;
+}
+
+@media screen and (max-width: 620px) {
+  .search-box:hover > .search-input {
+    width: 150px;
+    padding: 0 6px;
+  }
+}
+
 .sr-only {
   position: absolute;
   width: 1px;

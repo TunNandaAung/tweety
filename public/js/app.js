@@ -68337,7 +68337,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.authorize = function () {
 };
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.signedIn = window.App.signedIn;
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.prototype.$indexName = "tweets";
 document.addEventListener("turbolinks:load", function () {
   var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     components: {

@@ -71,7 +71,6 @@ Vue.prototype.authorize = function(...params) {
 };
 
 Vue.prototype.signedIn = window.App.signedIn;
-Vue.prototype.$indexName = "tweets";
 
 document.addEventListener("turbolinks:load", () => {
     const app = new Vue({

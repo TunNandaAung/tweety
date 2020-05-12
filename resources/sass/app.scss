@@ -93,4 +93,42 @@ body {
     }
 }
 
+.search-box {
+    height: 40px;
+    @apply bg-gray-300 rounded-full;
+}
+
+.search-box:hover .search-input {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.search-box:hover > .search-button {
+    @apply bg-blue-600;
+}
+
+.search-button {
+    float: right;
+    transition: 0.4s;
+    @apply bg-gray-600 rounded-full flex items-center justify-center h-10 w-10;
+}
+
+.search-input {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+    @apply text-gray-800 text-sm;
+}
+
+@media screen and (max-width: 620px) {
+    .search-box:hover > .search-input {
+        width: 150px;
+        padding: 0 6px;
+    }
+}
+
 @tailwind utilities;

@@ -22,7 +22,6 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
     Route::get('/tweets', 'TweetsController@index')->name('home');
-    Route::get('/tweets/search', 'SearchController@show')->name('show-search');
     Route::get('/tweets/{tweet}', 'TweetsController@show')->name('show-tweet');
     Route::post('/tweets', 'TweetsController@store')->name('create-tweet');
     Route::delete('/tweets/{tweet}', 'TweetsController@destroy')->name('delete-tweet');
@@ -46,6 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profiles/{user}/followers', 'FollowsController@show')->name('show-followers');
     Route::get('/profiles/{user}/following', 'FollowsController@show')->name('show-following');
 
+    Route::get('/search', 'SearchController@show')->name('show-search');
+    
     Route::get('/notifications', 'NotificationsController@index')->name('notifications');
 
     Route::get('/api/friends', 'FriendsController@index');
