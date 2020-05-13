@@ -7431,10 +7431,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     this.$store.dispatch("fetchFriends");
+  },
+  data: function data() {
+    return {
+      user: window.App.user
+    };
   },
   computed: _objectSpread({
     last: function last() {
@@ -52902,8 +52912,17 @@ var render = function() {
     "div",
     { staticClass: "bg-gray-200 border border-gray-400 rounded-lg py-4 px-4" },
     [
-      _c("h3", { staticClass: "font-bold text-xl mb-4" }, [
-        _vm._v("Following")
+      _c("div", { staticClass: "flex justify-between mb-4 items-center" }, [
+        _c("h3", { staticClass: "font-bold text-xl" }, [_vm._v("Following")]),
+        _vm._v(" "),
+        _c(
+          "a",
+          {
+            staticClass: "text-blue-500 hover:underline text-sm cursor-pointer",
+            attrs: { href: "profiles/" + _vm.user.username + "/following" }
+          },
+          [_vm._v("View all")]
+        )
       ]),
       _vm._v(" "),
       _vm.friends.length > 0

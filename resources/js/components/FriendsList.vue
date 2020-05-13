@@ -1,7 +1,12 @@
 <template>
   <div class="bg-gray-200 border border-gray-400 rounded-lg py-4 px-4">
-    <h3 class="font-bold text-xl mb-4">Following</h3>
-
+    <div class="flex justify-between mb-4 items-center">
+      <h3 class="font-bold text-xl">Following</h3>
+      <a
+        class="text-blue-500 hover:underline text-sm cursor-pointer"
+        :href="'profiles/'+user.username+'/following'"
+      >View all</a>
+    </div>
     <transition-group
       tag="ul"
       name="slide-up"
@@ -32,6 +37,11 @@ import { mapState } from "vuex";
 export default {
   created() {
     this.$store.dispatch("fetchFriends");
+  },
+  data() {
+    return {
+      user: window.App.user
+    };
   },
   computed: {
     last() {

@@ -24,7 +24,7 @@ npm run dev
 
 #### Instant Search
 
--   For instant search, you have to create an account at [algolia](https://www.algolia.com/users/sign_up).
+-   For instant search, you need to create an account at [algolia](https://www.algolia.com/users/sign_up).
 -   Then, you have to reference your algolia app id and algolia secret key in your `.env` file as below.
 
 ```bash
