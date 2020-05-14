@@ -3,7 +3,8 @@ import AppInfiniteHits from "../components/InfiniteHits";
 import {
     AisInstantSearch,
     AisSearchBox,
-    AisConfigure
+    AisConfigure,
+    AisPoweredBy
 } from "vue-instantsearch";
 
 export default {
@@ -11,7 +12,8 @@ export default {
         AppInfiniteHits,
         AisInstantSearch,
         AisSearchBox,
-        AisConfigure
+        AisConfigure,
+        AisPoweredBy
     },
     filters: {
         getAvatar: path => {

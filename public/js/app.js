@@ -69747,7 +69747,8 @@ __webpack_require__.r(__webpack_exports__);
     AppInfiniteHits: _components_InfiniteHits__WEBPACK_IMPORTED_MODULE_1__["default"],
     AisInstantSearch: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisInstantSearch"],
     AisSearchBox: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisSearchBox"],
-    AisConfigure: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisConfigure"]
+    AisConfigure: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisConfigure"],
+    AisPoweredBy: vue_instantsearch__WEBPACK_IMPORTED_MODULE_2__["AisPoweredBy"]
   },
   filters: {
     getAvatar: function getAvatar(path) {

@@ -9,6 +9,7 @@
         </script>
     </x-slot>
 
+    @if(Illuminate\Support\Facades\Route::currentRouteName() != 'show-search')
     <x-slot name="search">
         <form class="search-box" method="GET" action="/search">
 
@@ -28,6 +29,7 @@
         </form>
 
     </x-slot>
+    @endif
 
     <section class="px-8">
         <main class="container mx-auto">

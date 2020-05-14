@@ -6,7 +6,7 @@
         <ais-configure
             query="{{ request('q') }}"
         />
-        <div class="mb-6 -mt-26">
+        <div class="mb-3 -mt-26">
             
             <ais-search-box show-loading-indicator>
                 
@@ -40,7 +40,8 @@
             </ais-search-box>
 
         </div>
-        
+
+        <ais-powered-by class="mb-3 flex justify-end mr-5"></ais-powered-by>        
 
         {{-- <tabs class="mb-4" :should-update-url="false" @updated="updateIndex">
             <tab title="Tweets">
