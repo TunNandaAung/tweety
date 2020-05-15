@@ -58,8 +58,10 @@
 
     </header>
 
-    @include('_timeline',[
-        'tweets' => $tweets
-    ])
+    <div class="border border-gray-300 rounded-lg mb-6">
 
+        @include('_timeline',[
+            'tweets' => $tweets
+        ])
+    </div>
 </x-app>

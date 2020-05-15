@@ -16,14 +16,17 @@ import FollowButton from "./components/FollowButton";
 import FriendsList from "./components/FriendsList";
 import PublishTweetPanel from "./components/PublishTweetPanel";
 import Dropdown from "./components/Dropdown";
-import DeleteTweetModal from "./utils/DeleteTweetModal";
-import AddReplyModal from "./utils/AddReplyModal";
 import Replies from "./components/Replies";
 import Reply from "./components/Reply";
 import NotificationLink from "./components/NotificationLink";
 import ReplyButton from "./components/ReplyButton";
 import Tabs from "./components/Tabs";
 import Tab from "./components/Tab";
+
+import DeleteTweetModal from "./utils/DeleteTweetModal";
+import AddReplyModal from "./utils/AddReplyModal";
+import Pinned from "./utils/Pinned";
+
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -90,7 +93,8 @@ document.addEventListener("turbolinks:load", () => {
             ReplyButton,
             Reply,
             Tab,
-            Tabs
+            Tabs,
+            Pinned
         },
         mixins: [algoliaSearch],
         created() {
