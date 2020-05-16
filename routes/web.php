@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-auth()->loginUsingId(1);
+// auth()->loginUsingId(1);
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profiles/{user}/following', 'FollowsController@show')->name('show-following');
 
     Route::get('/search', 'SearchController@show')->name('show-search');
-    
+
     Route::get('/notifications', 'NotificationsController@index')->name('notifications');
 
     Route::get('/api/friends', 'FriendsController@index');
