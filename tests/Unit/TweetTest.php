@@ -6,6 +6,7 @@ use App\Notifications\RecentlyTweeted;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Notification;
+use App\Tweet;
 
 class TweetTest extends TestCase
 {
@@ -19,7 +20,7 @@ class TweetTest extends TestCase
     }
 
     /** @test */
-    function a_tweet_has_a_path()
+    function it_has_a_path()
     {
         $tweet = factory(\App\Tweet::class)->create();
 
@@ -29,13 +30,13 @@ class TweetTest extends TestCase
         );
     }
     /** @test */
-    function a_tweet_has_a_creator()
+    function it_has_a_creator()
     {
         $this->assertInstanceOf(\App\User::class, $this->tweet->user);
     }
 
     /** @test */
-    function a_tweet_has_replies()
+    function it_has_replies()
     {
         $this->assertInstanceOf(
             'Illuminate\Database\Eloquent\Collection',
@@ -55,7 +56,20 @@ class TweetTest extends TestCase
     }
 
     /** @test */
-    function a_tweet_notifies_all_followers_when_published()
+    function it_wraps_mentioned_usernames_in_the_body_within_anchor_tags_with_correct_stylings()
+    {
+        $tweet = new Tweet([
+            'body' => 'Hello @Jane-Doe'
+        ]);
+
+        $this->assertEquals(
+            'Hello <a href="/profiles/Jane-Doe" class="text-blue-500 hover:underline">@Jane-Doe</a>',
+            $tweet->body
+        );
+    }
+
+    /** @test */
+    function it_notifies_all_followers_when_published()
     {
         Notification::fake();
 
