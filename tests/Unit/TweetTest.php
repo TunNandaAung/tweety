@@ -73,14 +73,17 @@ class TweetTest extends TestCase
     {
         Notification::fake();
 
-        $creator = factory(\App\User::class)->create();
-        $follower = factory(\App\User::class)->create();
+        $creator = create(\App\User::class);
+        $firstFollower = create(\App\User::class);
+        $secondFollower = create(\App\User::class);
 
-        $follower->follow($creator);
+
+        $firstFollower->follow($creator);
+        $secondFollower->follow($creator);
 
         factory(\App\Tweet::class)->create(['user_id' => $creator->id]);
 
 
-        Notification::assertSentTo($follower, RecentlyTweeted::class);
+        Notification::assertSentTo([$firstFollower, $secondFollower], RecentlyTweeted::class);
     }
 }
