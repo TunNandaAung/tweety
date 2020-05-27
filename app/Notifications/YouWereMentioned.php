@@ -68,7 +68,7 @@ class YouWereMentioned extends Notification
 
     public function message()
     {
-        return sprintf('%s mentioned you in %s', $this->user()->username, $this->subject instanceof Reply ? 'a reply.' : 'in a tweet.');
+        return sprintf('%s mentioned you in %s', $this->user()->username, $this->subject instanceof Reply ? 'a reply.' : 'a tweet.');
     }
 
     /**
