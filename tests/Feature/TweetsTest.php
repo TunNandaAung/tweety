@@ -72,7 +72,7 @@ class TweetsTest extends TestCase
     }
 
     /** @test */
-    function a_user_can_delete_a_project()
+    function a_user_can_delete_a_tweet()
     {
         $tweet = create(Tweet::class);
 
