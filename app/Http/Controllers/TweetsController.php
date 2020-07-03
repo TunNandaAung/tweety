@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Session;
 class TweetsController extends Controller
 {
     protected $shouldFlash = false;
-    
+
     public function index()
     {
         //session(['shouldFlash' => true]);
@@ -17,17 +17,19 @@ class TweetsController extends Controller
         // if (Session::pull('shouldFlash')) {
         //     Session::flash('flash', 'Your tweet has been published!');
         // }
-        
+
         // return auth()->user()->timeline();
         return view('tweets.index', [
-            'tweets' => auth()->user()->timeline()
+            'tweets' => auth()->user()
+                ->timeline()
+                ->paginate(10)
         ]);
     }
 
     public function show(Tweet $tweet)
     {
         //return $tweet->getThreadedReplies();
-        return view('tweets.show', ['tweet'=> $tweet->showTweet()]);
+        return view('tweets.show', ['tweet' => $tweet->showTweet()]);
     }
 
     public function store()
@@ -36,15 +38,15 @@ class TweetsController extends Controller
             'body' => 'required|max:255',
             'image' => 'sometimes|nullable|image'
         ]);
-        
+
         if (request('image')) {
             $attributes['image'] = request()->file('image')->store('tweet-images');
         }
 
         $attributes['user_id'] = auth()->id();
-        
+
         Tweet::create($attributes);
-        
+
 
         if (request()->wantsJson()) {
             return ['message' => '/tweets'];
@@ -58,12 +60,12 @@ class TweetsController extends Controller
         $this->authorize('edit', $tweet->user);
 
         $tweet->delete();
-        
+
         if (request()->wantsJson()) {
             //session(['shouldFlash' => true]);
             return ['message' => '/tweets'];
         }
-        
+
         return redirect('/tweets');
     }
 }
