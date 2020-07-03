@@ -6,11 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Tweet;
+use Laravel\Sanctum\HasApiTokens;
 use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Followable, Searchable;
+    use HasApiTokens, Notifiable, Followable, Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -18,7 +19,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'avatar', 'email', 'password','banner','description'
+        'name', 'username', 'avatar', 'email', 'password', 'banner', 'description'
     ];
 
     /**
@@ -85,9 +86,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Like::class);
     }
-    
+
     public function toSearchableArray()
     {
         return $this->toArray() + ['path' => $this->path()];
-    } 
+    }
 }
