@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/tweets', 'Api\TweetsController@index');
 
+    Route::get('/tweets/{tweet}/replies', 'Api\RepliesController@index');
+
+    Route::get('replies/{reply}/children/json', 'Api\RepliesController@jsonShow');
+
     Route::get('/profile/avatar', 'Api\UserAvatarController@show');
 });
 

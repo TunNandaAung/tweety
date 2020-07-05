@@ -11,12 +11,12 @@ use Laravel\Scout\Searchable;
 
 class Tweet extends Model
 {
-    use Likable,Searchable;
+    use Likable, Searchable;
 
-    
-    protected $appends = ['is_liked','is_disliked','replies_count','likes_count','dislikes_count'];
-    
-    protected $with=['user'];
+
+    protected $appends = ['is_liked', 'is_disliked', 'replies_count', 'likes_count', 'dislikes_count'];
+
+    protected $with = ['user'];
 
     protected $guarded = [];
 
@@ -66,9 +66,19 @@ class Tweet extends Model
     {
         //return $this->replies()->paginate(3)->with('owner')->get()->threaded();
         //dd($this->replies()->with('allChildrenReplies')->get());
-        return $this->replies()->with('owner')->whereNull('parent_id')->paginate(10);
+        return $this->threadedReplies()->paginate(10);
     }
-    
+
+    public function getApiThreadedReplies()
+    {
+        return $this->threadedReplies()->jsonPaginate(10);
+    }
+
+    public function threadedReplies()
+    {
+        return $this->replies()->with('owner')->whereNull('parent_id');
+    }
+
     public function showTweet()
     {
         return static::where('id', $this->id)->first();
@@ -77,7 +87,7 @@ class Tweet extends Model
     public function addReply($reply)
     {
         $reply = $this->replies()->create($reply);
-        
+
         event(new TweetReceivedNewReply($reply));
 
         return $reply;
