@@ -11,7 +11,7 @@ trait Followable
     public function follow(User $user)
     {
         $user->notify(new YouWereFollowed(current_user()));
-        
+
         return $this->follows()->save($user);
     }
 
@@ -34,7 +34,7 @@ trait Followable
 
     public function following($user)
     {
-        return (bool)$this->follows()
+        return (bool) $this->follows()
             ->where('following_user_id', $user instanceof User ? $user->id : $user)
             ->exists();
     }
@@ -47,5 +47,16 @@ trait Followable
     public function followers()
     {
         return $this->belongsToMany(User::class, 'follows', 'following_user_id', 'user_id')->withTimestamps();
+    }
+
+    public function getFollowsCountAttribute()
+    {
+        return $this->follows()->count();
+    }
+
+
+    public function getFollowersCountAttribute()
+    {
+        return $this->followers()->count();
     }
 }

@@ -22,6 +22,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('replies/{reply}/children/json', 'Api\RepliesController@jsonShow');
 
     Route::get('/profile/avatar', 'Api\UserAvatarController@show');
+    Route::get('/profile', 'Api\ProfilesController@index');
+    Route::get('/profiles/{user}', 'Api\ProfilesController@show');
+    Route::get('/profiles/{user}/tweets', 'Api\ProfileTweetsController@show');
 });
 
 Route::post('/register', 'Api\AuthController@register');

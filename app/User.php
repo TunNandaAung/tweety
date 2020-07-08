@@ -40,6 +40,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $appends = ['follows_count', 'followers_count'];
+
     public function getRouteKeyName()
     {
         return 'username';

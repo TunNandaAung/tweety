@@ -20,6 +20,6 @@ class RepliesController extends BaseApiController
 
     public function jsonShow(Reply $reply)
     {
-        return $reply->children()->jsonPaginate(3);
+        return $this->sendResponse($reply->children()->jsonPaginate(5));
     }
 }
