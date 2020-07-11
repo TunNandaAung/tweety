@@ -53,6 +53,11 @@ class Tweet extends Model
         return \Purify::clean($body);
     }
 
+    public function getImageAttribute($value)
+    {
+        return $value ? asset($value) : null;
+    }
+
     public function setBodyAttribute($body)
     {
         $this->attributes['body'] = preg_replace(
