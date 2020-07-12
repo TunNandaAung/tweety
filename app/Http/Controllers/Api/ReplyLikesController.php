@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Api\LikesController;
-use App\Tweet;
+use App\Reply;
 
-class TweetLikesController extends LikesController
+class ReplyLikesController extends LikesController
 {
-    public function store(Tweet $tweet)
+    public function store(Reply $reply)
     {
-        $result = $tweet->like(current_user());
+        $result = $reply->like(current_user());
 
         if (!$result instanceof \App\Like) {
             return $this->sendResponse($this->removeResponse());
@@ -17,9 +17,9 @@ class TweetLikesController extends LikesController
         return $this->sendResponse($this->likeResponse());
     }
 
-    public function destroy(Tweet $tweet)
+    public function destroy(Reply $reply)
     {
-        $result = $tweet->dislike(current_user());
+        $result = $reply->dislike(current_user());
         
         if (!$result instanceof \App\Like) {
             return $this->sendResponse($this->removeResponse());

@@ -25,6 +25,9 @@ Route::middleware('auth:sanctum')->group(function () {
     
     Route::get('replies/{reply}/children/json', 'Api\RepliesController@jsonShow');
 
+    Route::post('/replies/{reply}/like', 'Api\ReplyLikesController@store');
+    Route::delete('/replies/{reply}/dislike', 'Api\ReplyLikesController@destroy');
+
     Route::get('/profile/avatar', 'Api\UserAvatarController@show');
     Route::get('/profile', 'Api\ProfilesController@index');
     Route::get('/profiles/{user}', 'Api\ProfilesController@show');
