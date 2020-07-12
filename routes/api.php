@@ -24,6 +24,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/tweets/{tweet}/dislike', 'Api\TweetLikesController@destroy');
     
     Route::get('replies/{reply}/children/json', 'Api\RepliesController@jsonShow');
+    Route::post('/tweets/{tweet}/reply', 'Api\RepliesController@store');
 
     Route::post('/replies/{reply}/like', 'Api\ReplyLikesController@store');
     Route::delete('/replies/{reply}/dislike', 'Api\ReplyLikesController@destroy');
