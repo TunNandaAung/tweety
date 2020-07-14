@@ -33,6 +33,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', 'Api\ProfilesController@index');
     Route::get('/profiles/{user}', 'Api\ProfilesController@show');
     Route::get('/profiles/{user}/tweets', 'Api\ProfileTweetsController@show');
+
+    Route::get('/explore', 'Api\ExploreController');
 });
 
 Route::post('/register', 'Api\AuthController@register');
