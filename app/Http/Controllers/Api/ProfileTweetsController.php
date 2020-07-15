@@ -10,8 +10,8 @@ class ProfileTweetsController extends BaseApiController
 
     public function show(User $user)
     {
-        return $this->sendResponse([
-            $user->tweets()->jsonPaginate(10),
-        ]);
+        return $this->sendResponse(
+            $user->tweets()->jsonPaginate(10)
+        );
     }
 }
