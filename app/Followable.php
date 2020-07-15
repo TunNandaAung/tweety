@@ -59,4 +59,11 @@ trait Followable
     {
         return $this->followers()->count();
     }
+
+    public function getIsFollowedAttribute()
+    {
+        return (bool) $this->followers()
+            ->where('user_id', auth()->id())
+            ->exists();
+    }
 }
