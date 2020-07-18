@@ -1,5 +1,5 @@
 <x-master>
-    <div class="w-full max-w-sm mx-auto">
+    <x-panel>
 
         <form
             class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4"
@@ -118,10 +118,6 @@
         
         </form>
 
-        <p class="text-center text-gray-500 text-xs">
-            &copy;2020 Tweety. All rights reserved.
-        </p>
-
-    </div>
+    </x-panel>
 
 </x-master>

@@ -1,7 +1,7 @@
-<div class="px-12 py-8 bg-gray-200 border border-gray-300 rounded-lg">
-    @if (isset($heading))
-        <div class="font-bold text-lg mb-4">{{ $heading }}</div>
-    @endif
-
+<div class="w-full max-w-sm mx-auto py-6">
     {{ $slot }}
+
+    <p class="text-center text-gray-500 text-xs">
+        &copy;2020 Tweety. All rights reserved.
+    </p>
 </div>

@@ -1,45 +1,52 @@
 <x-master>
-    <div class="container mx-auto flex justify-center">
-        <x-panel>
-            <x-slot name="heading">Reset Password</x-slot>
-                <form method="POST" action="{{ route('password.email') }}">
-                    @csrf
-
-                    <div class="mb-6">
-                        <label class="block mb-2 uppercase font-bold text-xs text-gray-700"
-                               for="email"
-                        >
-                            Email
-                        </label>
-                        <input class="border border-gray-400 p-2 w-full"
-                           type="email"
-                           name="email"
-                           id="email"
-                           value="{{ old('email') }}"
-                           required
-                           autofocus
-                           autocomplete="email"
-                        >
-                        @error('email')
-                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                        @enderror
-                </div>
-
-                <div class="mb-6">
-                    <button type="submit"
-                            class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
-                    >
-                        Send Reset Password Link
-                    </button>
-                </div>
-
-                @if (session('status'))
-                    <div class="text-sm text-gray-800" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
-            </form>
-        </x-panel>
+    <div class="w-full mx-auto p-6">
+        <h2 class="font-semibold text-xl text-center">  
+            Enter the email address associated with your account and we will send a link to reset your password.
+        </h2>
     </div>
-</x-master>
 
+    <x-panel>
+            
+        <form class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4" 
+            method="POST" action="{{ route('password.email') }}"
+        >
+            @csrf
+            
+            <div class="mb-6 text-xl font-bold">Reset password</div>
+            
+            
+            <div class="mb-6">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                    Email Address
+                </label>
+
+                <input
+                    class="shadow appearance-none @error('email') border border-red-500  @enderror border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    value="{{ old('email') }}" required autocomplete="email" autofocus
+                >
+
+                @error('email')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="flex items-center justify-end">
+                <button type="submit"
+                        class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-full"
+                >
+                    Send Reset Password Link
+                </button>
+            </div>
+        </form>
+            
+    </x-panel>        
+        @if (session('status'))
+            <h2 class="font-semibold text-lg text-center text-green-400" role="alert">  
+                {{ session('status') }}
+            </h2>
+        @endif
+</x-master>
