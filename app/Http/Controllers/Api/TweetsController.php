@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Tweet;
 use App\Http\Controllers\Api\BaseApiController;
+use Illuminate\Support\Facades\Gate;
 
 class TweetsController extends BaseApiController
 {
@@ -32,5 +33,16 @@ class TweetsController extends BaseApiController
         $tweet = Tweet::create($attributes);
 
         return $this->sendResponse($tweet, '', 201);
+    }
+
+    public function destroy(Tweet $tweet)
+    {
+        if (Gate::denies('edit', $tweet->user)) {
+            return $this->sendError('Unauthorized!', [], 403);
+        };
+
+        $tweet->delete();
+
+        return $this->sendResponse([], 'Tweet successfully deleted!', 200);
     }
 }
