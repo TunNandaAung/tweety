@@ -35,7 +35,7 @@
                 </label>
 
                 <input
-                    class="shadow appearance-none @error('username') border border-red-500  @enderror border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow appearance-none @error('username') border-red-500  @enderror border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="username"
                     type="username"
                     name="username"
@@ -54,7 +54,7 @@
                 </label>
 
                 <input
-                    class="shadow appearance-none @error('email') border border-red-500  @enderror border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="shadow appearance-none @error('email')  border-red-500  @enderror border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="email"
                     type="email"
                     name="email"
