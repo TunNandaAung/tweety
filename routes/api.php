@@ -42,6 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/profiles/{user}/follow', 'Api\FollowsController@store');
 
     Route::patch('/auth/email', 'Api\EmailController@update');
+    Route::patch('/auth/password', 'Api\PasswordController@update');
 
     Route::get('/explore', 'Api\ExploreController');
 });

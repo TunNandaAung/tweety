@@ -17,7 +17,7 @@ class EmailController extends BaseApiController
 
 
         current_user()->update([
-                'email' => $attributes['email']
+            'email' => $attributes['email']
         ]);
 
         return $this->sendResponse(current_user(), 'success', 201);
