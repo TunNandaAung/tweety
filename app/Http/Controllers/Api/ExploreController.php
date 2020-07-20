@@ -10,7 +10,7 @@ class ExploreController extends BaseApiController
     public function __invoke()
     {
         return $this->sendResponse(
-            User::all()->take(10)
+            User::inRandomOrder()->take(15)->get()
         );
     }
 }
