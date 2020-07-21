@@ -7836,6 +7836,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -7877,11 +7888,34 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
-    characterLeft: function characterLeft() {
+    characterLeftPercentage: function characterLeftPercentage() {
       return ((this.limit - this.body.length) * (100 / this.limit)).toFixed(0);
+    },
+    characterLeft: function characterLeft() {
+      return this.limit - this.body.length;
     },
     limitExceed: function limitExceed() {
       return this.body.length > this.limit;
+    },
+    reachWarningLimit: function reachWarningLimit() {
+      return this.body.length > this.limit - 21;
+    },
+    reachErrorLimit: function reachErrorLimit() {
+      return this.body.length > this.limit + 10;
+    },
+    reachInitailErrorLimit: function reachInitailErrorLimit() {
+      return this.body.length > this.limit && this.body.length <= this.limit + 10;
+    },
+    indicatorColor: function indicatorColor() {
+      if (this.reachInitailErrorLimit) {
+        return "#E53E3E";
+      }
+
+      if (this.reachWarningLimit) {
+        return "#DD6B20";
+      }
+
+      return "#4299e1";
     }
   },
   methods: {
@@ -53477,39 +53511,59 @@ var render = function() {
               _vm._v(" "),
               _vm.body.length > 0
                 ? _c("div", { staticClass: "mr-6" }, [
-                    !_vm.limitExceed
-                      ? _c(
-                          "svg",
-                          {
-                            staticClass: "circular-chart h-8 w-8",
-                            attrs: { viewBox: "0 0 36 36" }
-                          },
-                          [
-                            _c("path", {
-                              staticClass: "circle-bg",
-                              attrs: {
-                                d:
-                                  "M18 2.0845\n              a 15.9155 15.9155 0 0 1 0 31.831\n              a 15.9155 15.9155 0 0 1 0 -31.831"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c("path", {
-                              staticClass: "circle",
-                              attrs: {
-                                fill: "currentColor",
-                                stroke: _vm.limitExceed ? "#E53E3E" : "#4299e1",
-                                "stroke-dasharray": _vm.characterLeft + " 100",
-                                d:
-                                  "M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-                              }
-                            })
-                          ]
-                        )
-                      : _c("span", { staticClass: "text-sm text-red-600" }, [
+                    _vm.reachErrorLimit
+                      ? _c("span", { staticClass: "text-sm text-red-600" }, [
                           _vm._v(
                             "\n            " +
                               _vm._s(_vm.characterLeft) +
                               "\n          "
+                          )
+                        ])
+                      : _c("div", [
+                          _c(
+                            "svg",
+                            {
+                              staticClass: "circular-chart h-8 w-8",
+                              attrs: { viewBox: "0 0 36 36" }
+                            },
+                            [
+                              _c("path", {
+                                staticClass: "circle-bg",
+                                attrs: {
+                                  d:
+                                    "M18 2.0845\n              a 15.9155 15.9155 0 0 1 0 31.831\n              a 15.9155 15.9155 0 0 1 0 -31.831"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c("path", {
+                                staticClass: "circle",
+                                attrs: {
+                                  fill: "currentColor",
+                                  stroke: _vm.indicatorColor,
+                                  "stroke-dasharray":
+                                    _vm.characterLeftPercentage + " 100",
+                                  d:
+                                    "M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _vm.reachWarningLimit
+                                ? _c(
+                                    "text",
+                                    {
+                                      attrs: {
+                                        x: "50%",
+                                        y: "50%",
+                                        "text-anchor": "middle",
+                                        stroke: "#A0AEC0",
+                                        dy: ".4em",
+                                        "stroke-width": ".5px"
+                                      }
+                                    },
+                                    [_vm._v(_vm._s(_vm.characterLeft))]
+                                  )
+                                : _vm._e()
+                            ]
                           )
                         ])
                   ])
