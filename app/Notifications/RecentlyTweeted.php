@@ -60,6 +60,8 @@ class RecentlyTweeted extends Notification
             'notifier' => $this->user(),
             'link' => $this->tweet->path(),
             'description' => $this->tweet->body,
+            'screen' => '/tweet',
+            'arg' => $this->tweet,
         ];
     }
 

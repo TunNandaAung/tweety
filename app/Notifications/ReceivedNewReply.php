@@ -65,6 +65,7 @@ class ReceivedNewReply extends Notification
             'notifier' => $this->reply->owner,
             'link' => $this->reply->path(),
             'description' => $this->reply->body,
+            'screen' => '/tweet',
         ];
     }
 

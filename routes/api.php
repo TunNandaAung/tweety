@@ -47,6 +47,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/auth/password', 'Api\PasswordController@update');
 
     Route::get('/explore', 'Api\ExploreController');
+
+    Route::get('/notification-counts', 'Api\NotificationCountsController');
+    Route::get('/notifications', 'Api\NotificationsController@index');
 });
 
 Route::post('/register', 'Api\AuthController@register');
