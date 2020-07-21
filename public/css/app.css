@@ -803,7 +803,7 @@ body::-webkit-scrollbar-thumb {
   position: sticky;
 }
 
-.page-item {
+.page-link {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.5rem;
@@ -814,7 +814,7 @@ body::-webkit-scrollbar-thumb {
   border-radius: 9999px;
 }
 
-.page-item:hover {
+.page-link:hover {
   color: #3182ce;
   background-color: #bee3f8;
 }
