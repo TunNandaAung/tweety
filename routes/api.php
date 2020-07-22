@@ -50,6 +50,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/notification-counts', 'Api\NotificationCountsController');
     Route::get('/notifications', 'Api\NotificationsController@index');
+
+    Route::get('search', 'Api\SearchController@show');
 });
 
 Route::post('/register', 'Api\AuthController@register');
