@@ -20,20 +20,20 @@
             <span class="text-sm text-gray-600">{{ '. '.$tweet->created_at->diffForHumans() }}</span>
         </div>
         
-        <a class="mb-4" href="{{ route('show-tweet',$tweet) }}">
+        <h3 class="mb-2">
             {!! $tweet->body !!}
-        </a>
+        </h3>
 
         @if($tweet->image !== null)
-        <div class="mt-2 mb-3">
-            <img
-                src="{{ asset($tweet->image) }}"
-                alt="tweet-image"
-                class="rounded-lg mb-1 h-64 w-full object-cover"
-                width="50"
-                height="50"
-            >
-        </div>
+            <div class="mt-2 mb-3">
+                <img
+                    src="{{ asset($tweet->image) }}"
+                    alt="tweet-image"
+                    class="rounded-lg mb-1 h-64 w-full object-cover"
+                    width="50"
+                    height="50"
+                >
+            </div>
         @endif
 
         {{-- <x-like-buttons :tweet="$tweet"></x-like-buttons> --}}
