@@ -10,7 +10,7 @@ class NotificationsController extends BaseApiController
     {
         $unreadNotifications = auth()->user()->notifications;
         //return $readNotifications;
-        // auth()->user()->unreadNotifications->markAsRead();
+        auth()->user()->unreadNotifications->markAsRead();
 
         return $this->sendResponse($unreadNotifications);
     }

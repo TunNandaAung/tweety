@@ -47,7 +47,8 @@ class YouWereFollowed extends Notification
             'message' => $this->message(),
             'notifier' => $this->user,
             'link' => $this->user->path(),
-            'screen' => '/profile'
+            'screen' => '/profile',
+            'arg' => $this->user->username,
         ];
     }
 

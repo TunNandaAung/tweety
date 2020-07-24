@@ -19,9 +19,14 @@ class RepliesController extends BaseApiController
         return $reply->children()->paginate(5);
     }
 
-    public function jsonShow(Reply $reply)
+    public function showChildren(Reply $reply)
     {
         return $this->sendResponse($reply->children()->jsonPaginate(5));
+    }
+
+    public function jsonShow(Reply $reply)
+    {
+        return $this->sendResponse($reply);
     }
 
     public function store(Tweet $tweet)
