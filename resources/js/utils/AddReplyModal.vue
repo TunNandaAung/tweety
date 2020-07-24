@@ -104,24 +104,7 @@
                 </image-upload>
           </div>-->
 
-          <div class="mr-6" v-if="body.length > 0">
-            <svg viewBox="0 0 36 36" class="circular-chart h-8 w-8" v-if="!limitExceed">
-              <path
-                class="circle-bg"
-                d="M18 2.0845
-                  a 15.9155 15.9155 0 0 1 0 31.831
-                  a 15.9155 15.9155 0 0 1 0 -31.831"
-              />
-              <path
-                fill="currentColor"
-                class="circle"
-                :stroke="limitExceed ? '#E53E3E' : '#4299e1'"
-                :stroke-dasharray="characterLeft + ' 100'"
-                d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"
-              />
-            </svg>
-            <span v-else class="text-sm text-red-600">{{ characterLeft }}</span>
-          </div>
+          <character-limit-indicator :body="body"></character-limit-indicator>
 
           <button
             type="submit"
@@ -136,9 +119,10 @@
 <script>
 import VueTribute from "vue-tribute";
 import Tribute from "tributejs";
+import CharacterLimitIndicator from "../components/CharacterLimitIndicator";
 
 export default {
-  components: { VueTribute },
+  components: { VueTribute, CharacterLimitIndicator },
   props: ["id"],
   data() {
     return {
@@ -149,40 +133,33 @@ export default {
       parentBody: "",
       owner: "",
       isRoot: false,
-      limit: 255,
       errors: {},
       tributeOptions: new Tribute({
-        values: function(text, cb) {
+        values: function (text, cb) {
           axios
             .get("/api/search-friends", {
-              params: { username: text }
+              params: { username: text },
             })
-            .then(response => cb(response.data));
+            .then((response) => cb(response.data));
         },
         lookup: "username",
-        selectTemplate: function(item) {
+        selectTemplate: function (item) {
           if (typeof item === "undefined") return null;
 
           return "@" + item.original.username;
         },
-        noMatchTemplate: function() {
+        noMatchTemplate: function () {
           return '<span style:"visibility: hidden;"></span>';
-        }
-      })
+        },
+      }),
     };
   },
   computed: {
-    characterLeft() {
-      return ((this.limit - this.body.length) * (100 / this.limit)).toFixed(0);
-    },
-    limitExceed() {
-      return this.body.length > this.limit;
-    },
     replyingTo() {
       return this.owner.username === window.App.user.username || this.isRoot
         ? ""
         : "@" + this.owner.username + " ";
-    }
+    },
   },
   methods: {
     beforeOpen(event) {
@@ -204,7 +181,7 @@ export default {
           flash("Your reply has been posted");
           this.$emit("created", data);
         })
-        .catch(errors => {
+        .catch((errors) => {
           this.errors = errors.response.data.errors;
         });
     },
@@ -221,8 +198,8 @@ export default {
       }
 
       return data;
-    }
-  }
+    },
+  },
 };
 </script>
 
