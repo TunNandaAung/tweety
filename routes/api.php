@@ -55,8 +55,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('search', 'Api\SearchController@show');
     
     Route::get('/mention', 'Api\MentionUsersController');
+    
+    Route::post('/logout', 'Api\AuthController@logout');
+
+    Route::post('/profile-images', 'Api\UserAvatarController@store');
 });
 
 Route::post('/register', 'Api\AuthController@register');
 Route::post('/login', 'Api\AuthController@login');
-Route::post('/logout', 'Api\AuthController@logout');
+Route::post('password/forgot', 'Api\ForgotPasswordController');

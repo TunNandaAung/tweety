@@ -68,6 +68,6 @@ class AuthController extends BaseApiController
     {
         auth()->user()->currentAccessToken()->delete();
 
-        return $this->sendResponse([''], 'User logged out!');
+        return $this->sendResponse([], 'User logged out!');
     }
 }
