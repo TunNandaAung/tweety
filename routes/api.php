@@ -39,6 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::patch('/profiles/{user}', 'Api\ProfilesController@update');
     
     Route::get('/profiles/{user}/tweets', 'Api\ProfileTweetsController@show');
+    Route::get('/profiles/{user}/replies', 'Api\ProfileRepliesController@show');
 
     Route::post('/profiles/{user}/follow', 'Api\FollowsController@store');
     Route::get('/profiles/{user}/following', 'Api\FollowsController@show')->name('api-show-following');

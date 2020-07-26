@@ -76,6 +76,11 @@ class User extends Authenticatable
         return $this->hasMany(Tweet::class)->latest();
     }
 
+    public function replies()
+    {
+        return $this->hasMany(Reply::class)->with('tweet')->latest();
+    }
+
     public function path($append = '')
     {
         $path = route('profile', $this->username);
