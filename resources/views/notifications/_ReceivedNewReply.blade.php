@@ -38,8 +38,7 @@
                 </div>
 
             </div>
-            {{-- {{ str_limit($project->description, 100) }} --}}
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime voluptates sequi adipisci quibusdam repellat ducimus. Laboriosam velit quaerat necessitatibus blanditiis!</p>
+            <p>{{ $notification->data['description'] }}</p>
         </div>
 
     </div>

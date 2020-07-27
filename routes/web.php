@@ -52,7 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/api/friends', 'FriendsController@index');
     Route::get('/api/search-friends', 'Api\FriendsController@index');
 
-    Route::get('/api/replies/{reply}/children', 'Api\RepliesController@show');
+    Route::get('/api/replies/{reply}/children', 'Api\ChildrenRepliesController@show');
 });
 
 Route::get('/profiles/{user}', 'ProfilesController@show')->name('profile');

@@ -24,14 +24,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/tweets/{tweet}/like', 'Api\TweetLikesController@store');
     Route::delete('/tweets/{tweet}/dislike', 'Api\TweetLikesController@destroy');
     
-    Route::get('replies/{reply}/children/json', 'Api\RepliesController@showChildren');
+    Route::get('replies/{reply}/children/json', 'Api\ChildrenRepliesController@jsonShow');
     Route::post('/tweets/{tweet}/reply', 'Api\RepliesController@store');
     Route::post('/tweets/{tweet}/reply', 'Api\RepliesController@store');
 
     Route::post('/replies/{reply}/like', 'Api\ReplyLikesController@store');
     Route::delete('/replies/{reply}/dislike', 'Api\ReplyLikesController@destroy');
     Route::delete('/replies/{reply}', 'Api\RepliesController@destroy');
-    Route::get('/replies/{reply}', 'Api\RepliesController@jsonShow');
+    Route::get('/replies/{reply}', 'Api\RepliesController@show');
 
     Route::get('/profile/avatar', 'Api\UserAvatarController@show');
     Route::get('/profile', 'Api\ProfilesController@index');
