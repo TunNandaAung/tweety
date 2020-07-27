@@ -13,6 +13,6 @@ class MentionUsersController extends BaseApiController
         return current_user()->follows()
             ->where('username', 'LIKE', "%$search%")
             ->take(5)
-            ->pluck('username');
+            ->get();
     }
 }
