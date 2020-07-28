@@ -50,3 +50,7 @@ Next, boot up a server and visit Tweety. If you are using Laravel Valet, the URL
 8. Mentions and notifications.
 9. Two level nested replies.
 10. Instant search with algolia
+
+## Mobile App
+
+Mobile App for Tweety written in Flutter can be found [here](https://github.com/TunNandaAung/tweety-mobile).

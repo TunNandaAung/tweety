@@ -8,6 +8,6 @@ class SettingsController extends Controller
 {
     public function edit(User $user)
     {
-        return view('settings.edit', compact('user'));
+        return view('settings.show', compact('user'));
     }
 }

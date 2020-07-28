@@ -44,7 +44,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/profiles/{user}/settings', 'SettingsController@edit')->middleware('can:edit,user')->name('account-settings');
     Route::get('/profiles/{user}/password/edit', 'PasswordController@edit')->middleware('can:edit,user')->name('edit-password');
     Route::patch('/profiles/{user}/password', 'PasswordController@update')->middleware('can:edit,user')->name('update-password');
-    
+    Route::get('/profiles/{user}/email/edit', 'EmailController@edit')->middleware('can:edit,user', 'password.confirm')->name('edit-email');
+    Route::patch('/profiles/{user}/email', 'EmailController@update')->middleware('can:edit,user')->name('update-email');
+
     Route::get('/explore', 'ExploreController')->name('explore');
 
     Route::get('/profiles/{user}/followers', 'FollowsController@show')->name('show-followers');

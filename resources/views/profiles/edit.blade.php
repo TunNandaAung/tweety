@@ -61,28 +61,6 @@
                 <avatar-form :user="{{ $user }}"></avatar-form>
             </div>
 
-            <div class="mb-6">
-                <div>
-                    <label class="block text-gray-500 font-bold mb-2 pr-4" for="email">
-                        Email
-                    </label>
-                </div>
-
-                <div>
-                    <input
-                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        value="{{ $user->email }}"
-                    >
-                    @error('email')
-                        <span class="text-red-500 text-xs mt-2">{{ $message }}</span>
-                    @enderror
-                </div>
-
-            </div>
 
             <h2 class="text-xl font-bold mb-6 text-blue-500">Profile</h2>
 
