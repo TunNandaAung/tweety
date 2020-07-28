@@ -32,7 +32,6 @@ class ProfilesController extends Controller
             'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user), 'alpha_dash'],
             'avatar' => ['file'],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user)],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
             'banner' => ['file'],
             'description' => ['sometimes', 'string'],
         ]);

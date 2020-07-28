@@ -40,6 +40,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/profiles/{user}/follow', 'FollowsController@store')->name('follows');
     Route::get('/profiles/{user}/edit', 'ProfilesController@edit')->middleware('can:edit,user')->name('edit-profile');
     Route::patch('/profiles/{user}', 'ProfilesController@update')->middleware('can:edit,user')->name('update-profile');
+    
+    Route::get('/profiles/{user}/settings', 'SettingsController@edit')->middleware('can:edit,user')->name('account-settings');
+    Route::get('/profiles/{user}/password/edit', 'PasswordController@edit')->middleware('can:edit,user')->name('edit-password');
+    Route::patch('/profiles/{user}/password', 'PasswordController@update')->middleware('can:edit,user')->name('update-password');
+    
     Route::get('/explore', 'ExploreController')->name('explore');
 
     Route::get('/profiles/{user}/followers', 'FollowsController@show')->name('show-followers');
