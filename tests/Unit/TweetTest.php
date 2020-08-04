@@ -20,7 +20,7 @@ class TweetTest extends TestCase
     }
 
     /** @test */
-    function it_has_a_path()
+    public function it_has_a_path()
     {
         $tweet = factory(\App\Tweet::class)->create();
 
@@ -30,13 +30,13 @@ class TweetTest extends TestCase
         );
     }
     /** @test */
-    function it_has_a_creator()
+    public function it_has_a_creator()
     {
         $this->assertInstanceOf(\App\User::class, $this->tweet->user);
     }
 
     /** @test */
-    function it_has_replies()
+    public function it_has_replies()
     {
         $this->assertInstanceOf(
             'Illuminate\Database\Eloquent\Collection',
@@ -56,7 +56,7 @@ class TweetTest extends TestCase
     }
 
     /** @test */
-    function it_wraps_mentioned_usernames_in_the_body_within_anchor_tags_with_correct_stylings()
+    public function it_wraps_mentioned_usernames_in_the_body_within_anchor_tags_with_correct_stylings()
     {
         $tweet = new Tweet([
             'body' => 'Hello @Jane-Doe'
@@ -69,7 +69,20 @@ class TweetTest extends TestCase
     }
 
     /** @test */
-    function it_notifies_all_followers_when_published()
+    public function it_wraps_webpage_url_in_the_body_within_anchor_tags_with_correct_stylings()
+    {
+        $tweet = new Tweet([
+            'body' => 'Check at google.com and https://tunnandaaung.tech'
+        ]);
+
+        $this->assertEquals(
+            'Check at <a href="google.com" class="text-blue-500 hover:underline">google.com</a> and <a href="https://tunnandaaung.tech" class="text-blue-500 hover:underline" target="_blank" rel="noreferrer noopener">https://tunnandaaung.tech</a>',
+            $tweet->body
+        );
+    }
+
+    /** @test */
+    public function it_notifies_all_followers_when_published()
     {
         Notification::fake();
 
