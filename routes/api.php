@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +19,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/tweets/{tweet}/replies', 'Api\RepliesController@index');
     Route::post('/tweets', 'Api\TweetsController@store');
     Route::delete('/tweets/{tweet}', 'Api\TweetsController@destroy');
-    
+
     Route::post('/tweets/{tweet}/like', 'Api\TweetLikesController@store');
     Route::delete('/tweets/{tweet}/dislike', 'Api\TweetLikesController@destroy');
-    
+
     Route::get('replies/{reply}/children/json', 'Api\ChildrenRepliesController@jsonShow');
     Route::post('/tweets/{tweet}/reply', 'Api\RepliesController@store');
     Route::post('/tweets/{tweet}/reply', 'Api\RepliesController@store');
@@ -37,7 +36,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/profile', 'Api\ProfilesController@index');
     Route::get('/profiles/{user}', 'Api\ProfilesController@show');
     Route::patch('/profiles/{user}', 'Api\ProfilesController@update');
-    
+
     Route::get('/profiles/{user}/tweets', 'Api\ProfileTweetsController@show');
     Route::get('/profiles/{user}/replies', 'Api\ProfileRepliesController@show');
 
@@ -54,9 +53,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/notifications', 'Api\NotificationsController@index');
 
     Route::get('search', 'Api\SearchController@show');
-    
+
     Route::get('/mention', 'Api\MentionUsersController');
-    
+
     Route::post('/logout', 'Api\AuthController@logout');
 
     Route::post('/profile-images', 'Api\UserAvatarController@store');

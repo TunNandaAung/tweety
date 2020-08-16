@@ -11,16 +11,16 @@ class UserAvatarController extends BaseApiController
     {
         return $this->sendResponse(['avatar' => auth()->user()->avatar]);
     }
-    
+
     public function store()
     {
         request()->validate([
             'avatar' => ['required', 'image'],
-            'banner' => ['required','image'],
+            'banner' => ['required','image']
         ]);
 
         Storage::disk('public')->delete(auth()->user()->getRawOriginal('avatar'));
-        
+
         Storage::disk('public')->delete(auth()->user()->getRawOriginal('banner'));
 
         auth()->user()->update([

@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\BaseApiController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use App\User;
@@ -12,19 +10,24 @@ class AuthController extends BaseApiController
 {
     public function login()
     {
+
         request()->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        $user = User::where('email', request('email'))->first();
+        $data = [
+            'email' => request()->get('email'),
+            'password' => request()->get('password')
+        ];
 
-        if (!$user || !Hash::check(request('password'), $user->password)) {
+        if (!auth()->attempt($data)) {
             throw ValidationException::withMessages([
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
 
+        $user = auth()->user();
         $token = $user->createToken(request('email'))->plainTextToken;
 
         return $this->sendResponse([

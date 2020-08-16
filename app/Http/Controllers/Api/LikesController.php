@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\ApiBaseController;
-
 class LikesController extends BaseApiController
 {
     public function likeResponse()
@@ -15,7 +13,7 @@ class LikesController extends BaseApiController
         ];
     }
 
-    
+
     public function dislikeResponse()
     {
         return [
@@ -25,7 +23,7 @@ class LikesController extends BaseApiController
         ];
     }
 
-    
+
     public function removeResponse()
     {
         return [
