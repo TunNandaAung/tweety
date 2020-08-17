@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Question\Question;
 
 class InstallCommand extends Command
 {
