@@ -60,9 +60,18 @@ class Tweet extends Model
 
     public function setBodyAttribute($body)
     {
-        $this->attributes['body'] = preg_replace(
-            '/@([\w\-\.]+)/',
+        $find = [
+            $mentionUserRegex = '/@([\w\-\.]+)/',
+            $urlRegex= '/[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/'
+        ];
+        $replace = [
             '<a href="/profiles/$1" class="text-blue-500 hover:underline">$0</a>',
+            '<a href="$0" class="text-blue-500 hover:underline">$0</a>'
+        ];
+
+        $this->attributes['body'] = preg_replace(
+            $find,
+            $replace,
             $body
         );
     }
