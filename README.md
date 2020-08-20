@@ -30,6 +30,9 @@ npm run dev
 -   Then, you have to reference your algolia app id and algolia secret key in your `.env` file as below.
 
 ```bash
+ALGOLIA_APP_ID=YOUR_ALGOLIA_APP_ID
+ALGOLIA_SECRET=YOUR_ALGOLIA_SECRET
+
 MIX_ALGOLIA_APP_ID=YOUR_ALGOLIA_APP_ID
 MIX_ALGOLIA_SECRET=YOUR_ALGOLIA_SECRET
 ```
