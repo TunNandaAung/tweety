@@ -40,7 +40,7 @@
                     </div>
                 @endauth
 
-                <div class="lg:mx-auto lg:ml-64" style="max-width: 700px;">
+                <div class="lg:mx-auto lg:ml-64 w-full" style="max-width: 700px;">
                     {{ $slot }}
                 </div>
                

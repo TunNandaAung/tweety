@@ -14,5 +14,8 @@
     @empty
         <p class="p-4 font-normal">No tweets yet!</p>
     @endforelse
-    {{ $tweets->links() }}
+    
+    <div class="flex items-center">
+        {{ $tweets->links() }}
+    </div>
 </div>
