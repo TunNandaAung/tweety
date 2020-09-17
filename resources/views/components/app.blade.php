@@ -33,14 +33,14 @@
 
     <section class="px-8">
         <main class="container mx-auto">
-            <div class="lg:flex lg:justify-center">
+            <div class="lg:gird lg:grid-cols-3 lg:col-gap-8 flex justify-between flex-col lg:flex-row">
                 @auth
-                <div class="lg:w-48 lg:h-screen lg:fixed lg:left-0 lg:ml-48">
-                        @include ('_sidebar-links')
+                    <div class="lg:w-48 lg:h-screen lg:fixed">
+                            @include ('_sidebar-links')
                     </div>
                 @endauth
 
-                <div class="lg:flex-1 lg:mx-auto lg:mr-12 lg:mb-12" style="max-width: 700px;">
+                <div class="lg:mx-auto lg:ml-64" style="max-width: 700px;">
                     {{ $slot }}
                 </div>
                
