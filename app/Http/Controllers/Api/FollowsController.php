@@ -17,7 +17,7 @@ class FollowsController extends BaseApiController
 
     public function show(User $user)
     {
-        if (Route::currentRouteName() == 'api-show-following') {
+        if (Route::currentRouteName() === 'api-show-following') {
             return $this->showFollowing($user);
         }
 
