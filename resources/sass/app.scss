@@ -9,7 +9,9 @@
 body {
     width: 100vw;
     overflow-x: hidden;
+}
 
+* {
     &::-webkit-scrollbar {
         width: 8px;
         background: transparent;
@@ -96,6 +98,10 @@ body {
 
 .is-fixed-to-top {
     @apply fixed top-0;
+}
+
+.chat-list {
+    height: calc(100vh - 11rem);
 }
 
 @tailwind utilities;

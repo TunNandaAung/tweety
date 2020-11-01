@@ -1,8 +1,8 @@
 <template>
-  <div class="flex">
+  <div class="flex px-4 py-1 rounded-xl rounded-t-none bg-gray-100">
     <div class="flex-1 flex flex-col max-h-screen chat-list">
       <div class="flex-1 flex justify-between overflow-y-hidden">
-        <div class="bg-gray-750 flex-1 flex flex-col justify-between">
+        <div class="flex-1 flex flex-col justify-between">
           <div class="text-sm overflow-y-auto">
             <ul
               v-chat-scroll="{ always: false, smooth: true }"
@@ -11,11 +11,6 @@
               @v-chat-scroll-top-reached="fetchMessages()"
               v-if="messages.length"
             >
-              <load-more
-                :container="container"
-                @ready="loadMore"
-                v-show="shouldPaginate"
-              ></load-more>
               <li
                 class="mb-12"
                 :class="{
@@ -35,7 +30,12 @@
                       : 'justify-start'
                   "
                 >
-                  <div>
+                  <div class="flex justify-end items-end">
+                    <img
+                      class="w-6 h-6 rounded-full mr-2"
+                      v-if="authUser.id !== message.user.id"
+                      :src="message.user.avatar"
+                    />
                     <div
                       class="w-full rounded-full px-3 py-2 text-center"
                       :class="
@@ -46,12 +46,6 @@
                     >
                       <p>{{ message.message }}</p>
                     </div>
-
-                    <img
-                      class="w-6 h-6 rounded-full"
-                      v-if="authUser.id !== message.user.id"
-                      :src="message.user.avatar"
-                    />
                   </div>
                 </div>
               </li>
@@ -72,7 +66,7 @@
           </div>
 
           <div class="flex justify-between w-full mx-auto items-center">
-            <div class="flex flex-1 flex-col">
+            <div class="flex flex-1 flex-col mr-4">
               <ul>
                 <li v-for="participant in participants" :key="participant.id">
                   <p v-if="participant.typing">
@@ -93,15 +87,14 @@
                 @keyup="sendTypingEvent"
               />
             </div>
-            <span>
-              <button
-                class="bg-blue-500 rounded-full px-4 py-2 text-white hover:bg-blue-600 font-semibold transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110"
-                id="btn-chat"
-                @click="sendMessage"
-              >
-                Send
-              </button>
-            </span>
+
+            <button
+              class="bg-blue-500 rounded-full px-4 py-2 text-white hover:bg-blue-600 font-semibold transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+              id="btn-chat"
+              @click="sendMessage"
+            >
+              Send
+            </button>
           </div>
         </div>
       </div>
@@ -111,11 +104,7 @@
 
 <script>
 import dayjs from "dayjs";
-import pagination from "../mixins/pagination";
-import LoadMore from "../utils/LoadMore";
 export default {
-  mixins: [pagination],
-  components: { LoadMore },
   props: ["initialMessages", "user", "chatId", "recipient"],
   data() {
     return {
@@ -158,7 +147,7 @@ export default {
 
         this.updateActivePeer(event.user.id, false);
       });
-    this.fetch();
+    this.fetchMessages();
   },
 
   computed: {
@@ -193,16 +182,11 @@ export default {
     fetchMessages() {
       this.currentPage++;
       if (this.currentPage >= this.lastPage) {
-        axios.get(this.url(this.currentPage)).then((response) => {
+        axios.get(this.url(this.currentPage)).then(({ data }) => {
           data.data.map((item) => this.messages.unshift(item));
           this.lastPage = data.last_page;
         });
       }
-    },
-    fetch(page) {
-      axios.get(this.url(this.page)).then((response) => {
-        this.refresh(response);
-      });
     },
 
     url(page) {
@@ -210,11 +194,6 @@ export default {
         page = 1;
       }
       return `/chat/${this.chatId}/messages?page=${page}`;
-    },
-
-    refresh({ data }) {
-      this.dataSet = data;
-      data.data.map((item) => this.messages.unshift(item));
     },
 
     addMessage(message) {
