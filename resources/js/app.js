@@ -22,6 +22,7 @@ import NotificationLink from "./components/NotificationLink";
 import ReplyButton from "./components/ReplyButton";
 import Tabs from "./components/Tabs";
 import Tab from "./components/Tab";
+import Chat from "./components/Chat";
 
 import DeleteTweetModal from "./utils/DeleteTweetModal";
 import AddReplyModal from "./utils/AddReplyModal";
@@ -34,11 +35,13 @@ import VModal from "vue-js-modal";
 import PortalVue from "portal-vue";
 import algoliaSearch from "./mixins/algoliaSearch";
 import { ObserveVisibility } from "vue-observe-visibility";
+import VueChatScroll from "vue-chat-scroll";
 
 Vue.directive("observe-visibility", ObserveVisibility);
 
 Vue.use(PortalVue);
 Vue.use(VModal);
+Vue.use(VueChatScroll);
 
 import TurbolinksAdapter from "vue-turbolinks";
 import Turbolinks from "turbolinks";
@@ -94,7 +97,8 @@ document.addEventListener("turbolinks:load", () => {
             Reply,
             Tab,
             Tabs,
-            Pinned
+            Pinned,
+            Chat
         },
         mixins: [algoliaSearch],
         created() {

@@ -47,6 +47,8 @@
                     </a>
 
                 @endcan
+                
+                <x-chat-button :user="$user"></x-chat-button>
 
                 <x-follow-button :user="$user"></x-follow-button>
 
