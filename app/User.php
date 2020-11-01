@@ -81,6 +81,16 @@ class User extends Authenticatable
         return $this->hasMany(Reply::class)->with('tweet')->with('parent')->latest();
     }
 
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    public function chats()
+    {
+        return $this->belongsToMany(Chat::class, 'chat_participants')->withTimestamps();
+    }
+
     public function path($append = '')
     {
         $path = route('profile', $this->username);
