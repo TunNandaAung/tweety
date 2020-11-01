@@ -10,6 +10,7 @@
     "require": {
         "php": "^7.3",
         "algolia/algoliasearch-client-php": "^2.6",
+        "beyondcode/laravel-websockets": "^1.9",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^7.0.1",
