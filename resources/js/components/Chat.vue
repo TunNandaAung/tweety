@@ -12,7 +12,7 @@
               v-if="messages.length"
             >
               <li
-                class="mb-12"
+                class="mb-4"
                 :class="{
                   'mb-12': shouldAddMargin(
                     messages[index === 0 ? 0 : index - 1].created_at,
@@ -152,7 +152,7 @@ export default {
 
   computed: {
     shouldPaginate() {
-      return this.page <= this.last_page - 1;
+      return this.currentPage <= this.lastPage - 1;
     },
   },
 
@@ -180,11 +180,11 @@ export default {
       this.newMessage = "";
     },
     fetchMessages() {
-      this.currentPage++;
       if (this.currentPage >= this.lastPage) {
         axios.get(this.url(this.currentPage)).then(({ data }) => {
           data.data.map((item) => this.messages.unshift(item));
           this.lastPage = data.last_page;
+          this.currentPage++;
         });
       }
     },

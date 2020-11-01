@@ -15,7 +15,7 @@
    <notification-link :count="{{ current_user()->unreadNotifications->count() }}"></notification-link>
 
     <li>
-        <a class="font-bold text-lg mb-4 block rounded-full bg-transparent px-2 py-1 hover:bg-blue-500 hover:text-white text-center" href="#">
+        <a class="font-bold text-lg mb-4 block rounded-full bg-transparent px-2 py-1 hover:bg-blue-500 hover:text-white text-center" href="/chat">
             Messages
         </a>
     </li>

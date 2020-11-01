@@ -8,18 +8,18 @@ use App\Message;
 use Illuminate\Http\Request;
 
 class MessagesController extends Controller
-{   
+{
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
+
     public function get(Chat $chat)
     {
         return Message::where('chat_id', $chat->id)
             ->with('user')
             ->latest()
-            ->paginate(10);
+            ->paginate(20);
     }
 
     public function store(Chat $chat, Request $request)
@@ -30,6 +30,8 @@ class MessagesController extends Controller
         ]);
         
         $chat->messages()->attach($message);
+
+        $chat->touch();
 
         broadcast(new MessageSent(auth()->user(), $message, $chat))->toOthers();
 

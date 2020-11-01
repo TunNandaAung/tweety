@@ -56,7 +56,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/notifications', 'NotificationsController@index')->name('notifications');
 
-    Route::get('/chat/{user}', 'ChatsController@show');
+    Route::get('/chat', 'ChatsController@index')->name('chat');
+    Route::get('/chat/{user}', 'ChatsController@show')->name('show-chat');
     Route::get('/chat/{chat}/messages', 'MessagesController@get');
     Route::post('/chat/{chat}/messages', 'MessagesController@store');
 
