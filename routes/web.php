@@ -60,6 +60,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/chat/{user}', 'ChatsController@show')->name('show-chat');
     Route::get('/chat/{chat}/messages', 'MessagesController@get');
     Route::post('/chat/{chat}/messages', 'MessagesController@store');
+    Route::patch('/chat/{chat}/messages/{message}', 'MessagesController@update');
 
 
     Route::get('/api/friends', 'FriendsController@index');

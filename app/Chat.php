@@ -47,4 +47,11 @@ class Chat extends Model
             ->take(10)
             ->withTimestamps();
     }
+
+    public function userMessages(User $user)
+    {
+        return $this->messages()
+            ->whereNull('read_at')
+            ->where('user_id', $user->id);
+    }
 }

@@ -85,6 +85,7 @@
                 v-model="newMessage"
                 @keyup.enter="sendMessage"
                 @keyup="sendTypingEvent"
+                @focus="markAsRead"
               />
             </div>
 
@@ -210,6 +211,13 @@ export default {
       }
 
       return dayjs(secondMessageTime).diff(dayjs(firstMessageTime), "m") >= 10;
+    },
+    markAsRead(message) {
+      axios
+        .patch(`/chat/${this.chatId}/messages/${message.id}`)
+        .then((response) => {
+          console.log(response.data);
+        });
     },
   },
 };
