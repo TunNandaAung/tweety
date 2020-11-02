@@ -42,7 +42,9 @@ class MessagesController extends Controller
 
     public function update(Chat $chat, User $user)
     {
-        // $chat->userMessages()->markAsRead();
+        $chat->userMessages($user)
+            ->get()
+            ->markAsRead();
             
         return ['status' => 'Mark as read'];
     }

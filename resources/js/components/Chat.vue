@@ -212,9 +212,9 @@ export default {
 
       return dayjs(secondMessageTime).diff(dayjs(firstMessageTime), "m") >= 10;
     },
-    markAsRead(message) {
+    markAsRead() {
       axios
-        .patch(`/chat/${this.chatId}/messages/${message.id}`)
+        .patch(`/chat/${this.chatId}/messages/${this.recipient.username}/read`)
         .then((response) => {
           console.log(response.data);
         });
