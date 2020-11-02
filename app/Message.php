@@ -11,11 +11,11 @@ class Message extends Model
 
     protected $fillable = ['message','chat_id'];
 
-    protected $with = ['user'];
+    protected $with = ['sender'];
 
-    public function user()
+    public function sender()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
     
     public function markAsRead()

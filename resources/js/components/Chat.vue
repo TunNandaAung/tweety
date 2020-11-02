@@ -25,7 +25,7 @@
                 <div
                   class="flex"
                   :class="
-                    authUser.id === message.user.id
+                    authUser.id === message.sender.id
                       ? 'justify-end'
                       : 'justify-start'
                   "
@@ -33,13 +33,13 @@
                   <div class="flex justify-end items-end">
                     <img
                       class="w-6 h-6 rounded-full mr-2"
-                      v-if="authUser.id !== message.user.id"
-                      :src="message.user.avatar"
+                      v-if="authUser.id !== message.sender.id"
+                      :src="message.sender.avatar"
                     />
                     <div
                       class="w-full rounded-full px-3 py-2 text-center"
                       :class="
-                        authUser.id === message.user.id
+                        authUser.id === message.sender.id
                           ? 'bg-blue-200  rounded-br-none'
                           : 'bg-gray-300 rounded-bl-none'
                       "
@@ -85,12 +85,12 @@
                 v-model="newMessage"
                 @keyup.enter="sendMessage"
                 @keyup="sendTypingEvent"
-                @focus="markAsRead"
+                @blur="markAsRead"
               />
             </div>
 
             <button
-              class="bg-blue-500 rounded-full px-4 py-2 text-white hover:bg-blue-600 font-semibold transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110"
+              class="bg-blue-500 rounded-full px-4 py-2 text-white hover:bg-blue-600 font-semibold"
               id="btn-chat"
               @click="sendMessage"
             >
@@ -142,7 +142,7 @@ export default {
       .listen("MessageSent", (event) => {
         this.messages.push({
           message: event.message.message,
-          user: event.user,
+          sender: event.user,
           chatId: event.chat.id,
         });
 
@@ -173,7 +173,7 @@ export default {
 
     sendMessage() {
       this.addMessage({
-        user: this.user,
+        sender: this.user,
         message: this.newMessage,
         chatId: this.chatId,
       });
@@ -198,11 +198,8 @@ export default {
     },
 
     addMessage(message) {
-      console.log(message);
-      this.messages.push(message);
-
       axios.post(`/chat/${this.chatId}/messages`, message).then((response) => {
-        console.log(response.data);
+        this.messages.push(message);
       });
     },
     shouldAddMargin(firstMessageTime, secondMessageTime) {
@@ -215,9 +212,7 @@ export default {
     markAsRead() {
       axios
         .patch(`/chat/${this.chatId}/messages/${this.recipient.username}/read`)
-        .then((response) => {
-          console.log(response.data);
-        });
+        .then((response) => {});
     },
   },
 };

@@ -19,7 +19,6 @@ class MessagesController extends Controller
     public function get(Chat $chat)
     {
         return Message::where('chat_id', $chat->id)
-            ->with('user')
             ->latest()
             ->paginate(20);
     }
@@ -37,7 +36,7 @@ class MessagesController extends Controller
 
         broadcast(new MessageSent(auth()->user(), $message, $chat))->toOthers();
 
-        return ['status' => 'Message Sent!'];
+        return response(['status' => 'Message Sent!','message' => $message]);
     }
 
     public function update(Chat $chat, User $user)
