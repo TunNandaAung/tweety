@@ -172,7 +172,6 @@ export default {
 
     addMessage(message) {
       axios.post(`/chat/${this.chatId}/messages`, message).then((response) => {
-        console.log(response.data.message);
         this.messages.push(response.data.message);
       });
     },
