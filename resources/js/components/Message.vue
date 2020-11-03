@@ -26,7 +26,6 @@
     </div>
 
     <span
-      v-if="message.read_at"
       class="text-gray-500 text-xs flex items-center"
       :class="
         authUser.id === message.sender.id ? 'justify-end' : 'justify-start'

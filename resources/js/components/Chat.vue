@@ -117,11 +117,7 @@ export default {
         }, 3000);
       })
       .listen("MessageSent", (event) => {
-        this.messages.push({
-          message: event.message.message,
-          sender: event.user,
-          chatId: event.chat.id,
-        });
+        this.messages.push(event.message);
 
         this.updateActivePeer(event.user.id, false);
       });
@@ -176,7 +172,8 @@ export default {
 
     addMessage(message) {
       axios.post(`/chat/${this.chatId}/messages`, message).then((response) => {
-        this.messages.push(message);
+        console.log(response.data.message);
+        this.messages.push(response.data.message);
       });
     },
     shouldAddMargin(firstMessageTime, secondMessageTime) {
