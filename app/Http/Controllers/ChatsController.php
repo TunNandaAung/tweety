@@ -19,7 +19,7 @@ class ChatsController extends Controller
                 ->chats()
                 ->latest()
                 ->get();
-
+        
         return view('chat.index', compact('chats'));
     }
 

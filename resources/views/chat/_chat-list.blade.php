@@ -15,10 +15,10 @@
                         <span class="font-bold text-sm text-gray-600">{{ '@'. $user->username }}</span>
                             
                         <div class="flex">
-                                @if($chat->messages->first()->user_id === auth()->id() )
-                                    You:
-                                @endif       
-                                <p class="font-semibold">  {{ $chat->messages->first()->message }}</p>
+                                    @if($chat->messages->first()->user_id === auth()->id() )
+                                        You:
+                                    @endif       
+                            <p class="{{ $chat->messages->first()->read_at ? 'font-semibold' : ''}}">  {{ $chat->messages->first()->message }}</p>
                         </div>
 
                     </div>

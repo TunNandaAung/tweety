@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Chat;
+use App\Events\MessageRead;
 use App\Events\MessageSent;
 use App\Message;
 use App\User;
@@ -41,9 +42,11 @@ class MessagesController extends Controller
 
     public function update(Chat $chat, User $user)
     {
-        $chat->userMessages($user)
+        $chat->senderMessages($user)
             ->get()
             ->markAsRead();
+        
+        broadcast(new MessageRead(auth()->user(), $chat))->toOthers();
             
         return ['status' => 'Mark as read'];
     }

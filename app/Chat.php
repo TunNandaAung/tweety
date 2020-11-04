@@ -48,10 +48,10 @@ class Chat extends Model
             ->withTimestamps();
     }
 
-    public function userMessages(User $user)
+    public function senderMessages(User $sender)
     {
         return $this->messages()
             ->whereNull('read_at')
-            ->where('user_id', $user->id);
+            ->where('user_id', $sender->id);
     }
 }
