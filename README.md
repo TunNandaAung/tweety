@@ -29,12 +29,31 @@ npm run dev
 -   For instant search, you need to create an account at [algolia](https://www.algolia.com/users/sign_up).
 -   Then, you have to reference your algolia app id and algolia secret key in your `.env` file as below.
 
-```bash
+```properties
 ALGOLIA_APP_ID=YOUR_ALGOLIA_APP_ID
 ALGOLIA_SECRET=YOUR_ALGOLIA_SECRET
 
 MIX_ALGOLIA_APP_ID=YOUR_ALGOLIA_APP_ID
 MIX_ALGOLIA_SECRET=YOUR_ALGOLIA_SECRET
+```
+
+#### Real-time Chat
+
+-   For real-time chat, you need to create an account at [pusher](https://dashboard.pusher.com/accounts/sign_up).
+-   Then, you have to set your pusher credentials in `.env` file as below.
+
+```properties
+PUSHER_APP_ID=YOUR_PUSHER_APP_ID
+PUSHER_APP_KEY=YOUR_PUSHER_APP_KEY
+PUSHER_APP_SECRET=YOUR_PUSHER_APP_SECRET
+PUSHER_APP_CLUSTER=YOUR_PUSHER_APP_CLUSTER
+```
+
+-   The chat function is implemented using [Laravel WebSockets](https://beyondco.de/docs/laravel-websockets) package.
+-   Run the follwing command to start the websockets server.
+
+```bash
+php artisan websockets:serve
 ```
 
 ### Step 2
@@ -53,6 +72,7 @@ Next, boot up a server and visit Tweety. If you are using Laravel Valet, the URL
 8. Mentions and notifications.
 9. Two level nested replies.
 10. Instant search with algolia
+11. Real-time chat with Pusher and Laravel WebSockets. **_(Currently avaiable in web app only.)_**
 
 ## Mobile App
 
