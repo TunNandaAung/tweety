@@ -14,52 +14,59 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/tweets', 'Api\TweetsController@index');
+Route::group([
+    'middleware' => 'auth:sanctum',
+    'namespace' => 'Api'  
+],
+function () {
+    Route::get('/tweets', 'TweetsController@index');
 
-    Route::get('/tweets/{tweet}/replies', 'Api\RepliesController@index');
-    Route::post('/tweets', 'Api\TweetsController@store');
-    Route::delete('/tweets/{tweet}', 'Api\TweetsController@destroy');
+    Route::get('/tweets/{tweet}/replies', 'RepliesController@index');
+    Route::post('/tweets', 'TweetsController@store');
+    Route::delete('/tweets/{tweet}', 'TweetsController@destroy');
     
-    Route::post('/tweets/{tweet}/like', 'Api\TweetLikesController@store');
-    Route::delete('/tweets/{tweet}/dislike', 'Api\TweetLikesController@destroy');
+    Route::post('/tweets/{tweet}/like', 'TweetLikesController@store');
+    Route::delete('/tweets/{tweet}/dislike', 'TweetLikesController@destroy');
     
-    Route::get('replies/{reply}/children/json', 'Api\ChildrenRepliesController@jsonShow');
-    Route::post('/tweets/{tweet}/reply', 'Api\RepliesController@store');
-    Route::post('/tweets/{tweet}/reply', 'Api\RepliesController@store');
+    Route::get('replies/{reply}/children/json', 'ChildrenRepliesController@jsonShow');
+    Route::post('/tweets/{tweet}/reply', 'RepliesController@store');
+    Route::post('/tweets/{tweet}/reply', 'RepliesController@store');
 
-    Route::post('/replies/{reply}/like', 'Api\ReplyLikesController@store');
-    Route::delete('/replies/{reply}/dislike', 'Api\ReplyLikesController@destroy');
-    Route::delete('/replies/{reply}', 'Api\RepliesController@destroy');
-    Route::get('/replies/{reply}', 'Api\RepliesController@show');
+    Route::post('/replies/{reply}/like', 'ReplyLikesController@store');
+    Route::delete('/replies/{reply}/dislike', 'ReplyLikesController@destroy');
+    Route::delete('/replies/{reply}', 'RepliesController@destroy');
+    Route::get('/replies/{reply}', 'RepliesController@show');
 
-    Route::get('/profile/avatar', 'Api\UserAvatarController@show');
-    Route::get('/profile', 'Api\ProfilesController@index');
-    Route::get('/profiles/{user}', 'Api\ProfilesController@show');
-    Route::patch('/profiles/{user}', 'Api\ProfilesController@update');
+    Route::get('/profile/avatar', 'UserAvatarController@show');
+    Route::get('/profile', 'ProfilesController@index');
+    Route::get('/profiles/{user}', 'ProfilesController@show');
+    Route::patch('/profiles/{user}', 'ProfilesController@update');
     
-    Route::get('/profiles/{user}/tweets', 'Api\ProfileTweetsController@show');
-    Route::get('/profiles/{user}/replies', 'Api\ProfileRepliesController@show');
+    Route::get('/profiles/{user}/tweets', 'ProfileTweetsController@show');
+    Route::get('/profiles/{user}/replies', 'ProfileRepliesController@show');
 
-    Route::post('/profiles/{user}/follow', 'Api\FollowsController@store');
-    Route::get('/profiles/{user}/following', 'Api\FollowsController@show')->name('api-show-following');
-    Route::get('/profiles/{user}/followers', 'Api\FollowsController@show');
+    Route::post('/profiles/{user}/follow', 'FollowsController@store');
+    Route::get('/profiles/{user}/following', 'FollowsController@show')->name('api-show-following');
+    Route::get('/profiles/{user}/followers', 'FollowsController@show');
 
-    Route::patch('/auth/email', 'Api\EmailController@update');
-    Route::patch('/auth/password', 'Api\PasswordController@update');
+    Route::patch('/auth/email', 'EmailController@update');
+    Route::patch('/auth/password', 'PasswordController@update');
 
-    Route::get('/explore', 'Api\ExploreController');
+    Route::get('/explore', 'ExploreController');
 
-    Route::get('/notification-counts', 'Api\NotificationCountsController');
-    Route::get('/notifications', 'Api\NotificationsController@index');
+    Route::get('/notification-counts', 'NotificationCountsController');
+    Route::get('/notifications', 'NotificationsController@index');
 
-    Route::get('search', 'Api\SearchController@show');
+    Route::get('search', 'SearchController@show');
     
-    Route::get('/mention', 'Api\MentionUsersController');
+    Route::get('/mention', 'MentionUsersController');
     
-    Route::post('/logout', 'Api\AuthController@logout');
+    Route::post('/logout', 'AuthController@logout');
 
-    Route::post('/profile-images', 'Api\UserAvatarController@store');
+    Route::post('/profile-images', 'UserAvatarController@store');
+
+    Route::get('/chat', 'ChatsController@index');
+    Route::get('/chat/{chat}/messages', 'MessagesController@get');
 });
 
 Route::post('/register', 'Api\AuthController@register');
