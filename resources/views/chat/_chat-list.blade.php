@@ -14,12 +14,14 @@
                         <h4 class="font-bold rounded-full px-2 py-1 -ml-2 bg-transparent hover:bg-blue-500 hover:text-white text-center block">{{ $user->name }}</h4>
                         <span class="font-bold text-sm text-gray-600">{{ '@'. $user->username }}</span>
                             
-                        <div class="flex">
-                                    @if($chat->messages->first()->user_id === auth()->id() )
-                                        You:
-                                    @endif       
-                            <p class="{{ $chat->messages->first()->read_at ? 'font-semibold' : ''}}">  {{ $chat->messages->first()->message }}</p>
-                        </div>
+                        @if($chat->messages->count() > 0)
+                            <div class="flex">
+                                        @if($chat->messages->first()->user_id === auth()->id() )
+                                            You:
+                                        @endif       
+                                <p class="{{ $chat->messages->first()->read_at ? 'font-semibold' : ''}}">  {{ $chat->messages->first()->message }}</p>
+                            </div>
+                        @endif
 
                     </div>
                 </a>

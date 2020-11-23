@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Broadcast;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,11 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group([
+Route::group(
+    [
     'middleware' => 'auth:sanctum',
-    'namespace' => 'Api'  
+    'namespace' => 'Api'
 ],
-function () {
+    function () {
     Route::get('/tweets', 'TweetsController@index');
 
     Route::get('/tweets/{tweet}/replies', 'RepliesController@index');
@@ -67,8 +69,12 @@ function () {
 
     Route::get('/chat', 'ChatsController@index');
     Route::get('/chat/{chat}/messages', 'MessagesController@get');
-});
+    Route::post('/chat/{chat}/messages', 'MessagesController@store');
+}
+);
 
 Route::post('/register', 'Api\AuthController@register');
 Route::post('/login', 'Api\AuthController@login');
 Route::post('password/forgot', 'Api\ForgotPasswordController');
+
+Broadcast::routes(['middleware' => ['auth:sanctum']]);

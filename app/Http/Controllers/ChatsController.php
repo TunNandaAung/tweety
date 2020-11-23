@@ -17,7 +17,7 @@ class ChatsController extends Controller
     {
         $chats = current_user()
                 ->chats()
-                ->latest()
+                ->latest('updated_at')
                 ->get();
         
         return view('chat.index', compact('chats'));
