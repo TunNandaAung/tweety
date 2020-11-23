@@ -94,6 +94,7 @@ export default {
       currentPage: 1,
       lastPage: null,
       typingTimer: false,
+      alreadyRead: false,
     };
   },
   created() {
@@ -149,7 +150,10 @@ export default {
     },
 
     sendTypingEvent() {
-      Echo.join("chat." + this.chatId).whisper("typing", this.user);
+      Echo.join("chat." + this.chatId).whisper(
+        "typing",
+        JSON.stringify(this.user)
+      );
     },
 
     sendMessage() {
@@ -191,9 +195,15 @@ export default {
       return dayjs(secondMessageTime).diff(dayjs(firstMessageTime), "m") >= 10;
     },
     markAsRead() {
-      axios
-        .patch(`/chat/${this.chatId}/messages/${this.recipient.username}/read`)
-        .then((response) => {});
+      if (!this.alreadyRead) {
+        axios
+          .patch(
+            `/chat/${this.chatId}/messages/${this.recipient.username}/read`
+          )
+          .then((response) => {
+            this.alreadyRead = true;
+          });
+      }
     },
 
     formatDate(date) {
