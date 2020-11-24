@@ -56,7 +56,7 @@ window.flash = function(message, level = "success") {
 window.Vue = Vue;
 
 Vue.use(TurbolinksAdapter);
-let authorizations = require("./authorizations");
+let authorizations = require("./utils/authorization");
 
 Vue.filter("diffForHumans", date => {
     if (!date) {

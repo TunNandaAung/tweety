@@ -1,15 +1,14 @@
 <x-master>
-    <x-slot name="script">
-        @auth
-            <script>
-                window.App = {!! json_encode([
-                    'csrfToken' => csrf_token(),
-                    'user' => Auth::user(),
-                    'signedIn' => Auth::check()
-                ]) !!};
-            </script>
-        @endauth
-    </x-slot>
+    {{-- <x-slot name="script">
+        <script>
+            window.App = {!! json_encode([
+                'csrfToken' => csrf_token(),
+                'user' => Auth::user(),
+                'signedIn' => Auth::check()
+            ]) !!};
+        </script>
+       
+    </x-slot> --}}
 
     @if(Illuminate\Support\Facades\Route::currentRouteName() != 'show-search')
     <x-slot name="search">
