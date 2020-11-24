@@ -1,27 +1,32 @@
 <template>
-  <div class="dropdown relative">
-    <div
-      class="dropdown-toggle"
-      @click.prevent="isOpen = !isOpen"
-      aria-haspopup="true"
-      :aria-expended="isOpen"
-    >
-      <slot name="trigger"></slot>
-    </div>
-
-    <transition name="pop-out-quick">
-      <ul
-        v-show="isOpen"
-        class="bg-gray-100 absolute mt-2 -m-6 rounded shadow-lg z-50"
+  <on-click-outside :do="close">
+    <div class="dropdown relative">
+      <div
+        class="dropdown-toggle"
+        @click.prevent="isOpen = !isOpen"
+        aria-haspopup="true"
+        :aria-expended="isOpen"
       >
-        <slot></slot>
-      </ul>
-    </transition>
-  </div>
+        <slot name="trigger"></slot>
+      </div>
+
+      <transition name="pop-out-quick">
+        <ul
+          v-show="isOpen"
+          class="bg-gray-100 absolute mt-2 -m-6 rounded shadow-lg z-50"
+        >
+          <slot></slot>
+        </ul>
+      </transition>
+    </div>
+  </on-click-outside>
 </template>
 
 <script>
+import OnClickOutside from "./OnClickOutside";
+
 export default {
+  components: { OnClickOutside },
   props: ["classes"],
 
   data() {
@@ -30,19 +35,9 @@ export default {
     };
   },
 
-  watch: {
-    isOpen(isOpen) {
-      if (isOpen) {
-        document.addEventListener("click", this.closedIfClickedOuside);
-      }
-    },
-  },
-
   methods: {
-    closedIfClickedOuside() {
-      if (!event.target.closet("dropdown")) {
-        this.isOpen = false;
-      }
+    close() {
+      this.isOpen = false;
     },
   },
 };
