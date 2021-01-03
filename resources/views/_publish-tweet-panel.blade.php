@@ -1,4 +1,4 @@
-{{-- <div class="border border-blue-400 rounded-lg py-6 px-8 mb-8">
+{{-- <div class="border border-blue-400 rounded-xl py-6 px-8 mb-8">
     <form method="POST" action="/tweets">
         @csrf
 

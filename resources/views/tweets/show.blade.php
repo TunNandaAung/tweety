@@ -1,5 +1,5 @@
 <x-app>
-    <div class="flex p-4 border border-gray-300 rounded-lg">
+    <div class="flex p-4 border border-gray-300 rounded-xl">
 
         @include("_tweet")
     </div>
@@ -9,7 +9,7 @@
     <h3 class="text-lg font-bold mb-6"> Replies</h3>
 
     {{-- @if($replies->count())
-        <div class="border border-gray-300 rounded-lg">
+        <div class="border border-gray-300 rounded-xl">
             @include('replies.list',['collection' => $replies])
         </div>
     @else

@@ -5,7 +5,7 @@
             <img
                 src="{{ $user->banner }}"
                 alt="profile banner"
-                class="rounded-lg mb-2 h-56 w-full object-cover"
+                class="rounded-xl mb-2 h-56 w-full object-cover"
             >
 
             <img
@@ -74,7 +74,7 @@
 
     </header>
 
-    <div class="border border-gray-300 rounded-lg mb-6">
+    <div class="border border-gray-300 rounded-xl mb-6">
 
         @include('_timeline',[
             'tweets' => $tweets

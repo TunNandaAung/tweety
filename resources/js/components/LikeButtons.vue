@@ -4,14 +4,18 @@
     <form @submit.prevent="like">
       <button
         type="submit"
-        class="flex items-center mr-4 focus:outline-none hover:text-blue-500 hover:bg-blue-200 p-2 rounded-lg"
+        class="flex items-center mr-4 focus:outline-none hover:text-blue-500 hover:bg-blue-200 p-2 rounded-full"
         :class="
-                    isLiked
-                        ? 'text-blue-500 bg-blue-200 rounded-lg p-2'
-                        : 'text-gray-600'
-                "
+          isLiked
+            ? 'text-blue-500 bg-blue-200 rounded-full p-2'
+            : 'text-gray-600'
+        "
       >
-        <svg viewBox="0 0 20 20" class="mr-1 w-4 h-4" style="transform: scaleX(-1)">
+        <svg
+          viewBox="0 0 20 20"
+          class="mr-1 w-4 h-4"
+          style="transform: scaleX(-1)"
+        >
           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g class="fill-current">
               <path
@@ -29,12 +33,12 @@
     <form @submit.prevent="dislike">
       <button
         type="submit"
-        class="flex items-center focus:outline-none hover:text-blue-500 hover:bg-blue-200 p-2 rounded-lg"
+        class="flex items-center focus:outline-none hover:text-blue-500 hover:bg-blue-200 p-2 rounded-xl"
         :class="
-                    isDisliked
-                        ? 'text-blue-500 bg-blue-200 rounded-lg p-2'
-                        : 'text-gray-600'
-                "
+          isDisliked
+            ? 'text-blue-500 bg-blue-200 rounded-xl p-2'
+            : 'text-gray-600'
+        "
       >
         <svg viewBox="0 0 20 20" class="mr-1 w-4 h-4">
           <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -58,11 +62,11 @@ export default {
   props: {
     subject: {
       type: Object,
-      required: true
+      required: true,
     },
     name: {
-      type: String
-    }
+      type: String,
+    },
   },
   data() {
     return {
@@ -70,7 +74,7 @@ export default {
       isDisliked: this.subject.is_disliked,
       likeCount: this.subject.likes_count || 0,
       dislikeCount: this.subject.dislikes_count || 0,
-      endpoint: `/${this.name}/${this.subject.id}/like`
+      endpoint: `/${this.name}/${this.subject.id}/like`,
     };
   },
   methods: {
@@ -94,7 +98,7 @@ export default {
       this.isLiked = false;
 
       this.likeCount > 0 ? this.likeCount-- : this.likeCount;
-    }
-  }
+    },
+  },
 };
 </script>

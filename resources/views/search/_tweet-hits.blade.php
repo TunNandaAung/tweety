@@ -2,7 +2,7 @@
     <app-infinite-hits>
         
         <template slot="item" slot-scope="{ item }">
-            <div class="flex p-4 hover:bg-gray-200 rounded-lg">
+            <div class="flex p-4 hover:bg-gray-200 rounded-xl">
                 
                 <div class="mr-2 flex-shrink-0">
                     <img
@@ -31,7 +31,7 @@
                         
                         <like-buttons :subject="item" name="tweets" class="mr-2"></like-buttons>
                         <button
-                                class="focus:outline-none text-center hover:text-green-600 hover:bg-green-200 p-2 rounded-lg text-gray-600 flex items-center"
+                                class="focus:outline-none text-center hover:text-green-600 hover:bg-green-200 p-2 rounded-xl text-gray-600 flex items-center"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1">
                                     <path

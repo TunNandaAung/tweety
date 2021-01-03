@@ -3,7 +3,7 @@
     <slot>
       <button
         type="button"
-        class="shadow bg-blue-500 hover:bg-blue-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-full"
+        class="shadow bg-blue-500 hover:bg-blue-600 focus:ring focus:outline-none text-white font-bold py-2 px-4 rounded-full"
       >Choose File</button>
     </slot>
     <input

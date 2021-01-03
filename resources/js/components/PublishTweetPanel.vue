@@ -1,5 +1,5 @@
 <template>
-  <div class="border border-blue-400 rounded-lg py-6 px-8 mb-8">
+  <div class="border border-blue-400 rounded-xl py-6 px-8 mb-8">
     <form
       @submit.prevent="submit"
       method="POST"
@@ -18,24 +18,44 @@
           @keydown="delete errors.body"
         ></textarea>
       </vue-tribute>
-      <span class="text-xs text-red-600" v-text="errors.body[0]" v-if="errors.body"></span>
+      <span
+        class="text-xs text-red-600"
+        v-text="errors.body[0]"
+        v-if="errors.body"
+      ></span>
 
       <hr class="mb-4" />
 
       <div class="rounded-full relative" v-if="imageSrc">
-        <img :src="imageSrc" class="rounded-lg mb-1 h-56 w-full object-cover" alt="tweet-image" />
+        <img
+          :src="imageSrc"
+          class="rounded-xl mb-1 h-56 w-full object-cover"
+          alt="tweet-image"
+        />
         <button
           type="button"
           class="absolute text-white text-right px-4 py-1 bg-black rounded-full"
-          style="left:88%;top:5%"
+          style="left: 88%; top: 5%"
           @click="clearImage"
-        >Clear</button>
+        >
+          Clear
+        </button>
       </div>
 
-      <span class="text-xs text-red-600" v-text="errors.image[0]" v-if="errors.image"></span>
+      <span
+        class="text-xs text-red-600"
+        v-text="errors.image[0]"
+        v-if="errors.image"
+      ></span>
 
       <footer class="flex items-center justify-between">
-        <img :src="avatar" alt="Your Avatar" class="rounded-full mr-2" width="50" height="50" />
+        <img
+          :src="avatar"
+          alt="Your Avatar"
+          class="rounded-full mr-2"
+          width="50"
+          height="50"
+        />
 
         <div class="flex items-center">
           <div class="mr-6">
@@ -65,7 +85,9 @@
           <button
             type="submit"
             class="bg-blue-500 rounded-full shadow font-bold text-sm px-10 text-white hover:bg-blue-600 h-10 focus:outline-none"
-          >Publish</button>
+          >
+            Publish
+          </button>
         </div>
       </footer>
     </form>
@@ -84,7 +106,7 @@ export default {
   components: {
     ImageUpload,
     VueTribute,
-    CharacterLimitIndicator
+    CharacterLimitIndicator,
   },
   data() {
     return {
@@ -95,23 +117,23 @@ export default {
       clear: false,
       errors: {},
       tributeOptions: new Tribute({
-        values: function(text, cb) {
+        values: function (text, cb) {
           axios
             .get("/api/search-friends", {
-              params: { username: text }
+              params: { username: text },
             })
-            .then(response => cb(response.data));
+            .then((response) => cb(response.data));
         },
         lookup: "username",
-        selectTemplate: function(item) {
+        selectTemplate: function (item) {
           if (typeof item === "undefined") return null;
 
           return "@" + item.original.username;
         },
-        noMatchTemplate: function() {
+        noMatchTemplate: function () {
           return '<span style:"visibility: hidden;"></span>';
-        }
-      })
+        },
+      }),
     };
   },
   methods: {
@@ -136,10 +158,10 @@ export default {
 
       axios
         .post("/tweets", data)
-        .then(response => {
+        .then((response) => {
           location = response.data.message;
         })
-        .catch(errors => {
+        .catch((errors) => {
           this.errors = errors.response.data.errors;
         });
     },
@@ -151,8 +173,8 @@ export default {
         data.append("image", this.image);
       }
       return data;
-    }
-  }
+    },
+  },
 };
 </script>
 

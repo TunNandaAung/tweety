@@ -2,7 +2,7 @@
     <div class="mx-auto">
         <h2 class="text-xl font-bold mb-6 text-blue-500">Account Settings</h2>
 
-        <a class="px-5 py-3 rounded-lg border border-blue-500 
+        <a class="px-5 py-3 rounded-xl border border-blue-500 
             text-blue-500 shadow font-semibold text-lg flex justify-between 
             items-center hover:bg-blue-400 hover:text-white hover:border-transparent
             cursor-pointer"
@@ -19,7 +19,7 @@
             </svg>
     </a>
 
-        <a class="mt-6 px-5 py-3 rounded-lg border border-blue-500 
+        <a class="mt-6 px-5 py-3 rounded-xl border border-blue-500 
                 text-blue-500 shadow font-semibold text-lg flex justify-between 
                 items-center hover:bg-blue-400 hover:text-white hover:border-transparent
                 cursor-pointer"

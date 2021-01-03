@@ -32,13 +32,13 @@
                     <img
                         src="{{ asset($reply->image) }}"
                         alt="tweet-image"
-                        class="rounded-lg mb-1 h-64 w-full object-cover"
+                        class="rounded-xl mb-1 h-64 w-full object-cover"
                     >
                 </div>
             @endif
             
             <div class="flex items-center pt-2 -ml-2">
-                <button class="focus:outline-none text-center hover:text-green-500 hover:bg-green-200 p-2 rounded-lg text-gray-600" 
+                <button class="focus:outline-none text-center hover:text-green-500 hover:bg-green-200 p-2 rounded-xl text-gray-600" 
                     @click.prevent="$modal.show('add-reply',{'tweetID':{{$reply->tweet->id }},'parentID':{{$reply->id }},'owner':{{ $reply->owner }},'parentBody':'{{ $reply->body}}' })"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">

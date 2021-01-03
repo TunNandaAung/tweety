@@ -1,4 +1,4 @@
-{{-- <div class="bg-gray-200 border border-gray-400 rounded-lg py-4 px-4">
+{{-- <div class="bg-gray-200 border border-gray-400 rounded-xl py-4 px-4">
     <h3 class="font-bold text-xl mb-4">Following</h3>
 
     <ul>

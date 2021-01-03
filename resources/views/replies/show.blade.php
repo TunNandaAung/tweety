@@ -1,5 +1,5 @@
 <x-app>
-    <div class="flex p-4 border border-gray-300 rounded-lg hover:bg-gray-200">
+    <div class="flex p-4 border border-gray-300 rounded-xl hover:bg-gray-200">
             @include("_tweet")
     </div>
 
@@ -11,7 +11,7 @@
 
     </div>
     
-    <div class="border border-gray-300 rounded-lg">
+    <div class="border border-gray-300 rounded-xl">
         <reply
             :reply="{{ $reply }}"
             :tweet="{{ $tweet}}"

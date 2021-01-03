@@ -1,7 +1,7 @@
 <template>
   <modal
-    :name="'add-reply-'+id"
-    classes="p-4 bg-white shadow-lg rounded-lg w-64"
+    :name="'add-reply-' + id"
+    classes="p-4 bg-white shadow-lg rounded-xl w-64"
     height="auto"
     @before-open="beforeOpen"
   >
@@ -10,7 +10,10 @@
         @click.prevent="$modal.hide(`add-reply-${id}`)"
         class="focus:outline-none bg-transparent p-1 hover:bg-blue-300 text-center rounded-full"
       >
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 hover:text-blue-600">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5 text-blue-500 hover:text-blue-600"
+        >
           <path
             fill="currentColor"
             d="M14.348,14.849c-0.469,0.469-1.229,0.469-1.697,0L10,11.819l-2.651,3.029c-0.469,0.469-1.229,0.469-1.697,0
@@ -25,7 +28,13 @@
     <div class="mb-4 ml-4">
       <div class="flex">
         <div class="mr-2 flex-shrink-0">
-          <img :src="owner.avatar" alt class="rounded-full mr-2" width="50" height="50" />
+          <img
+            :src="owner.avatar"
+            alt
+            class="rounded-full mr-2"
+            width="50"
+            height="50"
+          />
         </div>
 
         <div class="flex-1">
@@ -62,12 +71,16 @@
           @keydown="delete errors.body"
         ></textarea>
       </vue-tribute>
-      <span class="text-xs text-red-600" v-text="errors.body[0]" v-if="errors.body"></span>
+      <span
+        class="text-xs text-red-600"
+        v-text="errors.body[0]"
+        v-if="errors.body"
+      ></span>
 
       <!-- <hr class="mb-4" />
 
           <div class="rounded-full relative" v-if="imageSrc">
-            <img :src="imageSrc" class="rounded-lg mb-1 h-56 w-full object-cover" alt="tweet-image" />
+            <img :src="imageSrc" class="rounded-xl mb-1 h-56 w-full object-cover" alt="tweet-image" />
             <button
               type="button"
               class="absolute text-white text-right px-4 py-1 bg-black rounded-full"
@@ -79,7 +92,13 @@
       <span class="text-xs text-red-600" v-text="errors.image[0]" v-if="errors.image"></span>-->
 
       <footer class="flex items-center justify-between">
-        <img :src="avatar" alt="Your Avatar" class="rounded-full mr-2" width="50" height="50" />
+        <img
+          :src="avatar"
+          alt="Your Avatar"
+          class="rounded-full mr-2"
+          width="50"
+          height="50"
+        />
 
         <div class="flex items-center">
           <!-- <div class="mr-6">
@@ -109,7 +128,9 @@
           <button
             type="submit"
             class="bg-blue-500 rounded-full shadow font-bold text-sm px-10 text-white hover:bg-blue-600 h-10 focus:outline-none"
-          >Publish</button>
+          >
+            Publish
+          </button>
         </div>
       </footer>
     </form>

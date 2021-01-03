@@ -1,8 +1,11 @@
 <template>
   <div>
-    <span class="flex items-center justify-center" :class="loading ? 'loader' : ''"></span>
+    <span
+      class="flex items-center justify-center"
+      :class="loading ? 'loader' : ''"
+    ></span>
 
-    <div class="border border-gray-300 rounded-lg" v-if="items.length > 0">
+    <div class="border border-gray-300 rounded-xl" v-if="items.length > 0">
       <div v-for="(reply, index) in items" :key="reply.id" ref="replies">
         <reply
           :reply="reply"
@@ -14,12 +17,16 @@
         ></reply>
       </div>
 
-      <load-more :container="container" @ready="loadMore" v-if="shouldPaginate"></load-more>
+      <load-more
+        :container="container"
+        @ready="loadMore"
+        v-if="shouldPaginate"
+      ></load-more>
     </div>
     <span class="px-2 py-8" v-else v-show="!loading">No replies yet!</span>
 
     <div
-      class="border border-gray-400 rounded-lg py-6 px-8 mt-8 focus:outline-none focus:border-blue-400 hover:border-blue-400"
+      class="border border-gray-400 rounded-xl py-6 px-8 mt-8 focus:outline-none focus:border-blue-400 hover:border-blue-400"
       id="add-reply-field"
       @click.prevent="showModal"
     >
@@ -38,12 +45,16 @@
     <portal to="add-reply">
       <transition name="slide-fade" mode="out-in">
         <button
-          class="bg-blue-500 rounded-full p-2 z-10 is-floating focus:shadow-outline"
+          class="bg-blue-500 rounded-full p-2 z-10 is-floating focus:ring"
           id="add-reply-button"
           v-show="isVisible"
           @click.prevent="showModal"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-10 h-10 text-white">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            class="w-10 h-10 text-white"
+          >
             <path
               fill="currentColor"
               d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"
@@ -76,12 +87,12 @@ export default {
       childrenReplies: [],
       container: this.$refs["replies"],
       loading: false,
-      currentAvatar: window.App.user.avatar
+      currentAvatar: window.App.user.avatar,
     };
   },
   created() {
     if (this.replies) {
-      this.replies.map(item => this.items.push(item));
+      this.replies.map((item) => this.items.push(item));
     } else this.fetch();
   },
   computed: {
@@ -91,13 +102,13 @@ export default {
     shouldPaginate() {
       return this.page <= this.last_page - 1;
     },
-    ...mapState(["allReplies"])
+    ...mapState(["allReplies"]),
   },
 
   methods: {
     fetch(page) {
       this.loading = true;
-      axios.get(this.url(page)).then(response => {
+      axios.get(this.url(page)).then((response) => {
         this.refresh(response);
         this.loading = false;
       });
@@ -108,7 +119,7 @@ export default {
         parentID: null,
         owner: this.tweet.user,
         parentBody: `${this.tweet.body}`,
-        isRoot: true
+        isRoot: true,
       });
     },
     url(page) {
@@ -123,9 +134,9 @@ export default {
 
     refresh({ data }) {
       this.dataSet = data;
-      data.data.map(item => this.items.push(item));
-    }
-  }
+      data.data.map((item) => this.items.push(item));
+    },
+  },
 };
 </script>
 

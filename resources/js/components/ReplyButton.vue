@@ -1,6 +1,6 @@
 <template>
   <button
-    class="focus:outline-none text-center hover:text-green-600 hover:bg-green-200 p-2 rounded-lg text-gray-600 flex items-center"
+    class="focus:outline-none text-center hover:text-green-600 hover:bg-green-200 p-2 rounded-xl text-gray-600 flex items-center"
   >
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1">
       <path
@@ -21,7 +21,7 @@ export default {
     this.$store.dispatch("fetchRepliesCount", this.count);
   },
   computed: {
-    ...mapState(["repliesCount"])
-  }
+    ...mapState(["repliesCount"]),
+  },
 };
 </script>

@@ -29,7 +29,7 @@
                 <img
                     src="{{ asset($tweet->image) }}"
                     alt="tweet-image"
-                    class="rounded-lg mb-1 h-64 w-full object-cover shadow-xl"
+                    class="rounded-xl mb-1 h-64 w-full object-cover shadow-xl"
                     width="50"
                     height="50"
                 >
@@ -42,7 +42,7 @@
             <like-buttons :subject="{{ $tweet }}" name="tweets" class="mr-2"></like-buttons>
             @if(isset($bladeCount))
                 <button
-                    class="focus:outline-none text-center hover:text-green-600 hover:bg-green-200 p-2 rounded-lg text-gray-600 flex items-center"
+                    class="focus:outline-none text-center hover:text-green-600 hover:bg-green-200 p-2 rounded-xl text-gray-600 flex items-center"
                 >
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1">
                         <path
@@ -76,7 +76,7 @@
                 </template>
 
 
-                <button type="submit" class="px-2 py-2 w-full text-left class text-red-500 rounded hover:bg-red-600 hover:text-white"  @click.prevent="$modal.show('confirm-delete-tweet',{'id':{{$tweet->id }}})">
+                <button type="submit" class="px-2 py-2 w-full text-left class text-red-500 rounded-xlhover:bg-red-600 hover:text-white"  @click.prevent="$modal.show('confirm-delete-tweet',{'id':{{$tweet->id }}})">
                     Delete
                 </button>
 

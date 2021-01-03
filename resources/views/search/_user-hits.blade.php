@@ -2,7 +2,7 @@
     <app-infinite-hits>
         
         <template slot="item" slot-scope="{ item }">
-            <div class="p-4 hover:bg-gray-200 rounded-lg">
+            <div class="p-4 hover:bg-gray-200 rounded-xl">
                 <div class="flex">
                     <a :href=`/profiles/${item.username}` class="flex flex-1 items-start ">
                         <img

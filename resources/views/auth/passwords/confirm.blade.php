@@ -5,7 +5,7 @@
 
                 {{ __('Please confirm your password before continuing.') }}
 
-                <form method="POST" class="bg-gray-200 shadow-md rounded px-8 pt-6 pb-8 mb-4 mt-6" action="{{ route('password.confirm') }}">
+                <form method="POST" class="bg-gray-200 shadow-md rounded-xlpx-8 pt-6 pb-8 mb-4 mt-6" action="{{ route('password.confirm') }}">
                     @csrf
 
                     <div class="mb-6">
@@ -13,7 +13,7 @@
                             Password
                         </label>
 
-                        <input class="shadow appearance-none @error('password') border-red-500  @enderror border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        <input class="shadow appearance-none @error('password') border-red-500  @enderror border rounded-xlw-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring"
                                type="password"
                                name="password"
                                id="password"
@@ -28,7 +28,7 @@
 
                     <div class="mb-6">
                         <button type="submit"
-                                class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-full"
+                                class="shadow bg-blue-500 hover:bg-blue-400 focus:ring focus:outline-none text-white font-bold py-2 px-4 rounded-full"
                         >
                             Confirm Password
                         </button>
@@ -36,7 +36,7 @@
 
                     <div>
                         <button type="submit"
-                                class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-full"
+                                class="shadow bg-blue-500 hover:bg-blue-400 focus:ring focus:outline-none text-white font-bold py-2 px-4 rounded-full"
                         >
                             Submit
                         </button>

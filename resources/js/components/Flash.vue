@@ -2,11 +2,11 @@
   <transition name="slide-fade" mode="out-in">
     <div
       :class="classes"
-      style="right: 25px; bottom: 25px;"
+      style="right: 25px; bottom: 25px"
       role="alert"
       v-show="show"
       v-text="body"
-      class="rounded-lg"
+      class="rounded-xl"
     ></div>
   </transition>
 </template>
@@ -19,7 +19,7 @@ export default {
     return {
       body: this.message,
       level: "success",
-      show: false
+      show: false,
     };
   },
 
@@ -35,7 +35,7 @@ export default {
         defaults.push("bg-red-500", "border-red-600");
 
       return defaults;
-    }
+    },
   },
 
   created() {
@@ -43,7 +43,7 @@ export default {
       this.flash();
     }
 
-    window.events.$on("flash", data => this.flash(data));
+    window.events.$on("flash", (data) => this.flash(data));
   },
 
   methods: {
@@ -62,8 +62,8 @@ export default {
       setTimeout(() => {
         this.show = false;
       }, 3000);
-    }
-  }
+    },
+  },
 };
 </script>
 <style scoped>

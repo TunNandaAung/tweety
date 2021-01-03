@@ -28,7 +28,7 @@
                         placeholder="Search..."
                         type="search"
                         v-model="currentRefinement"
-                        class="bg-gray-200 appearance-none border-2 pl-8 border-gray-200 w-full rounded-lg py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                        class="bg-gray-200 appearance-none border-2 pl-8 border-gray-200 w-full rounded-xl py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
                         @input="refine($event.currentTarget.value)"
                     >
                     <span :hidden="!isSearchStalled" class="-ml-6 loader"></span>

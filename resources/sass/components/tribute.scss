@@ -5,7 +5,7 @@
     max-height: 300px;
     max-width: 500px;
     z-index: 999999;
-    @apply rounded overflow-auto block h-auto;
+    @apply rounded-xl overflow-auto block h-auto;
 }
 
 .tribute-container ul {

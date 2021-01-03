@@ -33,20 +33,20 @@
     @endif
 
     <section class="px-8">
-        <main class="container mx-auto">
-            <div class="lg:gird lg:grid-cols-3 lg:col-gap-8 flex justify-between flex-col lg:flex-row">
+        <main class="container mx-auto lg:px-16">
+            <div class="lg:grid lg:grid-cols-5 lg:gap-x-8 flex justify-between flex-col lg:flex-row">
                 @auth
                     <div class="lg:w-48 lg:h-screen lg:fixed">
                             @include ('_sidebar-links')
                     </div>
                 @endauth
 
-                <div class="lg:mx-auto lg:ml-64 w-full" style="max-width: 700px;">
+                <div class="lg:mx-auto lg:ml-64 w-full lg:col-span-3" style="max-width: 700px;">
                     {{ $slot }}
                 </div>
                
                 @auth
-                    <div class="lg:w-64">
+                    <div class="lg:w-64 lg:ml-64">
                         @include ('_friends-list')
                     </div>
                 @endauth

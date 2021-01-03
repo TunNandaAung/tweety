@@ -14,7 +14,7 @@
 
                 <div>
                     <input
-                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+                        class="bg-gray-200 appearance-none border-2 border-gray-200 rounded-xlw-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
                         id="email"
                         name="email"
                         type="email"
@@ -31,14 +31,14 @@
             <div>
                 <div class="md:text-right">
                     <button
-                        class="shadow bg-blue-500 hover:bg-blue-600 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-full"
+                        class="shadow bg-blue-500 hover:bg-blue-600 focus:ring focus:outline-none text-white font-bold py-2 px-4 rounded-full"
                         type="submit"
                     >
                         Update
                     </button>
 
                     <a
-                        class="ml-5 shadow bg-gray-700 hover:bg-gray-800 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded-full"
+                        class="ml-5 shadow bg-gray-700 hover:bg-gray-800 focus:ring focus:outline-none text-white font-bold py-2 px-4 rounded-full"
                         href="{{ $user->path() }}"
                     >
                         Cancel

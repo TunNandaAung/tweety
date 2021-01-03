@@ -1,5 +1,5 @@
 <x-app>
-    <div class="w-full mx-auto rounded-lg">
+    <div class="w-full mx-auto rounded-xl">
         <div class="w-full lg:-mt-8 mb-4 lg:mb-0">
             <div class=" bg-blue-500 py-4 px-2 text-white font-bold text-xl rounded-t-xl text-center">{{'@'.$recipient->username }}</div>
                     

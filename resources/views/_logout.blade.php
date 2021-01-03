@@ -24,7 +24,7 @@
             </li>
         </template>
         
-        <div class="rounded shadow w-full">
+        <div class="rounded-xlshadow w-full">
 
             <div class="px-3 py-3 flex items-center pb-4 border-b border-gray-400">
                 <img
