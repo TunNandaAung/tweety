@@ -13,7 +13,7 @@
       <transition name="pop-out-quick">
         <ul
           v-show="isOpen"
-          class="bg-gray-200 absolute mt-2 -m-6 rounded-xlshadow-lg z-50"
+          class="bg-gray-200 absolute mt-2 -m-6 rounded-xl shadow-lg z-50"
         >
           <slot></slot>
         </ul>

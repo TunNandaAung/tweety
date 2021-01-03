@@ -33,10 +33,10 @@
     <form @submit.prevent="dislike">
       <button
         type="submit"
-        class="flex items-center focus:outline-none hover:text-blue-500 hover:bg-blue-200 p-2 rounded-xl"
+        class="flex items-center focus:outline-none hover:text-blue-500 hover:bg-blue-200 p-2 rounded-full"
         :class="
           isDisliked
-            ? 'text-blue-500 bg-blue-200 rounded-xl p-2'
+            ? 'text-blue-500 bg-blue-200 rounded-full p-2'
             : 'text-gray-600'
         "
       >

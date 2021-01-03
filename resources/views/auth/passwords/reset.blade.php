@@ -1,7 +1,7 @@
 <x-master>
     
     <x-panel>
-        <form class="bg-gray-200 shadow-md rounded-xlpx-8 pt-6 pb-8 mb-4" 
+        <form class="bg-gray-200 shadow-md rounded-xl px-8 pt-6 pb-8 mb-4" 
             method="POST" 
             action="{{ route('password.update') }}"
         >
@@ -17,7 +17,7 @@
                 </label>
 
                 <input
-                    class="shadow appearance-none @error('email') border border-red-500  @enderror border rounded-xlw-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring"
+                    class="shadow appearance-none @error('email') border border-red-500  @enderror border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring"
                     id="email"
                     type="email"
                     name="email"
@@ -36,7 +36,7 @@
                 </label>
 
                 <input
-                    class="shadow appearance-none @error('password') border border-red-500  @enderror rounded-xlw-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:ring"
+                    class="shadow appearance-none @error('password') border border-red-500  @enderror rounded-xl w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:ring"
                     id="password"
                     type="password"
                     placeholder="******************"
@@ -55,7 +55,7 @@
                 </label>
 
                 <input
-                    class="shadow appearance-none @error('password') border border-red-500  @enderror rounded-xlw-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:ring"
+                    class="shadow appearance-none @error('password') border border-red-500  @enderror rounded-xl w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:ring"
                     id="password_confirmation"
                     type="password"
                     placeholder="******************"

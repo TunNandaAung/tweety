@@ -32,7 +32,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app">
+<div id="app" class="py-8 lg:py-0">
     <section class="w-full bg-white items-center flex-wrap m-auto top-0 animated fixed z-20">
         <header class="container mx-auto flex justify-between bg-white px-4 lg:px-16 py-8">
             <svg xmlns="http://www.w3.org/2000/svg" width="130" height="34" viewBox="0 0 130 34">

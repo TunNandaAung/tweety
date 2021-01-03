@@ -11,13 +11,15 @@
     </div>
 
     <div class="flex-1">
-        <div class="flex items-baseline mb-2">
+        <div class="flex items-baseline lg:items-center mb-2">
+          <div class="lg:flex flex-1">
             <a href="{{ route('profile',$tweet->user) }}" class="mr-3">
-                <h5 class="font-bold">{{ $tweet->user->name }}</h5>
+                <h5 class="text-sm md:text-base font-bold">{{ $tweet->user->name }}</h5>
             </a>
-            <span class="font-bold text-sm text-gray-600 mr-3">{{ '@'. $tweet->user->username }}</span>
+            <span class="font-bold text-xs md:text-sm text-gray-600 mr-3">{{ '@'. $tweet->user->username }}</span>
+          </div>
            
-            <span class="text-sm text-gray-600">{{ '. '.$tweet->created_at->diffForHumans() }}</span>
+            <span class="text-xs md:text-sm text-gray-600 ">{{ '. '.$tweet->created_at->diffForHumans() }}</span>
         </div>
         
         <h3 class="mb-2">
@@ -59,7 +61,7 @@
         </div>
     </div>
     <div>
-        
+
        @can('edit',$tweet->user)
             <dropdown align="right" width="200px" v-cloak>
                 <template v-slot:trigger>

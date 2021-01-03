@@ -5,7 +5,7 @@
 
                 {{ __('Please confirm your password before continuing.') }}
 
-                <form method="POST" class="bg-gray-200 shadow-md rounded-xlpx-8 pt-6 pb-8 mb-4 mt-6" action="{{ route('password.confirm') }}">
+                <form method="POST" class="bg-gray-200 shadow-md rounded-xl px-8 pt-6 pb-8 mb-4 mt-6" action="{{ route('password.confirm') }}">
                     @csrf
 
                     <div class="mb-6">
@@ -13,7 +13,7 @@
                             Password
                         </label>
 
-                        <input class="shadow appearance-none @error('password') border-red-500  @enderror border rounded-xlw-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring"
+                        <input class="shadow appearance-none @error('password') border-red-500  @enderror border rounded-xl w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring"
                                type="password"
                                name="password"
                                id="password"

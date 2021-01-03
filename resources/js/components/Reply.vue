@@ -88,7 +88,7 @@
 
           <button
             type="submit"
-            class="px-2 py-2 w-full text-left class text-red-500 rounded-xlhover:bg-red-600 hover:text-white"
+            class="px-2 py-2 w-full text-left class text-red-500 rounded-xl hover:bg-red-600 hover:text-white"
             @click.prevent="
               $modal.show(`confirm-delete-reply-${reply.id}`, deletePayload)
             "
