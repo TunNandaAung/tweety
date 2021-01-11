@@ -10,7 +10,7 @@
     },
     "devDependencies": {
         "autoprefixer": "^10.1.0",
-        "axios": "^0.19",
+        "axios": "^0.21.1",
         "cross-env": "^7.0",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
