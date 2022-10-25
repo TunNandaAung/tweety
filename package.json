@@ -8,6 +8,11 @@
         "prod": "mix --production",
         "production": "mix --production"
     },
+    "engines": {
+        "npm": ">=6.0.0 <8.0.0",
+        "node": ">=14.0.0 <16.0.0"
+    },
+    "engineStrict": true,
     "devDependencies": {
         "autoprefixer": "^10.1.0",
         "axios": "^0.21.1",

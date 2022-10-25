@@ -30,37 +30,37 @@ class TweetySeeder extends Seeder
                 'name' => 'John Doe',
                 'username' => 'johndoe',
                 'email' => 'john@example.com',
-                'password' => bcrypt('password')
+                'password' => 'password'
             ],
             [
                 'name' => 'Darth Vader',
                 'username' => 'vader',
                 'email' => 'vader@example.com',
-                'password' => bcrypt('password')
+                'password' => 'password'
             ],
             [
                 'name' => 'Luke Skywalker',
                 'username' => 'luke',
                 'email' => 'luke@example.com',
-                'password' => bcrypt('password')
+                'password' => 'password'
             ],
             [
                 'name' => 'Indiana Jones',
                 'username' => 'rotla1981',
                 'email' => 'indy@example.com',
-                'password' => bcrypt('password')
+                'password' => 'password'
             ],
             [
                 'name' => 'Ben Solo',
                 'username' => 'KyloRen',
                 'email' => 'kylo@example.com',
-                'password' => bcrypt('password')
+                'password' => 'password'
             ],
             [
                 'name' => 'Marty McFly',
                 'username' => '121gigawatts',
                 'email' => 'calvin@example.com',
-                'password' => bcrypt('password')
+                'password' => 'password'
             ],
         ])->each(function ($user) {
             factory(User::class)->create(
@@ -68,7 +68,7 @@ class TweetySeeder extends Seeder
                     'name' => $user['name'],
                     'username' => $user['username'],
                     'email' => $user['email'],
-                    'password' => bcrypt('password')
+                    'password' => 'password'
                 ]
             );
         });
@@ -83,7 +83,7 @@ class TweetySeeder extends Seeder
         $users = User::all();
 
         $users->each(function ($user) {
-            factory(Tweet::class, 3)->create(['user_id'=> $user->id]);
+            factory(Tweet::class, 3)->create(['user_id' => $user->id]);
         });
     }
 }
