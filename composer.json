@@ -21,6 +21,7 @@
         "laravel/tinker": "^2.0",
         "laravel/ui": "^4.0",
         "predis/predis": "^2.0",
+        "pusher/pusher-php-server": "7.0.2",
         "spatie/laravel-json-api-paginate": "^1.12",
         "stevebauman/purify": "^5.0"
     },

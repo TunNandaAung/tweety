@@ -16,9 +16,11 @@ export default {
         AisPoweredBy
     },
     filters: {
-        getAvatar: path => {
-            return "/" + path.substr(17, path.length);
-        }
+        getAvatar: path => (
+            path.includes("localhost")
+                ? "/" + path.substr(19, path.length)
+                : path
+        )
     },
     data() {
         const algoliaClient = algoliasearch(

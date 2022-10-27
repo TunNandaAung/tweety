@@ -30,14 +30,14 @@ class MessagesController extends Controller
             'message' => $request->message,
             'chat_id' => $chat->id,
         ])->load('sender');
-        
+
         $chat->messages()->attach($message);
 
         $chat->touch();
 
         broadcast(new MessageSent(auth()->user(), $message, $chat))->toOthers();
 
-        return response(['status' => 'Message Sent!','message' => $message]);
+        return response(['status' => 'Message Sent!', 'message' => $message]);
     }
 
     public function update(Chat $chat, User $user)
@@ -45,9 +45,9 @@ class MessagesController extends Controller
         $chat->senderMessages($user)
             ->get()
             ->markAsRead();
-        
+
         broadcast(new MessageRead(auth()->user(), $chat))->toOthers();
-            
+
         return ['status' => 'Mark as read'];
     }
 }
