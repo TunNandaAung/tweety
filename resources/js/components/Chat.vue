@@ -4,13 +4,16 @@
       <div class="flex-1 flex justify-between overflow-y-hidden">
         <div class="flex-1 flex flex-col justify-between">
           <div class="text-sm overflow-y-auto">
+              <!-- <div :class="loading ? 'loader' : ''"></div> -->
+            <div class="mt-2" :class="fetchingMessage ? 'loader' : ''"></div>
+          
             <ul
               v-chat-scroll="{ always: false, smooth: true }"
               class="overflow-y-auto h-full max-h-screen"
               id="messages"
               @v-chat-scroll-top-reached="fetchMessages()"
               v-if="messages.length"
-            >
+            >  
               <li
                 class="mb-4 cursor-pointer"
                 :class="{
@@ -95,6 +98,7 @@ export default {
       lastPage: null,
       typingTimer: false,
       alreadyRead: false,
+      fetchingMessage: false,
     };
   },
   created() {
@@ -166,11 +170,13 @@ export default {
       this.newMessage = "";
     },
     fetchMessages() {
-      if (this.currentPage >= this.lastPage) {
+      if (this.currentPage != this.lastPage) {
+        this.fetchingMessage = true;
         axios.get(this.url(this.currentPage)).then(({ data }) => {
           data.data.map((item) => this.messages.unshift(item));
           this.lastPage = data.last_page;
           this.currentPage++;
+          this.fetchingMessage = false;
         });
       }
     },
